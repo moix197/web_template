@@ -1,0 +1,9 @@
+interface Props {
+	children: React.ReactNode;
+}
+
+const TitleMain = ({ children }: Props) => {
+	return <h1 className="text-5xl font-bold">{children}</h1>;
+};
+
+export default TitleMain;
