@@ -1,9 +1,12 @@
 interface Props {
 	children: React.ReactNode;
+	className?: string;
 }
 
-const TitleSection = ({ children = "" }: Props) => {
-	return <h5 className="text-3xl uppercase font-bold">{children}</h5>;
+const TitleSection = ({ children = "", className = "" }: Props) => {
+	return (
+		<h5 className={`text-4xl uppercase font-bold ${className}`}>{children}</h5>
+	);
 };
 
 export default TitleSection;

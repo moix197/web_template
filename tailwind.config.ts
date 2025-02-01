@@ -14,16 +14,8 @@ const config: Config = {
 				screen: "100svh",
 			},
 			backgroundImage: {
-				hero: "url(/images/bg/hero.jpg)",
-				bg1: "url(/images/bg/bg1.jpg)",
-				bg2: "url(/images/bg/bg2.jpg)",
-				bg3: "url(/images/bg/bg3.jpg)",
-				bg4: "url(/images/bg/bg4.jpg)",
-				bg5: "url(/images/bg/bg5.jpg)",
-				bg6: "url(/images/bg/bg6.jpg)",
-				bg7: "url(/images/bg/bg7.jpg)",
-				bg8: "url(/images/bg/bg8.jpg)",
-				bg9: "url(/images/bg/bg9.jpg)",
+				paperBg: "url(/images/bg/paper_bg.jpg)",
+				leatherBg: "url(/images/bg/leather_bg.png)",
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

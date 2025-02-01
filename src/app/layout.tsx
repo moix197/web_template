@@ -6,6 +6,7 @@ import "./globals.css";
 import { brand, navItems } from "@/data/nav";
 import { legal, socials, metaData } from "@/data/general";
 import FooterCompact from "@/components/sections/FooterCompact";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +19,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${inter.className}`}>
-				<WebNavBar></WebNavBar>
-				{children}
-				<FooterCompact
+			<body className={``}>
+				{/*<WebNavBar></WebNavBar>*/}
+				<Providers>{children}</Providers>
+				{/*<FooterCompact
 					brand={brand}
 					legal={legal}
 					socials={socials}
 					items={navItems}
-				></FooterCompact>
+				></FooterCompact>*/}
 			</body>
 		</html>
 	);
