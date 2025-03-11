@@ -1,23 +1,35 @@
 import {
-	validateWalletAddress,
-	validateMultiWalletAddress,
+	//validateWalletAddress,
+	//validateMultiWalletAddress,
 	validateNumbers,
 	validatePlainTextNumber,
 	validatePlainText,
+	validateAmpleText,
 	validateDate,
 	validateDateIsCompleted,
 	validateEmptyString,
 	validatePrice,
 	validateName,
-} from "utils/formTypingValidation";
-import {
-	checkDateIsAfterToday,
-	checkSecondDateComesAfter,
-	checkTimePassed,
-} from "./checkTimePassed";
+	validateRelativeURL,
+	validateEmail,
+} from "./formTyping";
+
+import { checkDateIsAfterToday } from "./checkTimePassed";
 
 const validationsPerField = {
 	name: [validateEmptyString, validateName],
+	logo: [validateEmptyString, validateAmpleText],
+	accountName: [validateEmptyString, validateAmpleText],
+	totalAmount: [validateEmptyString, validatePrice],
+	amount: [validateEmptyString, validatePrice],
+	integer: [validateEmptyString, validateNumbers],
+	text: [validateEmptyString, validateAmpleText],
+	textAllowEmptyString: [validateAmpleText],
+	parts: [validateEmptyString, validateNumbers],
+	number: [validateEmptyString, validateNumbers],
+	letters: [validateEmptyString, validatePlainText],
+	relativeURL: [validateRelativeURL],
+	email: [validateEmptyString, validateEmail],
 	launch: [
 		validateEmptyString,
 		validateDateIsCompleted,
@@ -31,33 +43,36 @@ const validationsPerField = {
 		validateEndDate,
 		validateDateIsAfterToday,
 	],
-	admins: [validateMultiWalletAddress],
-	walletsAry: [validateMultiWalletAddress],
+	paymentMethods: [],
+	title: [validateEmptyString],
+	//admins: [validateMultiWalletAddress],
+	//walletsAry: [validateMultiWalletAddress],
 	redeem: [validateRedemType],
-	price: [validatePriceData],
+	price: [validateEmptyString, validatePrice],
+	discount: [validateEmptyString, validatePrice],
 	target: [validateTargetData],
 	tiers: [validateEmptyString],
 	vault: [validateEmptyString],
-	type: [validateSaleType],
+	type: [validateEmptyString],
 	vesting: [validateVesting],
-	walletAddress: [validateEmptyString, validateWalletAddress],
-	tokenMintAddress: [validateEmptyString, validateWalletAddress],
+	content: [validateEmptyString],
+	//walletAddress: [validateEmptyString, validateWalletAddress],
+	//tokenMintAddress: [validateEmptyString, validateWalletAddress],
 	initialAmount: [validateEmptyString, validatePrice],
 	teamId: [validateEmptyString],
 	vaultId: [validateEmptyString],
-	amount: [validateEmptyString],
 	objectId: [validateEmptyString, checkObjectId],
 	availableAmount: [validateEmptyString, validateNumbers],
 	toBuyAmount: [validateEmptyString, validatePrice],
 	lockedAmount: [validateEmptyString, validatePrice],
-	participants: [validateEmptyString, validateMultiWalletAddress],
+	//participants: [validateEmptyString, validateMultiWalletAddress],
 	status: [validateEmptyString, validateUserStatus],
 };
 
-function bulkValidate(itemsObj) {
+function bulkValidate(itemsObj, validationValues) {
 	let errorsNow = [];
 	for (let key in itemsObj) {
-		let result = validate(key, itemsObj[key], itemsObj);
+		let result = validate(key, itemsObj[key], itemsObj, validationValues);
 		if (result.err) {
 			errorsNow.push(result);
 		}
@@ -66,11 +81,13 @@ function bulkValidate(itemsObj) {
 	return errorsNow;
 }
 
-function validate(key, value, items) {
+function validate(key, value, items, validationValues) {
 	let obj = { err: false, name: key, result: [] };
 
+	console.log("key", key);
+	console.log("value", value);
 	//let validResult = validationsPerField[key](value);
-	for (const itemFunc of validationsPerField[key]) {
+	for (const itemFunc of validationsPerField[validationValues[key]]) {
 		if (!itemFunc) continue;
 		let response = itemFunc(value, items);
 		if (response.err) {
@@ -240,7 +257,7 @@ function validateDateIsAfterToday(value) {
 }
 
 function validateUserStatus(value) {
-	let statusValues = ["banned", "paused", "readyToClaim", "done"];
+	let statusValues = ["active", "inactive", "hold", "revision"];
 	if (statusValues.indexOf(value) != -1) {
 		return {
 			err: false,
@@ -268,4 +285,4 @@ function checkObjectId(value) {
 	};
 }
 
-export { validate, bulkValidate };
+export { validate, bulkValidate, validationsPerField };

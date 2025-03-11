@@ -1,27 +1,32 @@
 import Link from "next/link";
-import { Button, CustomFlowbiteTheme } from "flowbite-react";
+import { Button } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 
 interface Props {
 	children: React.ReactNode;
-	href: string;
+	href?: string;
 	className?: string;
 	color?: string;
+	disabled?: boolean;
+	isLoading?: boolean;
 	onClick?: () => void | undefined;
 }
 
 const SolidButton = ({
 	children,
-	href,
+	href = "",
 	className,
 	color = "primary",
 	onClick = undefined,
+	disabled = false,
+	isLoading = false,
 }: Props) => {
 	const colorClass =
 		color == "primary"
 			? "bg-primary text-secondary border-secondary hover:bg-secondary hover:text-primary hover:border-primary"
 			: "bg-secondary text-primary border-primary hover:bg-primary hover:text-secondary hover:border-secondary";
 	return (
-		<div>
+		<>
 			{!onClick ? (
 				<Link
 					href={href}
@@ -33,11 +38,20 @@ const SolidButton = ({
 			) : (
 				<Button
 					onClick={() => {
+						if (disabled) return;
 						onClick();
 					}}
-				></Button>
+					color="blue"
+					className={`flex uppercase w-full bg-third hover:third-dark !ring-0 ${className}`}
+				>
+					{!isLoading ? (
+						children
+					) : (
+						<Spinner size="sm" aria-label="Loading Button"></Spinner>
+					)}
+				</Button>
 			)}
-		</div>
+		</>
 	);
 };
 

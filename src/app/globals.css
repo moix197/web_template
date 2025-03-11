@@ -69,3 +69,29 @@ background: rgb(22,62,126);
   background: none;
   width: 10px !important;
 }
+
+.folders-preview, .file-explorer, .file-previewer, .fm-modal-header, .fm-context-menu, .rename-file, .fm-toolbar .toggle-view, .files-header {
+  background-color: #1F2937 !important;
+}
+
+.item-action{
+  background-color: transparent !important;
+}
+
+.file-item-container svg, .fm-modal-header svg, .fm-modal-heading{
+  color: white !important
+}
+
+.fm-modal-header svg{
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0.1rem !important
+}
+
+.folders-preview .bread-crumb-container{
+  pointer-events: none !important;
+}
+
+.book-aspect-ratio{
+  aspect-ratio: 3/4;
+}

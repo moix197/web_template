@@ -1,7 +1,7 @@
 import { Card, Tooltip } from "flowbite-react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { SolidButton } from "@/components/buttons/Buttons";
+import { SolidButton } from "./buttons/Buttons";
 import { BsExclamationCircle } from "react-icons/bs";
 
 interface Props {

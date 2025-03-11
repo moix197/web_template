@@ -2,7 +2,7 @@
 
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
-import { getThemeColors } from "@/utils/theme";
+import { getThemeColors } from "../../../base-app/utils/theme";
 
 interface Props {
 	colorSchema?: string;

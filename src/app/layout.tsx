@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import WebNavBar from "@/components/Navbar";
-import WebFooter from "@/components/sections/WebFooter";
+import WebNavBar from "./components/Navbar";
+import WebFooter from "./components/sections/WebFooter";
 import "./globals.css";
-import { brand, navItems } from "@/data/nav";
+import { brand, navItems } from "./data/nav";
 import { legal, socials, metaData } from "@/data/general";
-import FooterCompact from "@/components/sections/FooterCompact";
-import Providers from "./providers";
+import FooterCompact from "./components/sections/FooterCompact";
+import Providers from "../app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 

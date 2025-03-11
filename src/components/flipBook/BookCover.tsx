@@ -1,5 +1,5 @@
 import ImageSmoother from "../ImageSmoother";
-import TitleMain from "../Titles/TitleMain";
+import TitleMain from "../Titles/Titlexl";
 import TitleSection from "../Titles/TitleSection";
 
 export default function BookCover({

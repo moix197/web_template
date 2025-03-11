@@ -1,4 +1,4 @@
-import ImageSmoother from "@/components/ImageSmoother";
+import ImageSmoother from "../ImageSmoother";
 import SectionDivider from "../dividers/SectionDivider";
 
 interface Props {

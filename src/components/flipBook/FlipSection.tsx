@@ -16,11 +16,6 @@ export default function FlipSection({
 	const [lastItemAdded, setLastItemAdded] = useState(false);
 	const book = useRef();
 
-	useEffect(() => {
-		//book.current.loadFromHtml();
-		console.log("pageClassName", pageClassName);
-	}, [pageClassName]);
-
 	return (
 		// @ts-ignore
 		<HTMLFlipBook
@@ -30,8 +25,8 @@ export default function FlipSection({
 			ref={book}
 			className={`${className} rounded-r-lg`}
 			showCover={true}
-			usePortrait={true}
-			autoSize={true}
+			//usePortrait={true}
+			//autoSize={true}
 			size={"stretch"}
 		>
 			{pages?.length > 0 &&

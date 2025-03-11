@@ -17,7 +17,7 @@ export default function BookContent({
 
 	const imageSmootherClass = image?.src
 		? "opacity-70 z-20"
-		: "before:bg-white opacity-100 z-10";
+		: "before:text-secondary opacity-100 z-10";
 
 	const textClass = image?.src ? "text-gray-50 text-6xl" : "";
 	return (

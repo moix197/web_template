@@ -2,13 +2,76 @@ import { connectToDatabase } from "@/db/conn/db";
 
 // Existing imports and connectToDatabase function...
 
-async function insertDocument(collectionName, document) {
+async function insertDocument(
+	model,
+	values,
+	errorMessage = "We couldn't create the new entry on the DB, please try again later"
+) {
+	await connectToDatabase();
+	const newDocument = await new model(values);
+	const result = await newDocument.save();
+
+	if (!result) {
+		throw new Error(errorMessage);
+	}
+	return result;
+}
+
+//create a function that queries the database for documents with the same value I provide, if it does not exists it creates a new document
+async function findOrCreateDocument(model, query, values) {
+	await connectToDatabase();
+	const findResult = await model.findOne(query);
+	//now if document does not get a value, it means it does not exist, so we create a new document
+	if (!findResult) {
+		const newDocument = await new model(values);
+		try {
+			const insertedNewDocument = await newDocument.save();
+			return insertedNewDocument;
+		} catch (error) {
+			return error;
+		}
+	}
+
+	return findResult;
+}
+async function findDocuments(model, query = {}, sort = {}) {
+	await connectToDatabase();
+	const documents = await model.find(query);
+	return documents;
+}
+
+async function updateDocument(
+	model, // Mongoose model instead of collection name
+	filter, // Query filter for the update
+	update, // Fields to be updated
+	customUpdateField = null, // Optionally, custom update fields
+	session = null // Optional session for transactions
+) {
+	try {
+		let updateField = { $set: update };
+
+		// If customUpdateField is provided, use it instead of $set
+		if (customUpdateField) {
+			updateField = customUpdateField;
+		}
+
+		// Use Mongoose model to update
+		const result = await model.updateOne(filter, updateField, { session });
+
+		return result;
+	} catch (error) {
+		console.error("Error updating document:", error);
+		throw error;
+	}
+}
+
+/*async function insertDocument(collectionName, document) {
 	const { db } = await connectToDatabase();
 	const collection = db.collection(collectionName);
 
 	const result = await collection.insertOne(document);
 	return result;
-}
+}*/
 
 async function insertMultipleDocuments(collectionName, givenItemsAry) {
 	const { db } = await connectToDatabase();
@@ -18,12 +81,12 @@ async function insertMultipleDocuments(collectionName, givenItemsAry) {
 	return result;
 }
 
-async function findDocuments(collectionName, query, sort = {}) {
+/*async function findDocuments(collectionName, query, sort = {}) {
 	const { db } = await connectToDatabase();
 	const collection = db.collection(collectionName);
 	const documents = await collection.find(query).sort(sort).toArray();
 	return documents;
-}
+}*/
 
 async function joinDocuments(collectionName, pipeline) {
 	const { db } = await connectToDatabase();
@@ -32,7 +95,7 @@ async function joinDocuments(collectionName, pipeline) {
 	return documents;
 }
 
-async function updateDocument(
+/*async function updateDocument(
 	collectionName,
 	filter,
 	update,
@@ -54,7 +117,7 @@ async function updateDocument(
 	const collection = db.collection(collectionName);
 	const result = await collection.updateOne(filter, updateField, { session });
 	return result;
-}
+}*/
 
 async function updateDocumentWithTransaction(values) {
 	const { client, db } = await connectToDatabase();
@@ -114,4 +177,5 @@ export {
 	updateDocument,
 	deleteDocument,
 	updateDocumentWithTransaction,
+	findOrCreateDocument,
 };

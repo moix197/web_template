@@ -7,7 +7,7 @@ import {
 	NavbarLink,
 	NavbarToggle,
 } from "flowbite-react";
-import { styles, brand, navItems } from "@/data/nav";
+import { styles, brand, navItems } from "../data/nav";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -16,7 +16,6 @@ function WebNavBar() {
 	const path = usePathname();
 
 	useEffect(() => {
-		console.log(path);
 		setPathName(path);
 	}, [path]);
 

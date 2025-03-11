@@ -1,5 +1,5 @@
-import { SolidButton } from "@/components/buttons/Buttons";
-import TitleSection from "@/components/Titles/TitleSection";
+import { SolidButton } from "../buttons/Buttons";
+import TitleSection from "../Titles/TitleSection";
 import SectionLayout from "./SectionLayout";
 
 interface Props {

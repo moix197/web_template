@@ -1,7 +1,7 @@
 "use client";
 
-import FlipSection from "@/components/flipBook/flipSection";
 import Image from "next/image";
+import FlipSection from "../components/flipBook/FlipSection";
 
 export default function Home() {
 	const pagesContent = [

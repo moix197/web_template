@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/db/conn/db";
+import { connectToDatabase } from "../../../src/db/conn/db";
 
 interface SetupCollectionParams {
 	required: string[];
@@ -25,8 +25,6 @@ async function setupCollection({
 }: SetupCollectionParams): Promise<SetupCollectionResponse> {
 	try {
 		const { db } = await connectToDatabase();
-		console.log("oka");
-		console.log("db", db);
 		// Check if the collection already exists
 		const collections = await db.collections();
 		const collectionExists = collections.some(

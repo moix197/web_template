@@ -1,41 +1,8 @@
-/*import dbConnect from "@/lib/db";
-import Pages from "@/models/Pages";
-
-export async function POST(req) {
-	try {
-		await dbConnect();
-		const { name, pagesContent, paymentId, isActive } = await req.json();
-
-		if (!name || !pagesContent || !paymentId) {
-			return new Response(
-				JSON.stringify({ error: "Required fields missing" }),
-				{ status: 400 }
-			);
-		}
-
-		const pageData = new Pages({ name, pagesContent, paymentId, isActive });
-		await pageData.save();
-
-		return new Response(
-			JSON.stringify({ message: "Page created successfully" }),
-			{
-				status: 201,
-			}
-		);
-	} catch (error) {
-		return new Response(
-			JSON.stringify({
-				error: "Internal server error",
-				details: error.message,
-			}),
-			{ status: 500 }
-		);
-	}
-}*/
-
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
+import { basicModels } from "@/data/models/models";
+import { findOrCreateDocument } from "@/utils/db/crud";
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -51,14 +18,43 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 	],
+	pages: {
+		signIn: "/login",
+		signOut: "/",
+	},
 	callbacks: {
-		async signIn({ account }) {
-			// Ensure only Gmail accounts can log in
-			const emailDomain = account?.email?.split("@")[1];
-			return emailDomain === "gmail.com";
+		async session({ session }) {
+			const sessionUser = await basicModels["users"].findOne({
+				email: session.user.email,
+			});
+			session.user.id = sessionUser?._id;
+			session.user.role = sessionUser?.role;
+
+			return session;
 		},
-		async redirect({ url, baseUrl }) {
-			return baseUrl; // Redirect to the homepage after login
+		async signIn({ account, user, profile }) {
+			// Ensure only Gmail accounts can log in
+			const emailDomain = profile?.email?.split("@")[1];
+
+			if (emailDomain !== "gmail.com") return;
+
+			const userDbData = await findOrCreateDocument(
+				basicModels["users"],
+				{
+					email: profile?.email,
+				},
+				{
+					email: profile?.email,
+					name: profile?.name,
+					image: profile?.picture,
+				}
+			);
+
+			if (userDbData.role == "owner") {
+				return true;
+			}
+
+			return false;
 		},
 	},
 };

@@ -17,14 +17,19 @@ async function getCall(url: string, params: Record<string, any> | null = null) {
 	}
 }
 
-async function postCall(url: string, content: Record<string, any>) {
+async function postCall(
+	url: string,
+	content: Record<string, any>,
+	type = "json",
+	contentType = { "Content-Type": "application/json" }
+) {
 	try {
 		let response = await fetch(url, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json",
+				...contentType,
 			},
-			body: JSON.stringify(content),
+			body: type == "json" ? JSON.stringify(content) : content,
 		});
 
 		let data = await response.json();

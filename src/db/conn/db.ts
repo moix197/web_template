@@ -1,10 +1,38 @@
-// utils/db.js
-//const uri = "mongodb://Admin:%4019721562aA@109.123.250.102:27017/"; // MongoDB URI
+import mongoose from "mongoose";
 
-//const uri = "mongodb://Admin:%4019721562aA@localhost:27017"; // MongoDB URI
-//const uri = "mongodb://localhost:27017";
+const dbName = "wedding_db"; // Name of your MongoDB database
 
-import { MongoClient, Db } from "mongodb";
+// Mongoose connection singleton
+let isConnected: boolean = false; // Track if Mongoose is connected
+
+async function connectToDatabase(): Promise<void> {
+	if (isConnected) {
+		console.log("Already connected to the database.");
+		return; // Return early if already connected
+	}
+
+	try {
+		// Use mongoose.connect with your connection string
+		await mongoose.connect(process.env.DB_CONN_STRING as string, {
+			dbName, // Specify the DB name
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			bufferCommands: true, // This keeps Mongoose buffering enabled
+			bufferTimeoutMS: 30000, // Timeout in milliseconds (30 seconds here)
+			serverSelectionTimeoutMS: 30000, // Wait 30 seconds for server selection
+		});
+
+		isConnected = true; // Set the connection flag to true when connected
+		console.log("Successfully connected to MongoDB");
+	} catch (error) {
+		console.error("Error connecting to MongoDB:", error);
+		throw new Error("Failed to connect to MongoDB.");
+	}
+}
+
+export { connectToDatabase };
+
+/*import { MongoClient, Db } from "mongodb";
 
 const dbName = "wedding_db"; // Name of your MongoDB database
 
@@ -23,4 +51,4 @@ async function connectToDatabase(): Promise<DbConnection> {
 	return { db: client.db(dbName), client: client };
 }
 
-export { connectToDatabase };
+export { connectToDatabase };*/

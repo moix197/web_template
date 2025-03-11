@@ -1,21 +1,39 @@
-import { PublicKey } from "@solana/web3.js";
+//import { PublicKey } from "@solana/web3.js";
 
 function validatePlainText(value) {
 	// Regular expression to match only letters
-	var textRegex = /^[a-zA-Z]+$/;
+	const textRegex = /^[a-zA-Z]+$/;
 	let isValid = textRegex.test(value);
 	return { err: !isValid, message: isValid ? "" : "only letters are allowed" };
 }
 
+function validateAmpleText(value) {
+	// Regular expression to match letters, numbers, and "-_.,@"
+	//also allow empty strings when the value is empty
+
+	if (value == "") {
+		return {
+			err: false,
+		};
+	}
+
+	const textRegex = /^[a-zA-Z0-9-_.,/@\s]+$/;
+	let isValid = textRegex.test(value);
+	return {
+		err: !isValid,
+		message: isValid ? "" : "only letters, numbers, and -_.,@ are allowed",
+	};
+}
+
 function validateNumbers(value) {
 	// Regular expression to match only numbers
-	var numbersRegex = /^[0-9]*$/;
+	const numbersRegex = /^[0-9]*$/;
 	let isValid = numbersRegex.test(value);
 	return { err: !isValid, message: isValid ? "" : "only numbers are allowed" };
 }
 
 function validatePrice(value) {
-	var numbersRegex = /^[0-9.]*$/;
+	const numbersRegex = /^[0-9.]*$/;
 	let isValid = numbersRegex.test(value);
 	return {
 		err: !isValid,
@@ -26,7 +44,7 @@ function validatePrice(value) {
 }
 
 function validateName(value) {
-	var alphaNumericRegex = /^[a-zA-Z0-9\s]*$/;
+	const alphaNumericRegex = /^[a-zA-Z0-9\s]*$/;
 	let isValid = alphaNumericRegex.test(value);
 	return {
 		err: !isValid,
@@ -38,7 +56,7 @@ function validateName(value) {
 
 function validatePlainTextNumber(value) {
 	// Regular expression to match only letters and numbers
-	var alphaNumericRegex = /^[a-zA-Z0-9]*$/;
+	const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
 	let isValid = alphaNumericRegex.test(value);
 	return {
 		err: !isValid,
@@ -46,7 +64,39 @@ function validatePlainTextNumber(value) {
 	};
 }
 
-function validateWalletAddress(value, isTyping = false) {
+//add a function to validate URLs
+function validateURL(value) {
+	const urlRegex = /^(http|https):\/\/[^ "]+$/;
+	let isValid = urlRegex.test(value);
+	return {
+		err: !isValid,
+		message: isValid ? "" : "please enter a valid URL",
+	};
+}
+
+//add a function to validate emails
+function validateEmail(value) {
+	//	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.com$/;
+
+	let isValid = emailRegex.test(value);
+	return {
+		err: !isValid,
+		message: isValid ? "" : "please enter a valid email",
+	};
+}
+
+function validateRelativeURL(value) {
+	const urlRegex = /^(\/?[^ "]+)$/;
+	let isValid = urlRegex.test(value);
+
+	return {
+		err: !isValid,
+		message: isValid ? "" : "Please enter a valid relative URL",
+	};
+}
+
+/*function validateWalletAddress(value, isTyping = false) {
 	if (isTyping && value == "") {
 		return {
 			err: false,
@@ -97,7 +147,7 @@ function validateMultiWalletAddress(ary) {
 	return {
 		err: false,
 	};
-}
+}*/
 
 function validateDateIsCompleted(value) {
 	let isValid = value.length == 8;
@@ -167,7 +217,10 @@ function validateDate(value) {
 
 function validateEmptyString(value) {
 	let error = false;
-	if (value == "") {
+
+	//I need to validate that the string is not empty but allow values like 0
+
+	if (value.length === 0) {
 		return {
 			err: true,
 			message: "value is empty",
@@ -181,13 +234,17 @@ function validateEmptyString(value) {
 
 export {
 	validatePlainText,
+	validateAmpleText,
 	validateNumbers,
 	validatePlainTextNumber,
-	validateWalletAddress,
-	validateMultiWalletAddress,
+	//validateWalletAddress,
+	//validateMultiWalletAddress,
 	validateDate,
 	validateDateIsCompleted,
 	validateEmptyString,
 	validatePrice,
 	validateName,
+	validateURL,
+	validateEmail,
+	validateRelativeURL,
 };

@@ -1,16 +1,14 @@
-const paymentMethodsData = {
-  name: "paymentMethodsData",
-  required: ["name", "logo", "status"],
-  properties: {
-    name: { bsonType: "string" },
-    logo: { bsonType: ["string"] },
-    status: {
-      bsonType: "string",
-      enum: ["active", "inactive", "hold", "revision"],
-    },
-  },
-  index: false,
-  unique: true,
+const paymentMethods = {
+	name: "paymentMethods",
+	required: ["name", "accountName", "logo", "isActive"],
+	properties: {
+		name: { bsonType: "string" },
+		accountName: { bsonType: "string" },
+		logo: { bsonType: ["string"] },
+		isActive: { bsonType: "bool" },
+	},
+	index: false,
+	unique: true,
 };
 
-export { paymentMethodsData };
+export { paymentMethods };
