@@ -6,18 +6,22 @@
                 "^build"
             ],
             "outputs": [
+                "dist/**",
                 ".next/**",
                 "!.next/cache/**"
             ]
         },
-        "check-types": {
+        "test": {
+            "outputs": [
+                "coverage/**"
+            ],
             "dependsOn": [
-                "^check-types"
+                "build"
             ]
         },
         "dev": {
-            "persistent": true,
-            "cache": false
+            "cache": false,
+            "persistent": true
         }
     }
 }

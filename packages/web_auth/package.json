@@ -1,0 +1,17 @@
+{
+    "name": "@base/auth",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Authentication package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "^18.0.0",
+        "next-auth": "^4.24.10",
+        "@types/next-auth": "^4.0.0"
+    }
+}

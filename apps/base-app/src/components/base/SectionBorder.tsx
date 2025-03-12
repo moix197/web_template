@@ -1,0 +1,11 @@
+function SectionBorder({ children, className = "" }) {
+	return (
+		<div className={`p-2 ${className}`}>
+			<div className="border border-gray-600 p-4 rounded-lg">
+				{children && children}
+			</div>
+		</div>
+	);
+}
+
+export default SectionBorder;
