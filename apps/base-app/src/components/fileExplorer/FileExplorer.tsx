@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { FileManager } from "@cubone/react-file-manager";
 import "@cubone/react-file-manager/dist/style.css";
 import { getCall, postCall } from "../../services/apiSkeletons/calls";
-import useNotifications from "../../Hooks/useNotifications";
 import useDashboardData from "../../Hooks/useDashboardData";
 import { useRouter, usePathname } from "next/navigation";
 import { data } from "autoprefixer";
+import { useNotifications } from "@base/notifications";
 
 export function FileExplorer({
 	initialPath,

@@ -1,21 +1,17 @@
 import { apiHandler } from "@/utils/api/handler";
-import { updateDocument } from "@/utils/db/crud";
-import { ObjectId } from "mongodb";
 import { basicModels } from "@/data/models/models";
+import { updateItemFromDb } from "@base/db";
 
-async function create(req: Request): Promise<any> {
+async function updateDataRoute(req: Request): Promise<any> {
 	try {
 		const body = await req.json();
 
-		const updatedItem = await updateDocument(
-			basicModels[body.category],
-			{ _id: new ObjectId(body.id) },
-			body.data
-		);
-
-		if (!updatedItem) {
-			throw new Error(`We couldn't update the document`);
-		}
+		await updateItemFromDb({
+			id: body.id,
+			category: body.category,
+			data: body.data,
+			models: basicModels,
+		});
 
 		return {
 			err: false,
@@ -34,4 +30,4 @@ async function create(req: Request): Promise<any> {
 	}
 }
 
-export const POST = apiHandler({ POST: create });
+export const POST = apiHandler({ POST: updateDataRoute });

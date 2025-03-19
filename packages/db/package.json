@@ -1,0 +1,16 @@
+{
+    "name": "@base/db",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Database package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "mongoose": "^8.10.1",
+        "mongodb": "^6.12.0"
+    }
+}

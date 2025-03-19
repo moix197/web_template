@@ -109,11 +109,6 @@ function MainWithTabs({
 	};
 
 	useEffect(() => {
-		console.log("arrayListItems", arrayListItems.length == 0);
-		console.log("relatedItemsAry", relatedItemsAry.length == 0);
-	}, [arrayListItems, relatedItemsAry]);
-
-	useEffect(() => {
 		if (!relatedItemsAry || relatedItemsAry?.length <= 0) return;
 		setItems();
 	}, [relatedItemsAry]);

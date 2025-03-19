@@ -1,10 +1,17 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { NextAuthOptions } from "next-auth";
 import { basicModels } from "@/data/models/models";
-import { findOrCreateDocument } from "@/utils/db/crud";
+import { createAuth } from "@base/auth";
+import { findOrCreateDocument } from "@base/db";
 
-export const authOptions: NextAuthOptions = {
+const { authHandler, authOptions } = createAuth({
+	basicModels,
+	findOrCreateDocument,
+	env: {
+		GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID!,
+		GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET!,
+	},
+});
+
+/*export const authOptions: NextAuthOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -62,3 +69,4 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+*/

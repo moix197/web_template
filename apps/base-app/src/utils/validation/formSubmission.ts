@@ -84,8 +84,6 @@ function bulkValidate(itemsObj, validationValues) {
 function validate(key, value, items, validationValues) {
 	let obj = { err: false, name: key, result: [] };
 
-	console.log("key", key);
-	console.log("value", value);
 	//let validResult = validationsPerField[key](value);
 	for (const itemFunc of validationsPerField[validationValues[key]]) {
 		if (!itemFunc) continue;

@@ -1,12 +1,10 @@
-"use client";
-
 import { Drawer } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { FileExplorer } from "./FileExplorer";
 import Image from "next/image";
-import { SolidButton } from "../buttons/Buttons";
+import { SolidButton } from "@/components/buttons/Buttons";
 import { TbArrowsExchange2 } from "react-icons/tb";
-import DrawerBasic from "../DrawerBasic";
+import DrawerBasic from "@/components/DrawerBasic";
 
 const ModalFileExplorer = ({
 	value,

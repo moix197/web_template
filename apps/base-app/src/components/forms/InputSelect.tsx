@@ -68,7 +68,6 @@ function InputSelect({
 								return;
 							}
 
-							console.log("the valueee", e.target.value);
 							let valAry = multiValue;
 							valAry.push(e.target.value);
 							setMultiValue(valAry);

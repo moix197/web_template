@@ -1,0 +1,17 @@
+{
+    "name": "@base/base-ui",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Base UI package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "flowbite-react": "*",
+        "react-icons": "*"
+    }
+}

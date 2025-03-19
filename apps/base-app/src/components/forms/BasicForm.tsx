@@ -9,21 +9,22 @@ import { bulkValidate } from "@/utils/validation/formSubmission";
 import InputMultiValue from "./InputMultiValue";
 import InputSelect from "./InputSelect";
 import InputTextArea from "./InputTextArea";
-import useNotifications from "../../Hooks/useNotifications";
 import SingleInputParent from "./SingleInputParent";
 import dynamic from "next/dynamic";
 import { SolidButton } from "../buttons/Buttons";
+import { useNotifications } from "@base/notifications";
+import { ModalFileExplorer } from "@base/file_explorer";
 
 const TextEditor = dynamic(() => import("./TextEditor"), {
 	ssr: false, // This will disable server-side rendering for this component
 });
 
-const ModalFileExplorer = dynamic(
-	() => import("../fileExplorer/ModalFileExplorer"),
+/*const ModalFileExplorer = dynamic(
+	() => import("@base/file_explorer"),
 	{
 		ssr: false, // This will disable server-side rendering for this component
 	}
-);
+);*/
 
 function BasicForm({
 	formValues,

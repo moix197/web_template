@@ -5,10 +5,10 @@ import { FaPlus } from "react-icons/fa";
 import { postCall } from "../../services/apiSkeletons/calls";
 import TableHover from "../dashboard/tables/TableHover";
 import FormDrawer from "./FormDrawer";
-import useNotifications from "@/Hooks/useNotifications";
 import { mergeObjects } from "@/utils/base/convert";
 import FormModal from "./FormModal";
 import { DashboardDataContext } from "../../contexts/DashboardDataContextProvider";
+import { useNotifications } from "@base/notifications";
 
 function ArrayList({
 	items = [],
@@ -34,7 +34,6 @@ function ArrayList({
 	async function addNewItem(parentName, newItem) {
 		setIsLoading(true);
 		const newValue = { ...componentValues };
-		console.log("newItem", newItem);
 		newValue[parentName].push(newItem);
 
 		const postItem = {

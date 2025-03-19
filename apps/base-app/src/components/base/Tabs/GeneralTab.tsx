@@ -14,9 +14,6 @@ function GeneralTab({
 	activationList,
 	btnText = "update",
 }) {
-	useEffect(() => {
-		console.log("formValues", formValues);
-	}, []);
 	return (
 		<div className="flex flex-wrap">
 			{activationToggle && (

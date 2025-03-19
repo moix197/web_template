@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../../../src/db/conn/db";
+/*import { connectToDatabase } from "../../../src/db/conn/db";
 
 interface SetupCollectionParams {
 	required: string[];
@@ -89,3 +89,4 @@ async function setupCollection({
 }
 
 export { setupCollection };
+*/

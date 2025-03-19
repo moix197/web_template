@@ -4,7 +4,7 @@ import BasicForm from "@/components/forms/BasicForm";
 import { useParams } from "next/navigation";
 import React, { useContext } from "react";
 import { postCall } from "@/services/apiSkeletons/calls";
-import useNotifications from "@/Hooks/useNotifications";
+import { useNotifications } from "@base/notifications";
 import { DashboardDataContext } from "@/contexts/DashboardDataContextProvider";
 
 function Dashboard() {

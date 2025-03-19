@@ -1,9 +1,8 @@
 "use client";
 import SideNav from "@/components/base/navigation/SideNav";
-import { Notification } from "@/components/notifications/Notification";
 import DashboardDataContainer from "@/contexts/DashboardDataContextProvider";
-import NotificationContainer from "@/contexts/NotificationContextProvider";
-import UserSessionDataContainer from "@/contexts/UserSessionContextProvider";
+import { UserSessionDataContainer } from "@base/auth";
+import { Notification, NotificationContainer } from "@base/notifications";
 import React, { useState } from "react";
 
 export default function DashboardLayout({

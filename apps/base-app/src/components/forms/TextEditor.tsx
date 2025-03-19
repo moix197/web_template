@@ -4,7 +4,7 @@ import ReactQuill, { Quill } from "react-quill";
 import BlotFormatter from "quill-blot-formatter";
 import "react-quill/dist/quill.snow.css";
 
-import ModalFileExplorer from "../fileExplorer/ModalFileExplorer";
+import { ModalFileExplorer } from "@base/file_explorer";
 import FormLabel from "./FormLabel";
 
 Quill.register("modules/blotFormatter", BlotFormatter);
@@ -71,9 +71,6 @@ function TextEditor({
 			</div>
 			<div className="w-full flex">
 				<ReactQuill
-					onFocus={() => {
-						console.log("focus");
-					}}
 					theme="snow"
 					value={value}
 					modules={modules}

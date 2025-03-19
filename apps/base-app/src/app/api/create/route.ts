@@ -1,33 +1,15 @@
 import { apiHandler } from "@/utils/api/handler";
-import { insertDocument } from "@/utils/db/crud";
-import paymentMethodsFormValues from "@/data/config/paymentMethods";
-import packagesFormValues from "@/data/config/packages";
-import booksFormValues from "@/data/config/books";
 import { basicModels } from "@/data/models/models";
+import { addItemToDb } from "@base/db";
 
 async function create(req: Request): Promise<any> {
 	try {
-		const defaultValues = {
-			paymentMethodsFormValues,
-			packagesFormValues,
-			booksFormValues,
-		};
-
 		const body = await req.json();
-
-		const postData = {
-			...body.data,
-			//...defaultValues[`${body.category}FormValues`]["defaultValues"],
-		};
-
-		const insertItem = await insertDocument(
-			basicModels[body.category],
-			postData
-		);
-
-		if (!insertItem) {
-			throw new Error("Failed to create the item.");
-		}
+		const insertItem = addItemToDb({
+			category: body.category,
+			data: body.data,
+			models: basicModels,
+		});
 
 		return {
 			err: false,

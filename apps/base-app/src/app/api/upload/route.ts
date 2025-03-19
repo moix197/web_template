@@ -1,59 +1,20 @@
-import path from "path";
-import fs from "fs";
-import { apiHandler } from "../../../base-app/utils/api/handler";
-import FileSystemModel from "../../data/models/FileSystem.model";
-import { insertDocument } from "../../../base-app/utils/db/crud";
-import {
-	getOrCreateParentFolder,
-	getRelatedPaths,
-} from "../../../base-app/utils/fileSystem/helpers";
+import { setFileExplorerConfig, uploadFile } from "@base/file_explorer";
+import { apiHandler } from "@/utils/api/handler";
+import { basicModels } from "@/data/models/models";
 
-async function uploadFile(req: Request): Promise<any> {
+async function uploadFileRoute(req: Request): Promise<any> {
 	try {
 		const formData = await req.formData();
 		const body = Object.fromEntries(formData);
 		const file = body.file;
 		const { parentId, imageCategory, parentFolderId } = body;
 
-		if (!file) {
-			throw new Error("Couldn't upload the file");
-		}
+		const fileSystemModel = basicModels["fileSystem"];
+		setFileExplorerConfig({
+			customFileSystemModel: fileSystemModel,
+		});
 
-		const rootParent = await getOrCreateParentFolder(
-			imageCategory,
-			parentFolderId
-		);
-
-		const { itemPath, fullParentFolderPath } = await getRelatedPaths(
-			!parentId ? rootParent?._id : parentId,
-			//rootParent?._id ? rootParent?._id : parentId,
-			file.name,
-			parentId ? null : rootParent
-		);
-
-		console.log("formData", formData);
-
-		if (!fs.existsSync(fullParentFolderPath)) {
-			await fs.promises.mkdir(fullParentFolderPath, { recursive: true });
-		}
-
-		await insertDocument(
-			FileSystemModel,
-			{
-				name: file.name,
-				isDirectory: false,
-				path: itemPath,
-				parentId: parentId ? parentId : rootParent?._id,
-				size: file.size,
-				rootName: rootParent.name,
-				mimeType: file.mimetype,
-			},
-			"We couldn't upload the file, please try again later"
-		);
-
-		const buffer = Buffer.from(await file.arrayBuffer());
-
-		fs.writeFileSync(path.resolve(fullParentFolderPath, file.name), buffer);
+		await uploadFile({ file, parentId, imageCategory, parentFolderId });
 
 		return {
 			err: false,
@@ -72,4 +33,4 @@ async function uploadFile(req: Request): Promise<any> {
 	}
 }
 
-export const POST = apiHandler({ POST: uploadFile });
+export const POST = apiHandler({ POST: uploadFileRoute });

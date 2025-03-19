@@ -2,12 +2,12 @@
 
 import { SolidButton } from "../../buttons/Buttons";
 import { DashboardDataContext } from "../../../contexts/DashboardDataContextProvider";
-import { UserSessionDataContext } from "../../../contexts/UserSessionContextProvider";
 import { Avatar, Sidebar } from "flowbite-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
+import { LogOutButton, UserSessionDataContext } from "@base/auth";
 
 //prettier-ignore
 const theme = {
@@ -142,13 +142,7 @@ function SideNav() {
 						</div>
 					</div>
 					<div className="w-full">
-						<SolidButton
-							onClick={() => {
-								signOut({ callbackUrl: "/" });
-							}}
-						>
-							Log out
-						</SolidButton>
+						<LogOutButton></LogOutButton>
 					</div>
 				</div>
 			</Sidebar>

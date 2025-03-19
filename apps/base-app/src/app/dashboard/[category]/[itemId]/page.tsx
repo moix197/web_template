@@ -4,10 +4,10 @@ import { useParams } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { postCall } from "@/services/apiSkeletons/calls";
 import { TitleXl } from "@/components/Titles/TitlesDashboard";
-import useNotifications from "@/Hooks/useNotifications";
 import useDashboardData from "@/Hooks/useDashboardData";
 import { DashboardDataContext } from "@/contexts/DashboardDataContextProvider";
 import MainWithTabs from "@/components/base/Tabs/MainWithTabs";
+import { useNotifications } from "@base/notifications";
 
 function Dashboard() {
 	const { category, itemId } = useParams();

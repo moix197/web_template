@@ -6,7 +6,7 @@ import "./globals.css";
 import { brand, navItems } from "./data/nav";
 import { legal, socials, metaData } from "@/data/general";
 import FooterCompact from "./components/sections/FooterCompact";
-import Providers from "../app/providers";
+import { AuthProvider } from "@base/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={``}>
 				{/*<WebNavBar></WebNavBar>*/}
-				<Providers>{children}</Providers>
+				<AuthProvider> {children}</AuthProvider>
 				{/*<FooterCompact
 					brand={brand}
 					legal={legal}
