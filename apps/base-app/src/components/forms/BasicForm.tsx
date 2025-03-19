@@ -13,7 +13,7 @@ import SingleInputParent from "./SingleInputParent";
 import dynamic from "next/dynamic";
 import { SolidButton } from "../buttons/Buttons";
 import { useNotifications } from "@base/notifications";
-import { ModalFileExplorer } from "@base/file_explorer";
+import { ModalFileExplorer } from "@base/file_explorer/client";
 
 const TextEditor = dynamic(() => import("./TextEditor"), {
 	ssr: false, // This will disable server-side rendering for this component
