@@ -1,8 +1,8 @@
 "use client";
 
-import { FlipSection } from "@base/book";
+import { FlipSection } from "@moix197/book";
 import Image from "next/image";
-import { SectionLayout, TitleXl } from "@base/base-ui";
+import { SectionLayout, TitleXl } from "@moix197/base-ui";
 
 export default function Home() {
 	const pagesContent = [

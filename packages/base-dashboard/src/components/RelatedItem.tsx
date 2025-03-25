@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { getCall, postCall } from "@base/base-ui";
-import { SolidButton } from "@base/base-ui";
-import FormDrawer from "@base/forms/src/components/FormDrawer";
-import { DashboardDataContext } from "@base/dashboard/src/providers/DashboardDataContextProvider";
-import { LoadingCont } from "@base/base-ui";
-import { useNotifications } from "@base/notifications";
+import { getCall, postCall } from "@moix197/base-ui";
+import { SolidButton } from "@moix197/base-ui";
+import FormDrawer from "@moix197/forms/src/components/FormDrawer";
+import { DashboardDataContext } from "@moix197/dashboard/src/providers/DashboardDataContextProvider";
+import { LoadingCont } from "@moix197/base-ui";
+import { useNotifications } from "@moix197/notifications";
 
 function RelatedItem({ item, category, btnText = "" }) {
 	const { showNotification } = useNotifications();

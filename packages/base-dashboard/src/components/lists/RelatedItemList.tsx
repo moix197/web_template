@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { RelatedItem } from "../RelatedItem";
-import { SectionBorder } from "@base/base-ui";
-import { TitleXl } from "@base/base-ui";
+import { SectionBorder } from "@moix197/base-ui";
+import { TitleXl } from "@moix197/base-ui";
 
 function RelatedItemList({
 	parentId,

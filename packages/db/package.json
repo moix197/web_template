@@ -1,13 +1,16 @@
 {
-    "name": "@base/db",
+    "name": "@moix197/db",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Database package for different projects",
     "main": "index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "private": true,
     "dependencies": {
         "mongoose": "^8.10.1",

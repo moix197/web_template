@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import BlotFormatter from "quill-blot-formatter";
 import "react-quill/dist/quill.snow.css";
-import { ModalFileExplorer } from "@base/file_explorer/client";
+import { ModalFileExplorer } from "@moix197/file_explorer/client";
 
 Quill.register("modules/blotFormatter", BlotFormatter);
 

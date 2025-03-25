@@ -1,7 +1,7 @@
-import { apiHandler } from "@base/next-ui";
-import { rename } from "@base/file_explorer";
+import { apiHandler } from "@moix197/next-ui";
+import { rename } from "@moix197/file_explorer";
 import { basicModels } from "@/data/models/models";
-import { setFileExplorerConfig } from "@base/file_explorer";
+import { setFileExplorerConfig } from "@moix197/file_explorer";
 
 async function renameItem(req: Request): Promise<any> {
 	try {

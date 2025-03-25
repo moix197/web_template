@@ -1,7 +1,7 @@
-import { apiHandler } from "@base/next-ui";
-import { createFolder } from "@base/file_explorer";
+import { apiHandler } from "@moix197/next-ui";
+import { createFolder } from "@moix197/file_explorer";
 import { basicModels } from "@/data/models/models";
-import { setFileExplorerConfig } from "@base/file_explorer";
+import { setFileExplorerConfig } from "@moix197/file_explorer";
 
 async function createFolderRoute(req: Request): Promise<any> {
 	try {

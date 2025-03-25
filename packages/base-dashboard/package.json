@@ -1,20 +1,23 @@
 {
-    "name": "@base/dashboard",
+    "name": "@moix197/dashboard",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Forms package for different projects",
     "main": "index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "private": true,
     "dependencies": {
         "react": "*",
         "flowbite-react": "*",
         "react-icons": "*",
-        "@base/notifications": "*",
-        "@base/base-ui": "*"
+        "@moix197/notifications": "*",
+        "@moix197/base-ui": "*"
     },
     "devDependencies": {
         "tailwindcss": "*"

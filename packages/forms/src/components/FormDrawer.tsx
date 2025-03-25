@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import { DrawerBasic } from "@base/base-ui";
-import { SolidButton } from "@base/base-ui";
-import { GeneralTab } from "@base/dashboard";
-import { DashboardDataContext } from "@base/dashboard";
+import { DrawerBasic } from "@moix197/base-ui";
+import { SolidButton } from "@moix197/base-ui";
+import { GeneralTab } from "@moix197/dashboard";
+import { DashboardDataContext } from "@moix197/dashboard";
 
 function FormDrawer({
 	triggerBtnText,

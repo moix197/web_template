@@ -1,8 +1,7 @@
-import { SimpleToggleList } from "@base/forms";
-import { SimpleToggle } from "@base/forms";
-import { BasicForm } from "@base/forms";
-import { SectionBorder } from "@base/base-ui";
-
+import { SimpleToggleList } from "@moix197/forms";
+import { SimpleToggle } from "@moix197/forms";
+import { BasicForm } from "@moix197/forms";
+import { SectionBorder } from "@moix197/base-ui";
 function GeneralTab({
 	existingValues,
 	activationToggle,

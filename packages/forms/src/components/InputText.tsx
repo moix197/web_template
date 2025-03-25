@@ -10,7 +10,7 @@ import {
 	validateName,
 	validateAmpleText,
 	validateEmail,
-} from "@base/validation";
+} from "@moix197/validation";
 import { TextInput } from "flowbite-react";
 import FormLabel from "./FormLabel";
 

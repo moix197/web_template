@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { LoadingCont } from "@base/base-ui";
-import { TrueFalseWithIcons } from "@base/base-ui";
+import { LoadingCont } from "@moix197/base-ui";
+import { TrueFalseWithIcons } from "@moix197/base-ui";
 import { ToggleSwitch } from "flowbite-react";
 
 //prettier-ignore

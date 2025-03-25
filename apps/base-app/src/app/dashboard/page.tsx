@@ -1,6 +1,6 @@
 // src/pages/dashboard.tsx
 "use client";
-import { LoginButton } from "@base/auth";
+import { LoginButton } from "@moix197/auth";
 import React from "react";
 
 function Dashboard() {

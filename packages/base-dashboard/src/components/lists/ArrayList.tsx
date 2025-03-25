@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { SolidButton } from "@base/base-ui";
+import { SolidButton } from "@moix197/base-ui";
 import { FaPlus } from "react-icons/fa";
-import { postCall, mergeObjects } from "@base/base-ui";
-import { TableHover } from "@base/base-ui";
-import FormDrawer from "@base/forms/src/components/FormDrawer";
-import FormModal from "@base/forms/src/components/FormModal";
+import { postCall, mergeObjects } from "@moix197/base-ui";
+import { TableHover } from "@moix197/base-ui";
+import FormDrawer from "@moix197/forms/src/components/FormDrawer";
+import FormModal from "@moix197/forms/src/components/FormModal";
 import { DashboardDataContext } from "../../providers/DashboardDataContextProvider";
-import { useNotifications } from "@base/notifications";
+import { useNotifications } from "@moix197/notifications";
 
 function ArrayList({
 	items = [],

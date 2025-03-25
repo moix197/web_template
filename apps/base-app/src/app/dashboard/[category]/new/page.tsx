@@ -1,10 +1,10 @@
 "use client";
-import { BasicForm } from "@base/forms";
+import { BasicForm } from "@moix197/forms";
 import { useParams } from "next/navigation";
 import React, { useContext } from "react";
-import { postCall } from "@base/base-ui";
-import { useNotifications } from "@base/notifications";
-import { DashboardDataContext } from "@base/dashboard";
+import { postCall } from "@moix197/base-ui";
+import { useNotifications } from "@moix197/notifications";
+import { DashboardDataContext } from "@moix197/dashboard";
 
 function Dashboard() {
 	const { category } = useParams();

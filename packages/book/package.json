@@ -1,7 +1,7 @@
 {
-    "name": "@base/book",
+    "name": "@moix197/book",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Book package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -9,6 +9,9 @@
     },
     "author": "",
     "private": true,
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "dependencies": {
         "react": "*",
         "react-pageflip": "^2.0.3"

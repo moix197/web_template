@@ -1,10 +1,10 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { SideNav } from "@base/base-ui";
-import { Notification } from "@base/notifications";
-import { DashboardDataContext } from "@base/dashboard";
+import { SideNav } from "@moix197/base-ui";
+import { Notification } from "@moix197/notifications";
+import { DashboardDataContext } from "@moix197/dashboard";
 import { DashboardContext } from "@/DashboardContext";
-import { UserSessionDataContext } from "@base/auth";
+import { UserSessionDataContext } from "@moix197/auth";
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
 	const { config } = useContext(DashboardDataContext);

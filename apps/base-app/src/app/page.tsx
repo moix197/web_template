@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FlipSection } from "@base/book";
+import { FlipSection } from "@moix197/book";
 
 export default function Home() {
 	const pagesContent = [

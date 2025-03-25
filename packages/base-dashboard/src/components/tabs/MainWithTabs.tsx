@@ -1,7 +1,7 @@
 import { Tabs } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { ArrayList } from "@base/dashboard";
-import { getCall } from "@base/base-ui";
+import { ArrayList } from "@moix197/dashboard";
+import { getCall } from "@moix197/base-ui";
 import dynamic from "next/dynamic";
 import { RelatedItemWithList } from "../lists/RelatedItemWithList";
 import { GeneralTab } from "./GeneralTab";

@@ -1,7 +1,7 @@
 import { Select } from "flowbite-react";
 import FormLabel from "./FormLabel";
 import { useEffect, useState } from "react";
-import { useDashboardData } from "@base/dashboard";
+import { useDashboardData } from "@moix197/dashboard";
 //TODO: remove useDashboardData from forms package
 
 //prettier-ignore

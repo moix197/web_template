@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
 import { Spinner } from "flowbite-react";
 import React from "react";
-import { Link } from "@base/next-ui";
+import { Link } from "@moix197/next-ui";
 
 interface Props {
 	children: React.ReactNode;

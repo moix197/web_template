@@ -1,12 +1,12 @@
 "use client";
 
 import { SolidButton } from "../buttons/GeneralButtons";
-import { DashboardDataContext } from "@base/dashboard";
+import { DashboardDataContext } from "@moix197/dashboard";
 import { Avatar, Sidebar } from "flowbite-react";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { LogOutButton, UserSessionDataContext } from "@base/auth";
+import { LogOutButton, UserSessionDataContext } from "@moix197/auth";
 
 //prettier-ignore
 const theme = {

@@ -1,6 +1,6 @@
-import { NotificationContainer } from "@base/notifications";
-import { UserSessionDataContainer } from "@base/auth";
-import { DashboardDataContainer } from "@base/dashboard";
+import { NotificationContainer } from "@moix197/notifications";
+import { UserSessionDataContainer } from "@moix197/auth";
+import { DashboardDataContainer } from "@moix197/dashboard";
 
 import paymentsMethodsConfig from "@/data/config/paymentMethods";
 import booksConfig from "@/data/config/books";

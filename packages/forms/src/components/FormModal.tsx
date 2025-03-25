@@ -2,9 +2,9 @@
 
 import { Modal } from "flowbite-react";
 import { useState } from "react";
-import { SolidButton } from "@base/base-ui";
+import { SolidButton } from "@moix197/base-ui";
 import { FaPlus } from "react-icons/fa";
-import { GeneralTab } from "@base/dashboard";
+import { GeneralTab } from "@moix197/dashboard";
 
 //prettier-ignore
 const theme = {

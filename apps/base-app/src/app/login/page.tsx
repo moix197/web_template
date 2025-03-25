@@ -1,6 +1,6 @@
 "use client";
 
-import { LogInButton } from "@base/auth";
+import { LogInButton } from "@moix197/auth";
 
 export default function LoginPage() {
 	return (

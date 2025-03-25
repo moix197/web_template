@@ -3,11 +3,11 @@ import { useParams } from "next/navigation";
 import { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Link from "next/link";
-import { useDashboardData } from "@base/dashboard";
-import { DashboardDataContext } from "@base/dashboard";
-import { ListSkeleton } from "@base/base-ui";
-import { SolidButton } from "@base/base-ui";
-import { TableHover } from "@base/base-ui";
+import { useDashboardData } from "@moix197/dashboard";
+import { DashboardDataContext } from "@moix197/dashboard";
+import { ListSkeleton } from "@moix197/base-ui";
+import { SolidButton } from "@moix197/base-ui";
+import { TableHover } from "@moix197/base-ui";
 
 const CategoryPage = () => {
 	const { category } = useParams();

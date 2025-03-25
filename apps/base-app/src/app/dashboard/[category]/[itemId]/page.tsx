@@ -1,13 +1,13 @@
 "use client";
 
-import { useNotifications } from "@base/notifications";
-import { MainWithTabs } from "@base/dashboard";
-import { postCall } from "@base/base-ui";
-import { TitleXl } from "@base/base-ui";
+import { useNotifications } from "@moix197/notifications";
+import { MainWithTabs } from "@moix197/dashboard";
+import { postCall } from "@moix197/base-ui";
+import { TitleXl } from "@moix197/base-ui";
 import { useParams } from "next/navigation";
 import React, { useContext, useState } from "react";
-import { useDashboardData } from "@base/dashboard";
-import { DashboardDataContext } from "@base/dashboard";
+import { useDashboardData } from "@moix197/dashboard";
+import { DashboardDataContext } from "@moix197/dashboard";
 
 function Dashboard() {
 	const { category, itemId } = useParams();

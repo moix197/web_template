@@ -1,4 +1,4 @@
-import { Image } from "@base/next-ui";
+import { Image } from "@moix197/next-ui";
 
 export default function ImageBg({ className = "", src = "", alt = "" }) {
 	return (

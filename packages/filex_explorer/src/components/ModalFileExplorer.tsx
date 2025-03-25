@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { FileExplorer } from "./FileExplorer";
 import { TbArrowsExchange2 } from "react-icons/tb";
-import { DrawerBasic, SolidButton } from "@base/base-ui";
-import { Image } from "@base/next-ui";
+import { DrawerBasic, SolidButton } from "@moix197/base-ui";
+import { Image } from "@moix197/next-ui";
 
 const ModalFileExplorer = ({
 	value,

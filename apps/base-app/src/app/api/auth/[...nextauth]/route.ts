@@ -1,6 +1,6 @@
 import { basicModels } from "@/data/models/models";
-import { createAuth } from "@base/auth";
-import { findOrCreateDocument } from "@base/db";
+import { createAuth } from "@moix197/auth";
+import { findOrCreateDocument } from "@moix197/db";
 
 const { authHandler, authOptions } = createAuth({
 	basicModels,

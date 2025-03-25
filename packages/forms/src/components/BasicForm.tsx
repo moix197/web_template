@@ -1,33 +1,35 @@
 import { useEffect, useState, useMemo } from "react";
 //import { delay } from "@/utils/delay";
-import { TitleXl } from "@base/base-ui";
+import { TitleXl } from "@moix197/base-ui";
 import InputText from "./InputText";
 import RadioButton from "./RadioButon";
 import Toggle from "./Toggle";
-import { bulkValidate } from "@base/validation";
+import { bulkValidate } from "@moix197/validation";
 import InputMultiValue from "./InputMultiValue";
 import InputSelect from "./InputSelect";
 import InputTextArea from "./InputTextArea";
 import SingleInputParent from "./SingleInputParent";
 import FormLabel from "./FormLabel";
 import dynamic from "next/dynamic";
-import { useNotifications } from "@base/notifications";
-import { SolidButton } from "@base/base-ui";
+import { useNotifications } from "@moix197/notifications";
+import { SolidButton } from "@moix197/base-ui";
 import React from "react";
 
 const TextEditor = dynamic(
-	() => import("@base/text-editor").then((mod) => mod.TextEditor),
+	() => import("@moix197/text-editor").then((mod) => mod.TextEditor),
 	{ ssr: false }
 );
 
 const ModalFileExplorer = dynamic(
 	() =>
-		import("@base/file_explorer/client").then((mod) => mod.ModalFileExplorer),
+		import("@moix197/file_explorer/client").then(
+			(mod) => mod.ModalFileExplorer
+		),
 	{ ssr: false }
 );
 
 /*const ModalFileExplorer = dynamic(
-	() => import("@base/file_explorer"),
+	() => import("@moix197/file_explorer"),
 	{
 		ssr: false, // This will disable server-side rendering for this component
 	}

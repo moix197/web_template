@@ -1,17 +1,20 @@
 {
-    "name": "@base/file_explorer",
+    "name": "@moix197/file_explorer",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "File Explorer package for different projects",
     "main": "index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "private": true,
     "dependencies": {
-        "@base/base-ui": "*",
-        "@base/next-ui": "*",
+        "@moix197/base-ui": "*",
+        "@moix197/next-ui": "*",
         "react": "*",
         "flowbite-react": "*",
         "@cubone/react-file-manager": "^1.20.0",

@@ -1,8 +1,8 @@
 import { MainWithTabs } from "../tabs/MainWithTabs";
 import { ArrayList } from "./ArrayList";
-import { postCall } from "@base/base-ui";
-import { SolidButton } from "@base/base-ui";
-import { useNotifications } from "@base/notifications";
+import { postCall } from "@moix197/base-ui";
+import { SolidButton } from "@moix197/base-ui";
+import { useNotifications } from "@moix197/notifications";
 
 function RelatedItemWithList({
 	existingValues,

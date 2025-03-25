@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { SimpleToggle } from "@base/forms";
-import { TitleLg } from "@base/base-ui";
-import { SectionBorder } from "@base/base-ui";
-import { useDashboardData } from "@base/dashboard";
+import { SimpleToggle } from "@moix197/forms";
+import { TitleLg } from "@moix197/base-ui";
+import { SectionBorder } from "@moix197/base-ui";
+import { useDashboardData } from "@moix197/dashboard";
 
 function SimpleToggleList({
 	title = "",

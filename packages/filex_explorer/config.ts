@@ -1,7 +1,7 @@
 import {
 	findOrCreateDocument as defaultFindOrCreateDocument,
 	insertDocument as defaultInsertDocument,
-} from "@base/db";
+} from "@moix197/db";
 
 export const config = {
 	findOrCreateDocument: defaultFindOrCreateDocument,

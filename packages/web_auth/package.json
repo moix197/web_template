@@ -1,7 +1,7 @@
 {
-    "name": "@base/auth",
+    "name": "@moix197/auth",
     "type": "module",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Authentication package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -9,6 +9,9 @@
     },
     "author": "",
     "private": true,
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "dependencies": {
         "react": "^18.0.0",
         "next-auth": "^4.24.10"

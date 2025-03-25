@@ -1,6 +1,6 @@
-import { apiHandler } from "@base/next-ui";
+import { apiHandler } from "@moix197/next-ui";
 import { basicModels } from "@/data/models/models";
-import { getDataFromDb } from "@base/db";
+import { getDataFromDb } from "@moix197/db";
 
 async function getDataRoute(req: Request): Promise<any> {
 	try {

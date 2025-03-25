@@ -2,7 +2,7 @@ import MainWithTabs from "../base/Tabs/MainWithTabs";
 import ArrayList from "./ArrayList";
 import { postCall } from "../../services/apiSkeletons/calls";
 import { SolidButton } from "../buttons/Buttons";
-import { useNotifications } from "@base/notifications";
+import { useNotifications } from "@moix197/notifications";
 
 function RelatedItemWithList({
 	existingValues,

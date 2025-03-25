@@ -1,7 +1,7 @@
-import { getCall } from "@base/base-ui";
+import { getCall } from "@moix197/base-ui";
 import { ReactNode } from "react";
 import { createContext, useState } from "react";
-import { mergeObjects } from "@base/base-ui";
+import { mergeObjects } from "@moix197/base-ui";
 
 const DashboardDataContext = createContext<any>(null);
 
