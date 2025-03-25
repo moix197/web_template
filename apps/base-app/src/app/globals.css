@@ -66,8 +66,7 @@ background: rgb(22,62,126);
 }
 
 .bookCoverInner{
-  background: none;
-  width: 10px !important;
+  transform: rotate(180deg);
 }
 
 .folders-preview, .file-explorer, .file-previewer, .fm-modal-header, .fm-context-menu, .rename-file, .fm-toolbar .toggle-view, .files-header {

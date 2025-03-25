@@ -1,0 +1,16 @@
+{
+    "name": "@base/book",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Book package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "react-pageflip": "^2.0.3"
+    }
+}

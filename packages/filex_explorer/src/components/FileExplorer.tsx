@@ -5,7 +5,7 @@ import { useNotifications } from "@base/notifications";
 import { getCall, postCall } from "@base/base-ui";
 import { usePathname } from "@base/next-ui";
 
-export function FileExplorer({
+function FileExplorer({
 	initialPath,
 	isFormSelection = false,
 	setValue,
@@ -133,3 +133,5 @@ export function FileExplorer({
 		</>
 	);
 }
+
+export { FileExplorer };

@@ -1,0 +1,19 @@
+{
+    "name": "@base/text-editor",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Text editor package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "flowbite-react": "*",
+        "quill-blot-formatter": "^1.0.5",
+        "quill-image-uploader": "^1.3.0",
+        "react-quill": "^2.0.0"
+    }
+}

@@ -42,4 +42,22 @@ async function postCall(
 	}
 }
 
-export { getCall, postCall };
+function mergeObjects<T, U>(obj1: T, obj2: U): T & U {
+	const merged = { ...obj2 };
+
+	for (const key in obj1) {
+		if (!(key in obj2)) {
+			merged[key] = obj1[key];
+		}
+	}
+
+	return merged;
+}
+
+function delay(time: number = 0): Promise<void> {
+	return new Promise((resolve) => {
+		setTimeout(resolve, time);
+	});
+}
+
+export { getCall, postCall, mergeObjects, delay };

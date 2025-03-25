@@ -1,4 +1,4 @@
-import { apiHandler } from "@/utils/api/handler";
+import { apiHandler } from "@base/next-ui";
 import { createFolder } from "@base/file_explorer";
 import { basicModels } from "@/data/models/models";
 import { setFileExplorerConfig } from "@base/file_explorer";

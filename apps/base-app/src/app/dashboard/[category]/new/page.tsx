@@ -1,11 +1,10 @@
-// src/pages/dashboard.tsx
 "use client";
-import BasicForm from "@/components/forms/BasicForm";
+import { BasicForm } from "@base/forms";
 import { useParams } from "next/navigation";
 import React, { useContext } from "react";
-import { postCall } from "@/services/apiSkeletons/calls";
+import { postCall } from "@base/base-ui";
 import { useNotifications } from "@base/notifications";
-import { DashboardDataContext } from "@/contexts/DashboardDataContextProvider";
+import { DashboardDataContext } from "@base/dashboard";
 
 function Dashboard() {
 	const { category } = useParams();

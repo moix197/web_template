@@ -1,0 +1,22 @@
+{
+    "name": "@base/dashboard",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Forms package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "flowbite-react": "*",
+        "react-icons": "*",
+        "@base/notifications": "*",
+        "@base/base-ui": "*"
+    },
+    "devDependencies": {
+        "tailwindcss": "*"
+    }
+}

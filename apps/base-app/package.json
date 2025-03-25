@@ -14,28 +14,25 @@
     "@base/db": "*",
     "@base/file_explorer": "*",
     "@base/base-ui": "*",
-    "@gsap/react": "^2.1.1",
+    "@base/text-editor": "*",
+    "@base/dashboard": "*",
+    "@base/book": "*",
     "autoprefixer": "^10.4.19",
-    "gsap": "^3.12.5",
     "next": "*",
-    "quill-blot-formatter": "^1.0.5",
-    "quill-image-uploader": "^1.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "*",
-    "react-pageflip": "^2.0.3",
-    "react-quill": "^2.0.0",
     "flowbite-react": "*"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "*",
+    "@types/react-dom": "*",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tailwindcss": "*",
+    "typescript": "*"
   }
 }

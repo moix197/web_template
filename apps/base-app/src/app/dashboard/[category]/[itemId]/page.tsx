@@ -1,13 +1,13 @@
 "use client";
 
+import { useNotifications } from "@base/notifications";
+import { MainWithTabs } from "@base/dashboard";
+import { postCall } from "@base/base-ui";
+import { TitleXl } from "@base/base-ui";
 import { useParams } from "next/navigation";
 import React, { useContext, useState } from "react";
-import { postCall } from "@/services/apiSkeletons/calls";
-import { TitleXl } from "@/components/Titles/TitlesDashboard";
-import useDashboardData from "@/Hooks/useDashboardData";
-import { DashboardDataContext } from "@/contexts/DashboardDataContextProvider";
-import MainWithTabs from "@/components/base/Tabs/MainWithTabs";
-import { useNotifications } from "@base/notifications";
+import { useDashboardData } from "@base/dashboard";
+import { DashboardDataContext } from "@base/dashboard";
 
 function Dashboard() {
 	const { category, itemId } = useParams();

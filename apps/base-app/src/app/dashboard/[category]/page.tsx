@@ -1,19 +1,19 @@
 "use client";
-import TableHover from "@/components/dashboard/tables/TableHover";
 import { useParams } from "next/navigation";
 import { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Link from "next/link";
-import useDashboardData from "@/Hooks/useDashboardData";
-import { DashboardDataContext } from "@/contexts/DashboardDataContextProvider";
-import ListSkeleton from "@/components/base/skeletons/ListSkeleton";
-import { SolidButton } from "@/components/buttons/Buttons";
+import { useDashboardData } from "@base/dashboard";
+import { DashboardDataContext } from "@base/dashboard";
+import { ListSkeleton } from "@base/base-ui";
+import { SolidButton } from "@base/base-ui";
+import { TableHover } from "@base/base-ui";
 
 const CategoryPage = () => {
 	const { category } = useParams();
 	const [data, setData] = useState<{ result: { value: any[] } } | null>(null);
 	const { config, isLoading } = useContext(DashboardDataContext);
-	useDashboardData(category, setData);
+	useDashboardData(category, setData, false, null);
 
 	return (
 		<>

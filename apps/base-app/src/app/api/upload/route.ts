@@ -1,5 +1,5 @@
 import { setFileExplorerConfig, uploadFile } from "@base/file_explorer";
-import { apiHandler } from "@/utils/api/handler";
+import { apiHandler } from "@base/next-ui";
 import { basicModels } from "@/data/models/models";
 
 async function uploadFileRoute(req: Request): Promise<any> {

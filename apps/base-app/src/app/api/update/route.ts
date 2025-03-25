@@ -1,4 +1,4 @@
-import { apiHandler } from "@/utils/api/handler";
+import { apiHandler } from "@base/next-ui";
 import { basicModels } from "@/data/models/models";
 import { updateItemFromDb } from "@base/db";
 

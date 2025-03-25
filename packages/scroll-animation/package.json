@@ -1,0 +1,17 @@
+{
+    "name": "@base/scroll-animation",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Scroll animation package for different projects",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "private": true,
+    "dependencies": {
+        "react": "*",
+        "@gsap/react": "^2.1.1",
+        "gsap": "^3.12.5"
+    }
+}

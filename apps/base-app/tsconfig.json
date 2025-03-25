@@ -21,6 +21,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "apps/src/db/schemas"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "apps/src/db/schemas", "../../packages/text_editor/src/components/AnimateContentOnScroll.tsx"],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import FlipSection from "../components/flipBook/FlipSection";
+import { FlipSection } from "@base/book";
 
 export default function Home() {
 	const pagesContent = [
@@ -294,11 +294,11 @@ And so, our story continued, filled with love, laughter, and the promise of many
 		},
 	];
 	return (
-		<div className="bg-gray-500 flex justify-center h-[100vh] w-full flex justify-center items-center overflow-hidden">
+		<div className="!bg-red-600 flex justify-center h-[100vh] w-full flex justify-center items-center overflow-hidden">
 			<div className="max-w-[1200px] w-full max-h-[100vh] cursor-pointer bg-gray-500">
 				<FlipSection
 					pages={pagesContent}
-					className="bg-gray-500"
+					className=""
 					pageClassName={"bg-transparent text-black shadow-2xl drop-shadow-2xl"}
 					width={600}
 					height={800}
