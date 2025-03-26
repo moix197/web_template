@@ -8,9 +8,12 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
-    "private": true,
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/moix197/web_template.git"
     },
     "dependencies": {
         "react": "*",

@@ -1,17 +1,20 @@
 {
     "name": "@moix197/dashboard",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Forms package for different projects",
     "main": "index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "@moix197",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
     },
-    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/moix197/web_template.git"
+    },
     "dependencies": {
         "react": "*",
         "flowbite-react": "*",

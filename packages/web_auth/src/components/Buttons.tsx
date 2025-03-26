@@ -1,25 +1,22 @@
 import { signIn, signOut } from "next-auth/react";
 import React from "react";
+import { SolidButton } from "@moix197/base-ui";
 
 function LogInButton() {
 	return (
-		<button
-			onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-			className="w-full bg-blue-500 text-secondary py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+		<SolidButton
+			onClick={async () =>
+				await signIn("google", { callbackUrl: "/dashboard" })
+			}
 		>
 			Sign in with Gmail
-		</button>
+		</SolidButton>
 	);
 }
 
 function LogOutButton() {
 	return (
-		<button
-			onClick={() => signOut()}
-			className="w-full bg-blue-500 text-secondary py-2 px-4 rounded-lg hover:bg-blue-600 transition"
-		>
-			Log out
-		</button>
+		<SolidButton onClick={async () => await signOut()}>Log out</SolidButton>
 	);
 }
 

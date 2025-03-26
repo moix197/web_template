@@ -11,7 +11,10 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
     },
-    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/moix197/web_template.git"
+    },
     "dependencies": {
         "react": "*",
         "flowbite-react": "*",
