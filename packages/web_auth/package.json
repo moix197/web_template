@@ -1,7 +1,7 @@
 {
     "name": "@moix197/auth",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Authentication package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -16,7 +16,8 @@
         "url": "https://github.com/moix197/web_template.git"
     },
     "dependencies": {
-        "react": "^18.0.0",
+        "react": "*",
+        "react-dom": "*",
         "next-auth": "^4.24.10",
         "@moix197/base-ui": "*"
     }

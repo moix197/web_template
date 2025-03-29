@@ -23,8 +23,23 @@ const TableHover = ({
 
 	const gridColumns = useMemo(() => {
 		if (!headKeys) return "";
-		const colCount = Math.min(headKeys.length, 6); // Limit to max 4 columns
-		return colCount > 0 ? `sm:grid-cols-${colCount}` : "";
+		const colCount = headKeys.length;
+		switch (colCount) {
+			case 1:
+				return "sm:grid-cols-1";
+			case 2:
+				return "sm:grid-cols-2";
+			case 3:
+				return "sm:grid-cols-3";
+			case 4:
+				return "sm:grid-cols-4";
+			case 5:
+				return "sm:grid-cols-5";
+			case 6:
+				return "sm:grid-cols-6";
+			default:
+				return ""; // fallback or maximum value
+		}
 	}, [headKeys]);
 
 	useEffect(() => {
@@ -66,16 +81,16 @@ const TableHover = ({
 								return (
 									<div
 										key={`table_items_${index}`}
-										className={`p-3 sm:p-0 bg-gray-900 sm:grid ${gridColumns}   ${
+										className={`p-3 sm:p-0 !bg-gray-900 sm:grid ${gridColumns}   ${
 											activeItemIndex == index && "bg-blue-500"
-										} border-b border-gray-600 color-white dark:border-gray-600 dark:bg-gray-800 cursor-pointer hover:bg-gray-600 dark:hover:bg-gray-700`}
+										} border-b border-gray-900 color-black dark:border-gray-600 dark:bg-gray-800 cursor-pointer hover:bg-gray-600 dark:hover:bg-gray-700`}
 										onClick={() => handleRowClick(item, index)}
 									>
 										{headKeys.map((value, i) => {
 											return (
 												<div
 													key={`table_items_inner_${index}_${i}`}
-													className="flex justify-between px-4 py-3 uppercase whitespace-nowrap font-medium text-secondary dark:text-secondary"
+													className="flex justify-between px-4 py-3 uppercase whitespace-nowrap font-medium text-secondary"
 												>
 													<div className="flex sm:hidden items-center text-xs opacity-70">
 														{headKeys[i]}

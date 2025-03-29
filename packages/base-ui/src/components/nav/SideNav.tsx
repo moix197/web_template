@@ -1,17 +1,23 @@
 "use client";
 
 import { SolidButton } from "../buttons/GeneralButtons";
-import { DashboardDataContext } from "@moix197/dashboard";
-import { Avatar, Sidebar } from "flowbite-react";
+import {
+	Sidebar,
+	SidebarLogo,
+	SidebarItems,
+	SidebarItemGroup,
+	SidebarItem,
+	Avatar,
+} from "flowbite-react";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { LogOutButton, UserSessionDataContext } from "@moix197/auth";
+import { LogOutButton } from "@moix197/auth";
 
 //prettier-ignore
 const theme = {
     "root": {
-      "base": "!h-full w-3/4 md:w-full ",
+      "base": "h-full w-full",
       "collapsed": {
         "on": "",
         "off": ""
@@ -116,57 +122,64 @@ function SideNav({
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div
-			onClick={() => setIsOpen(!isOpen)}
-			className={`fixed z-40 h-full w-full md:w-[250px]  ${
-				!isOpen && "-translate-x-full"
-			} md:translate-x-0 transition-transform duration-500`}
-		>
+		<>
 			<SolidButton
 				onClick={() => setIsOpen(!isOpen)}
-				className={`child:p-0 md:hidden rotate-0 right-4 ${
-					!isOpen && "rotate-180 -right-16"
-				}  transition-all duration-500 absolute bottom-4 z-50  w-auto p-3 rounded-full !bg-gray-700  w-auto h-auto`}
+				className="md:hidden fixed bottom-4 right-4 z-50 w-auto p-3 rounded-full"
 			>
-				<IoIosArrowBack className="w-8 h-8 !p-0" />
+				<IoIosArrowBack
+					className={`w-8 h-8 !p-0 transition-transform duration-500 ${
+						isOpen ? "rotate-180" : ""
+					}`}
+				/>
 			</SolidButton>
-			<Sidebar theme={theme} aria-label="Sidebar with logo branding example">
-				<Sidebar.Logo href="#" img={logo.src} imgAlt={logo.alt}>
-					{title && <div>{title}</div>}
-				</Sidebar.Logo>
-				<Sidebar.Items>
-					<Sidebar.ItemGroup>
-						{navItems.map((item, index) => (
-							<Sidebar.Item
-								as={Link}
-								href={item.href}
-								key={`nav-item-${index}`}
-							>
-								{item.label}
-							</Sidebar.Item>
-						))}
-					</Sidebar.ItemGroup>
-				</Sidebar.Items>
-				{user && (
-					<div className="flex-auto gap-4 flex-grow flex flex-col justify-end">
-						<div className="flex gap-2 uppercase">
-							<div>
-								<Avatar rounded img={user.image}></Avatar>
-							</div>
-							<div>
-								<div className="text-sm font-medium">
-									{user.name.split(" ")[0]}
+			<div
+				className={`fixed z-40 h-full w-3/4 md:w-[250px] transition-transform duration-500 ${
+					isOpen ? "translate-x-0" : "-translate-x-full"
+				}`}
+			>
+				<Sidebar
+					theme={theme}
+					aria-label="Sidebar with logo branding example"
+					className="h-full md:translate-x-full "
+				>
+					<SidebarLogo href="#" img={logo.src} imgAlt={logo.alt}>
+						{title && <div>{title}</div>}
+					</SidebarLogo>
+					<SidebarItems>
+						<SidebarItemGroup>
+							{navItems.map((item, index) => (
+								<SidebarItem
+									as={Link}
+									href={item.href}
+									key={`nav-item-${index}`}
+								>
+									{item.label}
+								</SidebarItem>
+							))}
+						</SidebarItemGroup>
+					</SidebarItems>
+					{user && (
+						<div className="flex-auto gap-4 flex-grow flex flex-col justify-end">
+							<div className="flex gap-2 uppercase">
+								<div>
+									<Avatar rounded img={user.image}></Avatar>
 								</div>
-								<div className="text-xs font-thin">{user.role}</div>
+								<div>
+									<div className="text-sm font-medium">
+										{user.name.split(" ")[0]}
+									</div>
+									<div className="text-xs font-thin">{user.role}</div>
+								</div>
+							</div>
+							<div className="w-full">
+								<LogOutButton></LogOutButton>
 							</div>
 						</div>
-						<div className="w-full">
-							<LogOutButton></LogOutButton>
-						</div>
-					</div>
-				)}
-			</Sidebar>
-		</div>
+					)}
+				</Sidebar>
+			</div>
+		</>
 	);
 }
 

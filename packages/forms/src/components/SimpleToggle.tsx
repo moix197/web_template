@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { LoadingCont } from "@moix197/base-ui";
+import { delay, LoadingCont } from "@moix197/base-ui";
 import { TrueFalseWithIcons } from "@moix197/base-ui";
 import { ToggleSwitch } from "flowbite-react";
-
 //prettier-ignore
 const theme = {
 	"root": {
@@ -64,6 +63,7 @@ function SimpleToggle({
 		setIsLoading(true);
 		if (isLoading) return;
 		let tempObj = {};
+		await delay(100);
 		await executeCb(givenValue);
 		setStatus(givenValue);
 		setIsLoading(false);

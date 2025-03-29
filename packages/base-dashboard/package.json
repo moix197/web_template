@@ -1,7 +1,7 @@
 {
     "name": "@moix197/dashboard",
     "type": "module",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Forms package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "react": "*",
+        "react-dom": "*",
         "flowbite-react": "*",
         "react-icons": "*",
         "@moix197/notifications": "*",

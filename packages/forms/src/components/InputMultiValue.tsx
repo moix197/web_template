@@ -52,7 +52,9 @@ function InputMultiValue({
 								}}
 							>
 								<div className="p-2 bg-fourth rounded-full flex items-center cursor-pointer hover:opacity-50">
-									<span className="text-sm text-fourth">{item}</span>
+									<span className="!text-xs tracking-wider text-fourth ">
+										{item}
+									</span>
 									<IoCloseCircle className="w-6 h-6 text-red-400"></IoCloseCircle>
 								</div>
 							</div>

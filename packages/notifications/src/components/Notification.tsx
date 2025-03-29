@@ -5,6 +5,18 @@ import { HiCheck, HiInformationCircle } from "react-icons/hi";
 import { useContext } from "react";
 import { NotificationContext } from "../providers/NotificationContextProvider";
 
+//prettier-ignore
+const theme = {
+	"root": {
+	  "base": "flex w-full max-w-xs items-center rounded-lg bg-primary p-4 text-gray-500 shadow dark:bg-gray-900 dark:text-white",
+	  "closed": "opacity-0 ease-out"
+	},
+	"toggle": {
+	  "base": "-m-1.5 ml-auto inline-flex h-8 w-8 rounded-lg bg-primary p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white",
+	  "icon": "h-5 w-5 shrink-0"
+	}
+  }
+
 function Notification() {
 	const { notifications, dismissNotification } =
 		useContext(NotificationContext);
@@ -15,6 +27,7 @@ function Notification() {
 				.filter((notification) => notification.visible) // Only show visible notifications
 				.map((notification) => (
 					<Toast
+						theme={theme}
 						key={notification.id}
 						className={`shadow-xl min-w-[350px] border ${
 							notification.type == "error" ? "border-error" : "border-success"
@@ -27,12 +40,16 @@ function Notification() {
 						<div
 							className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
 								notification.type == "error"
-									? "bg-error text-errorStrong"
-									: "bg-success text-successStrong"
+									? "!bg-error !text-errorStrong"
+									: "!bg-success !text-successStrong"
 							} mr-3`}
 						>
-							{notification.type === "error" && <HiInformationCircle />}
-							{notification.type === "success" && <HiCheck />}
+							{notification.type === "error" && (
+								<HiInformationCircle className="font-bold text-primary" />
+							)}
+							{notification.type === "success" && (
+								<HiCheck className="font-bold text-primary" />
+							)}
 						</div>
 						<div className="ml-3 text-md font-normal">
 							{notification.title && (
@@ -40,7 +57,7 @@ function Notification() {
 									className={`text-md font-bold uppercase ${
 										notification.type == "error"
 											? "text-errorStrong"
-											: "text-successStrong"
+											: "!text-successStrong"
 									}`}
 								>
 									<span>{notification.title}</span>
@@ -50,7 +67,7 @@ function Notification() {
 						</div>
 						<button
 							type="button"
-							className="absolute right-2 top-1 rounded-lg p-1.5 text-gray-500 hover:text-gray-900"
+							className="cursor-pointer absolute right-2 top-1 rounded-lg p-1.5 text-error font-bold hover:text-gray-900"
 							onClick={() => dismissNotification(notification.id)}
 						>
 							✕

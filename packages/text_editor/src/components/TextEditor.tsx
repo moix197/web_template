@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill, { Quill } from "react-quill-new";
 import BlotFormatter from "quill-blot-formatter";
-import "react-quill/dist/quill.snow.css";
+import "react-quill-new/dist/quill.snow.css";
 import { ModalFileExplorer } from "@moix197/file_explorer/client";
 
 Quill.register("modules/blotFormatter", BlotFormatter);

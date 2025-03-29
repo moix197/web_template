@@ -1,7 +1,7 @@
 {
     "name": "@moix197/forms",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Forms package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -17,10 +17,16 @@
     },
     "dependencies": {
         "react": "*",
+        "react-dom": "*",
         "flowbite-react": "*",
         "react-icons": "*",
         "@moix197/validation": "*",
         "@moix197/base-ui": "*",
         "@moix197/dashboard": "*"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "*",
+        "postcss": "*",
+        "tailwindcss": "*"
     }
 }

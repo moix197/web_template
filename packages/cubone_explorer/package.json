@@ -1,0 +1,43 @@
+{
+  "name": "@moix197/cubone-explorer",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Cubone file explorer package for different projects",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "./index.js",
+  "author": "",
+  "scripts": {
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moix197/web_template.git"
+  },
+  "dependencies": {
+    "react-icons": "^5.4.0",
+    "react-collapsed": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.7.7",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "react": "*",
+    "react-dom": "*",
+    "sass": "^1.77.6",
+    "semantic-release": "^24.1.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  }
+}

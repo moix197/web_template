@@ -1,7 +1,7 @@
 {
     "name": "@moix197/notifications",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Notification package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -17,6 +17,12 @@
     },
     "dependencies": {
         "react": "*",
+        "react-dom": "*",
         "flowbite-react": "*"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "*",
+        "postcss": "*",
+        "tailwindcss": "*"
     }
 }

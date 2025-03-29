@@ -1,4 +1,4 @@
-import { Tabs } from "flowbite-react";
+import { Tabs, TabItem } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { ArrayList } from "@moix197/dashboard";
 import { getCall } from "@moix197/base-ui";
@@ -23,16 +23,16 @@ const theme = {
 	  "base": "flex text-center",
 	  "variant": {
 		"default": "flex-wrap border-b border-gray-200 dark:border-gray-700",
-		"underline": "-mb-px flex-wrap border-b border-gray-200 dark:border-gray-700",
+		"underline": "-mb-px flex-wrap border-b  border-gray-200 dark:border-gray-700",
 		"pills": "flex-wrap space-x-2 text-sm font-medium text-gray-500 dark:text-gray-400",
 		"fullWidth": "w-full flex flex-row flex-wrap gap-1 outline-none border-none  rounded-none text-sm font-medium shadow dark:divide-gray-700 dark:text-gray-400",
 		"fullWidthSmall": "w-full flex flex-row flex-wrap gap-1 px-0 md:px-20 mt-0 pt-0 outline-none border-none rounded-none text-sm font-medium shadow dark:divide-gray-700 dark:text-gray-400"
 	  },
 	  "tabitem": {
-		"base": " text-md flex-1 flex items-center justify-center rounded-t-lg p-4 font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500",
+		"base": "!cursor-pointer !border-r-0 text-md flex-1 flex items-center justify-center rounded-t-lg p-4 font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500",
 		"variant": {
 		  "default": {
-			"base": "rounded-t-lg",
+			"base": "rounded-t-lg ",
 			"active": {
 			  "on": "bg-gray-100 text-cyan-600 dark:bg-gray-800 dark:text-cyan-500",
 			  "off": "text-gray-500 hover:bg-gray-50 hover:text-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
@@ -148,7 +148,7 @@ function MainWithTabs({
 				}
 				className="!w-full"
 			>
-				<Tabs.Item active title="General">
+				<TabItem active title="General">
 					<GeneralTab
 						existingValues={existingValues}
 						activationToggle={
@@ -162,11 +162,11 @@ function MainWithTabs({
 						config={config}
 						updateCb={updateCb}
 					/>
-				</Tabs.Item>
+				</TabItem>
 
 				{arrayListItems?.map((item, index) => {
 					return (
-						<Tabs.Item
+						<TabItem
 							className="!w-full"
 							title={item.sectionTitle}
 							key={`$array_list_item_${index}`}
@@ -178,14 +178,14 @@ function MainWithTabs({
 								existingValues={existingValues}
 								useDrawerToUpdate={item.useDrawerToUpdate}
 							></ArrayList>
-						</Tabs.Item>
+						</TabItem>
 					);
 				})}
 
 				{relatedItems?.length > 0 &&
 					relatedItems.map((item, index) => {
 						return (
-							<Tabs.Item
+							<TabItem
 								className="!w-full"
 								title={item.name}
 								key={`related_item${item.name}_${index}`}
@@ -211,7 +211,7 @@ function MainWithTabs({
 									></RelatedItemWithList>
 									{/*<RelatedItem item={item.values} category={item.name} />*/}
 								</div>
-							</Tabs.Item>
+							</TabItem>
 						);
 					})}
 			</Tabs>

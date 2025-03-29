@@ -1,8 +1,10 @@
 import type { Config } from "tailwindcss";
-import flowbite from "flowbite-react/tailwind";
 
 const config: Config = {
-	content: ["./packages/**/*.{js,ts,jsx,tsx}", flowbite.content()],
+	content: [
+		"./packages/**/*.{js,ts,jsx,tsx}",
+		".flowbite-react\\class-list.json",
+	],
 	theme: {
 		extend: {
 			height: {
@@ -32,7 +34,6 @@ const config: Config = {
 		},
 	},
 	plugins: [
-		flowbite.plugin(),
 		function ({ addVariant }: { addVariant: Function }) {
 			addVariant("child", "& > *");
 			addVariant("child-hover", "& > *:hover");

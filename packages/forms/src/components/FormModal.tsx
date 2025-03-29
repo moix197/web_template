@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "flowbite-react";
+import { Modal, ModalHeader, ModalBody } from "flowbite-react";
 import { useState } from "react";
 import { SolidButton } from "@moix197/base-ui";
 import { FaPlus } from "react-icons/fa";
@@ -39,19 +39,19 @@ const theme = {
       }
     },
     "content": {
-      "base": "rounded-lg shadow-black relative h-full w-full  md:h-auto",
+      "base": "rounded-lg  bg-primary shadow-black relative h-full w-full  md:h-auto",
       "inner": "relative flex max-h-[90dvh] flex-col rounded-lg bg-primary shadow dark:bg-gray-700"
     },
     "body": {
-      "base": "flex-1 overflow-auto p-6",
+      "base": "flex-1 bg-primary overflow-auto p-6",
       "popup": "pt-0"
     },
     "header": {
-      "base": "flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600",
+      "base": "flex items-start  bg-primary justify-between rounded-t border-b p-5 dark:border-gray-600",
       "popup": "border-b-0 p-2",
       "title": "text-xl font-medium text-secondary dark:text-white",
       "close": {
-        "base": "ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-secondary dark:hover:bg-gray-600 dark:hover:text-white",
+        "base": "!cursor-pointer ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-secondary dark:hover:bg-gray-600 dark:hover:text-white",
         "icon": "h-5 w-5"
       }
     },
@@ -76,8 +76,8 @@ function FormModal({ itemValues, category, cb, itemName }) {
 				</span>
 			</SolidButton>
 			<Modal theme={theme} show={openModal} onClose={() => setOpenModal(false)}>
-				<Modal.Header className="uppercase">New {itemName} form</Modal.Header>
-				<Modal.Body>
+				<ModalHeader className="uppercase">New {itemName} form</ModalHeader>
+				<ModalBody>
 					{itemValues && (
 						<GeneralTab
 							formValues={itemValues}
@@ -90,7 +90,7 @@ function FormModal({ itemValues, category, cb, itemName }) {
 							}}
 						></GeneralTab>
 					)}
-				</Modal.Body>
+				</ModalBody>
 				{/*<Modal.Footer>
 					<Button onClick={() => setOpenModal(false)}>I accept</Button>
 					<Button color="gray" onClick={() => setOpenModal(false)}>

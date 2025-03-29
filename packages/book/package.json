@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "react": "*",
+        "react-dom": "*",
         "react-pageflip": "^2.0.3"
     }
 }

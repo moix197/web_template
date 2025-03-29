@@ -1,6 +1,4 @@
-// src/pages/dashboard.tsx
 "use client";
-import { LoginButton } from "@moix197/auth";
 import React from "react";
 
 function Dashboard() {
@@ -8,7 +6,7 @@ function Dashboard() {
 		<div>
 			<main className="flex-1">
 				<h1 className="text-2xl font-bold">Welcome to the Dashboard</h1>
-				<p className="mt-4">
+				<p className="mt-10 md:mt-2">
 					Select an option from the sidebar to get started.
 				</p>
 			</main>

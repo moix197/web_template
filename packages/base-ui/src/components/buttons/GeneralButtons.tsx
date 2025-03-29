@@ -31,7 +31,7 @@ const SolidButton = ({
 			{!onClick ? (
 				<Link
 					href={href}
-					className={`${className} border p-4 uppercase font-bold 
+					className={`${className} !cursor-pointer border p-4 uppercase font-bold 
 			rounded-lg w-[300px] text-center ${colorClass} block`}
 				>
 					{children}
@@ -43,7 +43,7 @@ const SolidButton = ({
 						onClick();
 					}}
 					color="blue"
-					className={`flex uppercase w-full bg-third hover:third-dark !ring-0 ${className}`}
+					className={`flex uppercase !cursor-pointer w-full bg-third hover:third-dark !ring-0 ${className}`}
 				>
 					{!isLoading ? (
 						children

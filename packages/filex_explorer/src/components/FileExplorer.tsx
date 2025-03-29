@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { FileManager } from "@cubone/react-file-manager";
+//import { FileManager } from "@cubone/react-file-manager";
+import { FileManager } from "@moix197/cubone-explorer";
 import "@cubone/react-file-manager/dist/style.css";
 import { useNotifications } from "@moix197/notifications";
 import { getCall, postCall } from "@moix197/base-ui";
 import { usePathname } from "@moix197/next-ui";
+import React from "react";
 
 function FileExplorer({
 	initialPath,
