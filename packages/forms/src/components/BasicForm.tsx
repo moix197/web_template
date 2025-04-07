@@ -17,7 +17,7 @@ import React from "react";
 
 const TextEditor = dynamic(
 	() => import("@moix197/text-editor").then((mod) => mod.TextEditor),
-	{ ssr: false }
+	{ ssr: false, loading: () => <div>Loading...</div> }
 );
 
 const ModalFileExplorer = dynamic(
@@ -27,13 +27,6 @@ const ModalFileExplorer = dynamic(
 		),
 	{ ssr: false }
 );
-
-/*const ModalFileExplorer = dynamic(
-	() => import("@moix197/file_explorer"),
-	{
-		ssr: false, // This will disable server-side rendering for this component
-	}
-);*/
 
 function BasicForm({
 	formValues,

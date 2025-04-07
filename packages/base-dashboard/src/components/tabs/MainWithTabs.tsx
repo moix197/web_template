@@ -2,19 +2,8 @@ import { Tabs, TabItem } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { ArrayList } from "@moix197/dashboard";
 import { getCall } from "@moix197/base-ui";
-import dynamic from "next/dynamic";
 import { RelatedItemWithList } from "../lists/RelatedItemWithList";
 import { GeneralTab } from "./GeneralTab";
-
-/*const RelatedItemWithList = dynamic(
-	() => import("../../forms/RelatedItemWithList"),
-	{ loading: () => <div>Loading...</div> } // Optional: Add loading state while the component loads
-);*/
-
-/*const GeneralTab = dynamic(
-	() => import("./GeneralTab"),
-	{ loading: () => <div>Loading...</div> } // Optional: Add loading state while the component loads
-);*/
 
 //prettier-ignore
 const theme = {

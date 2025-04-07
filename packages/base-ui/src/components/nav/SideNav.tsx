@@ -117,7 +117,8 @@ function SideNav({
 	navItems = [],
 	user,
 	title = "",
-	logo = { src: "/favicon.svg", alt: "SystemLogo" },
+	logo = { src: "", alt: "" },
+	className = "",
 }: SideNavProps) {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -133,22 +134,23 @@ function SideNav({
 					}`}
 				/>
 			</SolidButton>
-			<div
-				className={`fixed z-40 h-full w-3/4 md:w-[250px] transition-transform duration-500 ${
-					isOpen ? "translate-x-0" : "-translate-x-full"
+
+			<Sidebar
+				theme={theme}
+				aria-label="Sidebar with logo branding example"
+				className={`h-full fixed top-0 left-0 z-20 w-64 bg-gray-50 transition-transform transition-duration-300 dark:bg-gray-800 overflow-y-auto overflow-x-hidden rounded  ${className} ${
+					!isOpen ? "-translate-x-full md:translate-x-0" : ""
 				}`}
 			>
-				<Sidebar
-					theme={theme}
-					aria-label="Sidebar with logo branding example"
-					className="h-full md:translate-x-full "
-				>
+				{logo?.src && (
 					<SidebarLogo href="#" img={logo.src} imgAlt={logo.alt}>
 						{title && <div>{title}</div>}
 					</SidebarLogo>
-					<SidebarItems>
-						<SidebarItemGroup>
-							{navItems.map((item, index) => (
+				)}
+				<SidebarItems>
+					<SidebarItemGroup>
+						{navItems.map((item, index) =>
+							item?.href ? (
 								<SidebarItem
 									as={Link}
 									href={item.href}
@@ -156,29 +158,37 @@ function SideNav({
 								>
 									{item.label}
 								</SidebarItem>
-							))}
-						</SidebarItemGroup>
-					</SidebarItems>
-					{user && (
-						<div className="flex-auto gap-4 flex-grow flex flex-col justify-end">
-							<div className="flex gap-2 uppercase">
-								<div>
-									<Avatar rounded img={user.image}></Avatar>
-								</div>
-								<div>
-									<div className="text-sm font-medium">
-										{user.name.split(" ")[0]}
-									</div>
-									<div className="text-xs font-thin">{user.role}</div>
-								</div>
+							) : (
+								<SidebarItem
+									className="!cursor-pointer"
+									onClick={() => item?.onClick()}
+									key={`nav-item-${index}`}
+								>
+									{item.label}
+								</SidebarItem>
+							)
+						)}
+					</SidebarItemGroup>
+				</SidebarItems>
+				{user && (
+					<div className="flex-auto gap-4 flex-grow flex flex-col justify-end">
+						<div className="flex gap-2 uppercase">
+							<div>
+								<Avatar rounded img={user.image}></Avatar>
 							</div>
-							<div className="w-full">
-								<LogOutButton></LogOutButton>
+							<div>
+								<div className="text-sm font-medium">
+									{user.name.split(" ")[0]}
+								</div>
+								<div className="text-xs font-thin">{user.role}</div>
 							</div>
 						</div>
-					)}
-				</Sidebar>
-			</div>
+						<div className="w-full">
+							<LogOutButton></LogOutButton>
+						</div>
+					</div>
+				)}
+			</Sidebar>
 		</>
 	);
 }

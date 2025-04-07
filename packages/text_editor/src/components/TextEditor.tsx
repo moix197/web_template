@@ -6,12 +6,14 @@ import "react-quill-new/dist/quill.snow.css";
 import { ModalFileExplorer } from "@moix197/file_explorer/client";
 
 Quill.register("modules/blotFormatter", BlotFormatter);
+//TODO fix duplicated toolbar and sometimes not showing at all
 
 function TextEditor({
 	value,
 	setValue,
 	imageCategory,
 	useItemIdAsImageParent,
+	className,
 }) {
 	//const [value, setValue] = useState("");
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -69,7 +71,7 @@ function TextEditor({
 					value={value}
 					modules={modules}
 					onChange={setValue}
-					className="book-aspect-ratio w-[600px] max-w-full"
+					className={`aspect-[3/4] w-[430px] max-w-full ${className}`}
 				/>
 			</div>
 			<ModalFileExplorer

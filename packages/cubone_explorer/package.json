@@ -1,7 +1,7 @@
 {
   "name": "@moix197/cubone-explorer",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cubone file explorer package for different projects",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "react-icons": "^5.4.0",
-    "react-collapsed": "^4.2.0"
+    "react-collapsed": "^4.2.0",
+    "sass": "^1.77.6"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
@@ -29,7 +30,6 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "react": "*",
     "react-dom": "*",
-    "sass": "^1.77.6",
     "semantic-release": "^24.1.0"
   },
   "peerDependenciesMeta": {

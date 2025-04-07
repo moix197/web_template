@@ -1,7 +1,7 @@
 {
     "name": "@moix197/text-editor",
     "type": "module",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "description": "Text editor package for different projects",
     "main": "index.ts",
     "scripts": {

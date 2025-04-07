@@ -64,6 +64,7 @@ const books = {
 							options: [
 								{ value: "page", name: "Page" },
 								{ value: "front", name: "Front Cover" },
+								{ value: "frontInner", name: "Front Inner Cover" },
 								{ value: "back", name: "Back Cover" },
 							],
 						},

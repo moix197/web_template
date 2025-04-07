@@ -1,3 +1,5 @@
+import { TitleSection, TitleXl } from "@moix197/base-ui";
+
 function BookCover({
 	title = "",
 	content = "",
@@ -10,15 +12,11 @@ function BookCover({
 				bookCoverInner && "bookCoverInner"
 			}`}
 		>
-			{/*<ImageSmoother className="before:bg-leatherBg before:bg-cover opacity-50 z-10"></ImageSmoother>
+			{/*<ImageSmoother className="before:bg-leatherBg before:bg-cover opacity-50 z-10"></ImageSmoother>*/}
 			<div className="z-20">
-				<div className="mb-4">
-					{bookCoverInner} oka
-					<TitleMain className="text-gray-50">Lovebook</TitleMain>
-				</div>
 				{title && <TitleSection className="text-gray-50">{title}</TitleSection>}
 				{content && <div>{content}</div>}
-			</div>*/}
+			</div>
 		</div>
 	);
 }

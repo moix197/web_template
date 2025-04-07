@@ -1,17 +1,17 @@
 "use client";
 
 import { FlipSection } from "@moix197/book";
-import Image from "next/image";
-import { SectionLayout, TitleXl } from "@moix197/base-ui";
+import { getCall, SectionLayout, SideNav, TitleXl } from "@moix197/base-ui";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-	const pagesContent = [
+	const [pagesContent, setPagesContent] = useState([]);
+	/*const pagesContent = [
 		{
 			title: "Emily & Jack",
 			isBookCover: true,
 		},
 		{
-			title: "asdasd",
 			isBookCover: true,
 			bookCoverInner: true,
 		},
@@ -293,29 +293,36 @@ And so, our story continued, filled with love, laughter, and the promise of many
 				</div>
 			),
 		},
-	];
-	return (
-		<SectionLayout className="w-full !p-0 min-h-screen">
-			<div className="w-full flex flex-col items-center justify-center gap-4">
-				<div className="text-center">
-					<TitleXl>Esto es un titulo</TitleXl>
-				</div>
+	];*/
 
-				<div className="flex justify-center w-full flex justify-center items-center overflow-hidden">
-					<div className="max-w-[1200px] w-full max-h-[100vh] cursor-pointer ">
-						<FlipSection
-							pages={pagesContent}
-							className=""
-							pageClassName={
-								"bg-transparent text-black shadow-2xl drop-shadow-2xl"
-							}
-							width={600}
-							height={700}
-							bookCoverClassName=""
-						></FlipSection>
-					</div>
-				</div>
-			</div>
-		</SectionLayout>
+	useEffect(() => {
+		getPagesData();
+	}, []);
+
+	async function getPagesData() {
+		const response = await getCall("/api/getData", {
+			category: "books",
+			data: JSON.stringify({ _id: "67c8d0a1ccf83bfab23dc573" }),
+		});
+
+		if (response?.result?.value) {
+			setPagesContent(response.result.value[0].pages);
+		}
+	}
+
+	return (
+		<>
+			<SectionLayout className="w-full !p-0 min-h-screen">
+				{/*<div className="text-center mb-8">
+						<TitleXl>Esto es un titulo</TitleXl>
+					</div>*/}
+				<FlipSection
+					pages={pagesContent}
+					className=""
+					pageClassName={"bg-transparent text-black shadow-2xl drop-shadow-2xl"}
+					bookCoverClassName=""
+				></FlipSection>
+			</SectionLayout>
+		</>
 	);
 }

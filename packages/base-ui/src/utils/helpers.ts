@@ -60,4 +60,17 @@ function delay(time: number = 0): Promise<void> {
 	});
 }
 
-export { getCall, postCall, mergeObjects, delay };
+function debounce(valueWhenChecked, valueNow, delay = 300, cb) {
+	debounce.timeoutId = clearTimeout(debounce.timeoutId);
+
+	valueWhenChecked.current = valueNow;
+
+	debounce.timeoutId = setTimeout(function () {
+		if (valueNow == "" || parseFloat(valueNow) == 0) return;
+		if (valueNow == valueWhenChecked.current) {
+			cb();
+		}
+	}, delay);
+}
+
+export { getCall, postCall, mergeObjects, delay, debounce };
