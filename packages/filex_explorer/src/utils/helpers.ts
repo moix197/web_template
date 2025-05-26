@@ -2,7 +2,7 @@
 import path from "path";
 import { config } from "../../config";
 
-async function getRelatedPaths(parentId, name, dbItem = null) {
+async function getRelatedPaths(parentId: string, name: string, dbItem = null) {
 	let itemPath = `${name}`; //Root folder
 	let parentFolderPath = "";
 
@@ -20,9 +20,12 @@ async function getRelatedPaths(parentId, name, dbItem = null) {
 		itemPath = `${parentDbItem.path}/${name}`;
 	}
 	//this one adds the BASE route in
-	const fullItemPath = path.resolve(process.env.UPLOADS_ROOT_PATH, itemPath);
+	const fullItemPath = path.resolve(
+		process.env.UPLOADS_ROOT_PATH as string,
+		itemPath
+	);
 	const fullParentFolderPath = path.resolve(
-		process.env.UPLOADS_ROOT_PATH,
+		process.env.UPLOADS_ROOT_PATH as string,
 		parentFolderPath
 	);
 
@@ -30,10 +33,10 @@ async function getRelatedPaths(parentId, name, dbItem = null) {
 }
 
 async function getParentObjFromDb(
-	name,
-	path,
-	parentId = null,
-	rootName = null
+	name: string,
+	path: string,
+	parentId: string | null = null,
+	rootName: string | null = null
 ) {
 	console.log("name", name);
 	const contentObj = {
@@ -54,7 +57,10 @@ async function getParentObjFromDb(
 	return result;
 }
 
-async function getOrCreateParentFolder(parentCategory, parentFolderId) {
+async function getOrCreateParentFolder(
+	parentCategory: string,
+	parentFolderId: string
+) {
 	let rootParent = await getParentObjFromDb(parentCategory, parentCategory);
 
 	if (parentFolderId) {
@@ -71,8 +77,8 @@ async function getOrCreateParentFolder(parentCategory, parentFolderId) {
 	return rootParent;
 }
 
-const updateChildernPathRecursive = async (item) => {
-	const children = await FileSystemModel.find({ parentId: item._id });
+const updateChildernPathRecursive = async (item: any) => {
+	const children = await config.fileSystemModel?.find({ parentId: item._id });
 
 	for (const child of children) {
 		child.path = `${item.path}/${child.name}`;

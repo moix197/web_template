@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 // Define the shape of each notification
 interface Notification {
 	id: number;
-	err: boolean;
+	err?: boolean;
 	title: string;
 	message: string;
 	visible: boolean;

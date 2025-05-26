@@ -55,12 +55,17 @@ function DashboardDataContainer({
 		return response?.result?.value;
 	}
 
-	function updateFrontData(category, id, data, isError) {
+	function updateFrontData(
+		category: string,
+		id: string,
+		data: any,
+		isError: boolean
+	) {
 		if (isError) return;
 
 		const newTempAry = [...catsAry.data[category]];
 
-		catsAry.data[category].map((item, index) => {
+		catsAry.data[category].map((item: any, index: number) => {
 			if (item._id == id) {
 				const updatedObj = mergeObjects(item, data);
 				newTempAry[index] = updatedObj;
@@ -69,10 +74,23 @@ function DashboardDataContainer({
 		});
 	}
 
-	function attachItemToFrontData(category, id, data, isError) {
+	function attachItemToFrontData(
+		category: string,
+		id: string,
+		data: any,
+		isError: boolean
+	) {
 		if (isError) return;
 		data._id = id;
-		const newTempAry = [...catsAry.data[category]];
+
+		// Initialize the array if it doesn't exist
+		if (!catsAry.data[category]) {
+			catsAry.sets[category]([]);
+		}
+
+		const newTempAry = catsAry.data[category]
+			? [...catsAry.data[category]]
+			: [];
 		newTempAry.unshift(data);
 		catsAry.sets[category](newTempAry);
 	}
@@ -81,7 +99,7 @@ function DashboardDataContainer({
 		<DashboardDataContext.Provider
 			value={{
 				...catsAry.data, // Spread all category data
-				config: config.categories.reduce((acc, cat) => {
+				config: config.categories.reduce((acc: Record<string, any>, cat) => {
 					acc[cat.name] = cat.config;
 					return acc;
 				}, {}),

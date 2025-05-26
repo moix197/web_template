@@ -2,16 +2,28 @@ import { SimpleToggleList } from "@moix197/forms";
 import { SimpleToggle } from "@moix197/forms";
 import { BasicForm } from "@moix197/forms";
 import { SectionBorder } from "@moix197/base-ui";
+
+interface GeneralTabProps {
+	existingValues?: any;
+	activationToggle: boolean;
+	category?: string;
+	config?: any;
+	updateCb: any;
+	formValues: any;
+	activationList: any[];
+	btnText?: string;
+}
+
 function GeneralTab({
 	existingValues,
 	activationToggle,
-	category,
+	category = "",
 	config,
 	updateCb,
 	formValues,
 	activationList,
 	btnText = "update",
-}) {
+}: GeneralTabProps) {
 	return (
 		<div className="flex flex-wrap">
 			{activationToggle && (
@@ -36,7 +48,7 @@ function GeneralTab({
 						formValues={formValues}
 						existingValues={existingValues}
 						btnText={btnText}
-						cb={async (item) => {
+						cb={async (item: any) => {
 							await updateCb(
 								item,
 								category,
@@ -54,7 +66,7 @@ function GeneralTab({
 							key={`${item}_List_${index}`}
 							categoryName={item}
 							className="flex-1"
-							cb={async (item) => {
+							cb={async (item: any) => {
 								await updateCb(
 									item,
 									category,

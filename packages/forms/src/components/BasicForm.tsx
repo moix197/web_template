@@ -28,15 +28,25 @@ const ModalFileExplorer = dynamic(
 	{ ssr: false }
 );
 
+interface BasicFormProps {
+	formValues: any[];
+	title?: string;
+	btnText?: string;
+	existingValues?: any;
+	cb?: any;
+	disabled?: boolean;
+	importantText?: string;
+}
+
 function BasicForm({
 	formValues,
-	title = null,
+	title = "",
 	btnText = "",
 	existingValues = {},
 	cb,
 	disabled = false,
 	importantText = "",
-}) {
+}: BasicFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorsAry, setErrorsAry] = useState([]);
 	const [validationValues, setValidationValues] = useState({});
@@ -45,16 +55,16 @@ function BasicForm({
 
 	// Move setters into useMemo
 	const setters = useMemo(() => {
-		const settersObj = {};
+		const settersObj: any = {};
 		formFields.forEach((item) => {
-			settersObj[item.name] = (value) =>
-				setState((prevState) => ({ ...prevState, [item.name]: value }));
+			settersObj[item.name] = (value: any) =>
+				setState((prevState: any) => ({ ...prevState, [item.name]: value }));
 		});
 		return settersObj;
 	}, [formFields]);
 
 	const [state, setState] = useState(() => {
-		const initialState = {};
+		const initialState: any = {};
 		formFields.forEach((item) => {
 			initialState[item?.name] = item.defaultValue ? item.defaultValue : "";
 		});
@@ -66,7 +76,7 @@ function BasicForm({
 	}, [formValues]);
 
 	useEffect(() => {
-		let newTempObj = { ...validationValues };
+		let newTempObj: any = { ...validationValues };
 		formFields.forEach((item) => {
 			if (item.defaultValue) {
 				setters[item.name](item.defaultValue);
@@ -84,7 +94,7 @@ function BasicForm({
 		}
 	}, [existingValues]);
 
-	async function checkValidation(errResult) {
+	async function checkValidation(errResult: any) {
 		if (errResult && errResult.length == 0 && cb) {
 			let response = await cb(state);
 			return response;
@@ -108,7 +118,7 @@ function BasicForm({
 	async function launchAction() {
 		if (isLoading) return;
 		setIsLoading(true);
-		let errResult = bulkValidate(state, validationValues);
+		let errResult: any = bulkValidate(state, validationValues);
 		setErrorsAry(errResult);
 		////await delay(1000);
 		await checkValidation(errResult);
@@ -117,9 +127,11 @@ function BasicForm({
 
 	return (
 		<div>
-			<div className="mb-6 ">
-				<TitleXl>{title}</TitleXl>
-			</div>
+			{title && (
+				<div className="mb-6 ">
+					<TitleXl>{title}</TitleXl>
+				</div>
+			)}
 			{importantText && (
 				<div className="text-red-400 uppercase tracking-wider text-xs flex justify-center">
 					<div className="w-12/12 md:w-6/12">
@@ -227,6 +239,8 @@ function BasicForm({
 									setValue={setters[item.name]}
 									showImageSet
 									imageCategory={item.imageCategory}
+									isOpenModal={item.isOpenModal}
+									useItemIdAsImageParent={item.useItemIdAsImageParent}
 								></ModalFileExplorer>
 							</SingleInputParent>
 						);

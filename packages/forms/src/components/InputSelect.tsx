@@ -22,6 +22,21 @@ const theme = {
 	  }
 	}
   }
+
+interface InputSelectProps {
+	value: any;
+	setValue: (value: any) => void;
+	label?: string;
+	placeholder?: string;
+	children?: React.ReactNode;
+	disable?: boolean;
+	multiValue?: any;
+	setMultiValue?: (value: any) => void;
+	isMultiValue?: boolean;
+	toolTipData?: string;
+	options?: any[];
+	keyToUseAsValue?: string;
+}
 function InputSelect({
 	value,
 	setValue,
@@ -30,13 +45,13 @@ function InputSelect({
 	children = null,
 	disable = false,
 	multiValue = null,
-	setMultiValue = null,
+	setMultiValue,
 	isMultiValue = false,
 	toolTipData = "",
 	options = [],
 	keyToUseAsValue = "_id",
-}) {
-	const [optionsToUse, setOptionsToUse] = useState([]);
+}: InputSelectProps) {
+	const [optionsToUse, setOptionsToUse] = useState<any[]>([]);
 
 	useEffect(() => {
 		if (Object.prototype.toString.call(options) === "[object Array]") {
@@ -62,7 +77,7 @@ function InputSelect({
 					onChange={(e) => {
 						if (isMultiValue) {
 							const itemExists = multiValue.findIndex(
-								(item) => item === e.target.value
+								(item: any) => item === e.target.value
 							);
 							if (itemExists !== -1) {
 								//handleError({ message: "That address is already an admin" });
@@ -71,7 +86,7 @@ function InputSelect({
 
 							let valAry = multiValue;
 							valAry.push(e.target.value);
-							setMultiValue(valAry);
+							setMultiValue && setMultiValue(valAry);
 							return;
 						}
 

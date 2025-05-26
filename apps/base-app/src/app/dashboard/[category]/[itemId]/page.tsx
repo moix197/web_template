@@ -10,14 +10,17 @@ import { useDashboardData } from "@moix197/dashboard";
 import { DashboardDataContext } from "@moix197/dashboard";
 
 function Dashboard() {
-	const { category, itemId } = useParams();
+	const { category, itemId } = useParams() as {
+		category: string;
+		itemId: string;
+	};
 	const [existingValues, setExistingValues] = useState({});
 	const { showNotification } = useNotifications();
 	const { config, updateFrontData } = useContext(DashboardDataContext);
 
 	useDashboardData(category, setExistingValues, itemId);
 
-	async function update(formItem: object, cat, item_id) {
+	async function update(formItem: object, cat: string, item_id: string) {
 		const postItem = {
 			data: formItem,
 			category: cat,

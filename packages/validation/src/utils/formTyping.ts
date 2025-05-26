@@ -1,13 +1,13 @@
 //import { PublicKey } from "@solana/web3.js";
 
-function validatePlainText(value) {
+function validatePlainText(value: string) {
 	// Regular expression to match only letters
 	const textRegex = /^[a-zA-Z]+$/;
 	let isValid = textRegex.test(value);
 	return { err: !isValid, message: isValid ? "" : "only letters are allowed" };
 }
 
-function validateAmpleText(value) {
+function validateAmpleText(value: string) {
 	// Regular expression to match letters, numbers, and "-_.,@"
 	//also allow empty strings when the value is empty
 
@@ -25,14 +25,14 @@ function validateAmpleText(value) {
 	};
 }
 
-function validateNumbers(value) {
+function validateNumbers(value: string) {
 	// Regular expression to match only numbers
 	const numbersRegex = /^[0-9]*$/;
 	let isValid = numbersRegex.test(value);
 	return { err: !isValid, message: isValid ? "" : "only numbers are allowed" };
 }
 
-function validatePrice(value) {
+function validatePrice(value: string) {
 	const numbersRegex = /^[0-9.]*$/;
 	let isValid = numbersRegex.test(value);
 	return {
@@ -43,7 +43,7 @@ function validatePrice(value) {
 	};
 }
 
-function validateName(value) {
+function validateName(value: string) {
 	const alphaNumericRegex = /^[a-zA-Z0-9\s]*$/;
 	let isValid = alphaNumericRegex.test(value);
 	return {
@@ -54,7 +54,7 @@ function validateName(value) {
 	};
 }
 
-function validatePlainTextNumber(value) {
+function validatePlainTextNumber(value: string) {
 	// Regular expression to match only letters and numbers
 	const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
 	let isValid = alphaNumericRegex.test(value);
@@ -65,7 +65,7 @@ function validatePlainTextNumber(value) {
 }
 
 //add a function to validate URLs
-function validateURL(value) {
+function validateURL(value: string) {
 	const urlRegex = /^(http|https):\/\/[^ "]+$/;
 	let isValid = urlRegex.test(value);
 	return {
@@ -75,7 +75,7 @@ function validateURL(value) {
 }
 
 //add a function to validate emails
-function validateEmail(value) {
+function validateEmail(value: string) {
 	//	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.com$/;
 
@@ -86,7 +86,7 @@ function validateEmail(value) {
 	};
 }
 
-function validateRelativeURL(value) {
+function validateRelativeURL(value: string) {
 	const urlRegex = /^(\/?[^ "]+)$/;
 	let isValid = urlRegex.test(value);
 
@@ -149,7 +149,7 @@ function validateMultiWalletAddress(ary) {
 	};
 }*/
 
-function validateDateIsCompleted(value) {
+function validateDateIsCompleted(value: string) {
 	let isValid = value.length == 8;
 	return {
 		err: !isValid,
@@ -159,7 +159,7 @@ function validateDateIsCompleted(value) {
 	};
 }
 
-function validateDate(value) {
+function validateDate(value: string) {
 	// Define the regular expressions for each part of the date
 	const monthRegex = /^([0-1]|1[0-2]|0[1-9]|)\/?$/; // Allowing leading zeros but not only 0
 	const dayRegex = /^([0-3]|3[0-1]|2[0-9]|1[0-9]|0[1-9]|)$/; // Allowing leading zeros but not only 0
@@ -215,7 +215,7 @@ function validateDate(value) {
 	};
 }
 
-function validateEmptyString(value) {
+function validateEmptyString(value: string) {
 	let error = false;
 
 	//I need to validate that the string is not empty but allow values like 0

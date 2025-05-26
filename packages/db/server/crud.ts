@@ -2,7 +2,13 @@ import { findDocuments, insertDocument, updateDocument } from "../utils/crud";
 import { transformObjectIds } from "../utils/helpers";
 import { ObjectId } from "mongodb";
 
-async function getDataFromDb({ category, data, models }) {
+interface GetDataFromDbProps {
+	category: string;
+	data: any;
+	models: any;
+}
+
+async function getDataFromDb({ category, data, models }: GetDataFromDbProps) {
 	let filter = {};
 	if (data) {
 		filter = typeof data === "string" ? JSON.parse(data) : data;
@@ -18,7 +24,18 @@ async function getDataFromDb({ category, data, models }) {
 	return dataFromDb;
 }
 
-async function updateItemFromDb({ id, category, data, models }) {
+interface UpdateItemFromDbProps {
+	id: string;
+	category: string;
+	data: any;
+	models: any;
+}
+async function updateItemFromDb({
+	id,
+	category,
+	data,
+	models,
+}: UpdateItemFromDbProps) {
 	const updatedItem = await updateDocument(
 		models[category],
 		{ _id: new ObjectId(id) },
@@ -29,12 +46,19 @@ async function updateItemFromDb({ id, category, data, models }) {
 	}
 }
 
-async function addItemToDb({ category, data, models }) {
+interface AddItemToDbProps {
+	category: string;
+	data: any;
+	models: any;
+}
+async function addItemToDb({ category, data, models }: AddItemToDbProps) {
 	const insertItem = await insertDocument(models[category], data);
 
 	if (!insertItem) {
 		throw new Error("Failed to create the item.");
 	}
+
+	return insertItem;
 }
 
 export { getDataFromDb, updateItemFromDb, addItemToDb };

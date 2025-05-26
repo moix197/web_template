@@ -5,6 +5,15 @@ import { getCall, postCall } from "@moix197/base-ui";
 import { usePathname } from "@moix197/next-ui";
 import React from "react";
 
+interface FileExplorerProps {
+	initialPath?: string;
+	isFormSelection?: boolean;
+	setValue: (value: string) => void;
+	setIsModalOpen: (isModalOpen?: boolean) => void;
+	imageCategory: string;
+	useItemIdAsImageParent: boolean;
+}
+
 function FileExplorer({
 	initialPath,
 	isFormSelection = false,
@@ -12,7 +21,7 @@ function FileExplorer({
 	setIsModalOpen,
 	imageCategory,
 	useItemIdAsImageParent,
-}) {
+}: FileExplorerProps) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [layout, setLayout] = useState("grid");
 	const { showNotification } = useNotifications();
@@ -63,13 +72,12 @@ function FileExplorer({
 		const parentFolderId = path.split("/");
 		return parentFolderId[parentFolderId?.length - 1];
 	}
-
-	const handleFileUploading = (file, parentFolder) => {
+	const handleFileUploading = async (file: any, parentFolder: any) => {
 		const parentFolderId = getParentFolderIdFromURL();
 		return { parentId: parentFolder?._id, imageCategory, parentFolderId };
 	};
 
-	const handleCreateFolder = async (name, parentFolder) => {
+	const handleCreateFolder = async (name: any, parentFolder: any) => {
 		setIsLoading(true);
 		const parentFolderId = getParentFolderIdFromURL();
 
@@ -89,14 +97,13 @@ function FileExplorer({
 		setLayout(layout == "grid" ? "list" : "grid");
 	}
 
-	async function handleFileUploaded(response) {
+	async function handleFileUploaded(response: any) {
 		const result = JSON.parse(response);
-		showNo;
 		showNotification(result);
 		loadContentData();
 	}
 
-	async function handleRename(item, newName) {
+	async function handleRename(item: any, newName: any) {
 		const result = await postCall("/api/fileSystem/renameItem", {
 			newName,
 			id: item?._id,
@@ -104,7 +111,7 @@ function FileExplorer({
 		showNotification(result);
 	}
 
-	function confirmSelectionAndReturnValue(selectedValue) {
+	function confirmSelectionAndReturnValue(selectedValue: any) {
 		if (selectedValue[0].isDirectory) return;
 		if (confirm("Do you want to use this image?")) {
 			setValue(selectedValue[0].path);
@@ -123,7 +130,9 @@ function FileExplorer({
 					enableFilePreview
 					filePreviewPath={`/uploads/${imageCategory}`}
 					onCreateFolder={handleCreateFolder}
+					// @ts-ignore
 					onFileUploading={handleFileUploading}
+					// @ts-ignore
 					onFileUploaded={handleFileUploaded}
 					onLayoutChange={handleLayoutChange}
 					onRename={handleRename}

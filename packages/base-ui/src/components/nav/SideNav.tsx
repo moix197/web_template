@@ -95,8 +95,9 @@ const theme = {
   }
 
 type NavItem = {
-	href: string;
+	href?: string;
 	label: string;
+	onClick?: () => void;
 };
 
 type SideNavProps = {
@@ -111,10 +112,11 @@ type SideNavProps = {
 		src: string;
 		alt: string;
 	};
+	className?: string;
 };
 
 function SideNav({
-	navItems = [],
+	navItems = [] as NavItem[],
 	user,
 	title = "",
 	logo = { src: "", alt: "" },
@@ -149,7 +151,7 @@ function SideNav({
 				)}
 				<SidebarItems>
 					<SidebarItemGroup>
-						{navItems.map((item, index) =>
+						{navItems.map((item: NavItem, index: number) =>
 							item?.href ? (
 								<SidebarItem
 									as={Link}
@@ -161,7 +163,7 @@ function SideNav({
 							) : (
 								<SidebarItem
 									className="!cursor-pointer"
-									onClick={() => item?.onClick()}
+									onClick={() => item?.onClick?.()}
 									key={`nav-item-${index}`}
 								>
 									{item.label}

@@ -61,7 +61,14 @@ const theme = {
     }
   }
 
-function FormModal({ itemValues, category, cb, itemName }) {
+interface FormModalProps {
+	itemValues: any;
+	category?: string;
+	cb?: (newItem: any) => void;
+	itemName?: string;
+}
+
+function FormModal({ itemValues, category, cb, itemName }: FormModalProps) {
 	const [openModal, setOpenModal] = useState(false);
 
 	return (
@@ -85,8 +92,8 @@ function FormModal({ itemValues, category, cb, itemName }) {
 							activationList={itemValues?.activationList}
 							category={category}
 							btnText="ADD"
-							updateCb={(newItem) => {
-								cb(newItem);
+							updateCb={(newItem: any) => {
+								cb && cb(newItem);
 							}}
 						></GeneralTab>
 					)}

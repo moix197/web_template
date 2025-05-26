@@ -45,14 +45,24 @@ const theme = {
 	  }
 	}
   }
+
+interface SimpleToggleProps {
+	label?: string[];
+	value?: boolean;
+	name?: string;
+	keyToToggle?: string;
+	valueToUpdate?: any;
+	cb?: (newItem: any, other?: any) => void;
+}
+
 function SimpleToggle({
 	label = ["active", "inactive"],
 	value = false,
 	name = "",
 	keyToToggle,
 	valueToUpdate,
-	cb = null,
-}) {
+	cb,
+}: SimpleToggleProps) {
 	const [status, setStatus] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
@@ -69,11 +79,11 @@ function SimpleToggle({
 		setIsLoading(false);
 	}
 
-	async function executeCb(val) {
+	async function executeCb(val: any) {
 		if (!keyToToggle) {
 			cb && (await cb(name, val));
 		} else {
-			let newValue = {};
+			let newValue: any = {};
 			newValue[keyToToggle] = val;
 			cb && (await cb(newValue));
 		}

@@ -3,29 +3,17 @@ import { basicModels } from "@/data/models/models";
 import { addItemToDb } from "@moix197/db";
 
 async function create(req: Request): Promise<any> {
-	try {
-		const body = await req.json();
-		const insertItem = addItemToDb({
-			category: body.category,
-			data: body.data,
-			models: basicModels,
-		});
+	const body = await req.json();
+	const insertItem = await addItemToDb({
+		category: body.category,
+		data: body.data,
+		models: basicModels,
+	});
 
-		return {
-			err: false,
-			message: `New ${body.category} item created successfully`,
-			value: insertItem,
-		};
-	} catch (error) {
-		console.log("error", error);
-		return {
-			err: true,
-			message: error.message
-				? error.message
-				: "An error occurred, please try again later",
-			error: error,
-		};
-	}
+	return {
+		message: `New ${body.category} item created successfully`,
+		value: insertItem,
+	};
 }
 
 export const POST = apiHandler({ POST: create });

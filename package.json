@@ -10,6 +10,20 @@
     "dev": "turbo run dev --parallel",
     "postinstall": "flowbite-react patch && flowbite-react register"
   },
+  "pipeline": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "dist/**"
+      ]
+    },
+    "dev": {
+      "cache": false
+    }
+  },
   "devDependencies": {
     "@types/react": "^18",
     "@types/react-dom": "^18",

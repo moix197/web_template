@@ -1,6 +1,15 @@
 "use client";
 
-import { Footer } from "flowbite-react";
+import {
+	Footer,
+	FooterBrand,
+	FooterCopyright,
+	FooterDivider,
+	FooterIcon,
+	FooterLink,
+	FooterLinkGroup,
+	FooterTitle,
+} from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 
 interface Props {
@@ -57,7 +66,7 @@ const WebFooter = ({
 				<div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
 					{brand?.src && (
 						<div>
-							<Footer.Brand
+							<FooterBrand
 								href={brand?.href}
 								src={brand?.src}
 								alt={brand?.alt}
@@ -72,28 +81,28 @@ const WebFooter = ({
 							items.map((item, parentIndex) => {
 								return (
 									<div key={`footer_parent_item_${parentIndex}`}>
-										<Footer.Title title={item?.title} />
-										<Footer.LinkGroup col>
+										<FooterTitle title={item?.title} />
+										<FooterLinkGroup col>
 											{item.children.map((childItem, childItemIndex) => (
-												<Footer.Link
+												<FooterLink
 													key={`${childItem.name
 														.split(" ")
 														.join("_")}_${childItemIndex}`}
 													href={childItem?.href}
 												>
 													{childItem?.name}
-												</Footer.Link>
+												</FooterLink>
 											))}
-										</Footer.LinkGroup>
+										</FooterLinkGroup>
 									</div>
 								);
 							})}
 					</div>
 				</div>
-				<Footer.Divider />
+				<FooterDivider />
 				<div className="w-full mt-3 sm:flex sm:items-center sm:justify-between">
 					{legal?.text && (
-						<Footer.Copyright
+						<FooterCopyright
 							className={` uppercase`}
 							href={legal.href}
 							by={legal.text && ` ${legal.text}`}
@@ -103,8 +112,7 @@ const WebFooter = ({
 					{socials && (
 						<div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
 							{socials.map((item) => (
-								<Footer.Icon
-									className={`${colors.txt}`}
+								<FooterIcon
 									key={`${item.name}_footer`}
 									href={item?.href}
 									icon={getSocialIcon(item.name)}

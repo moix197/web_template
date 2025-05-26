@@ -4,6 +4,18 @@ import { postCall } from "../../services/apiSkeletons/calls";
 import { SolidButton } from "../buttons/Buttons";
 import { useNotifications } from "@moix197/notifications";
 
+interface RelatedItemWithListProps {
+	existingValues: any;
+	category: string;
+	config: any;
+	updateCb: any;
+	relatedItemsAry: any[];
+	arrayListItems: any[];
+	itemId: any;
+	relatedItem: any;
+	parentId: any;
+	reloadData: any;
+}
 function RelatedItemWithList({
 	existingValues,
 	category,
@@ -15,7 +27,7 @@ function RelatedItemWithList({
 	relatedItem,
 	parentId,
 	reloadData,
-}) {
+}: RelatedItemWithListProps) {
 	const { showNotification } = useNotifications();
 
 	async function createNew(formItem: object, category: string, itemId) {

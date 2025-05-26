@@ -1,7 +1,17 @@
 import React from "react";
 import { Spinner } from "flowbite-react";
 
-function LoadingCont({ children, isLoading = false, size = "md" }) {
+interface LoadingContProps {
+	children?: React.ReactNode;
+	isLoading: boolean;
+	size?: "xs" | "sm" | "md" | "lg";
+}
+
+function LoadingCont({
+	children,
+	isLoading = false,
+	size = "md",
+}: LoadingContProps) {
 	return (
 		<>
 			{isLoading ? (

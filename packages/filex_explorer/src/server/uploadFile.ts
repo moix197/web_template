@@ -4,7 +4,19 @@ import { getOrCreateParentFolder, getRelatedPaths } from "../utils/helpers";
 import { getFileExplorerConfig } from "../../config";
 //import { insertDocument, fileSystemModel } from "../../index";
 
-async function uploadFile({ file, parentId, imageCategory, parentFolderId }) {
+interface UploadFileProps {
+	file: any;
+	parentId?: string;
+	imageCategory?: string;
+	parentFolderId?: string;
+}
+
+async function uploadFile({
+	file,
+	parentId,
+	imageCategory = "",
+	parentFolderId = "",
+}: UploadFileProps) {
 	if (!file) {
 		throw new Error("Couldn't upload the file");
 	}

@@ -46,15 +46,25 @@ const theme = {
 	}
   }
 
+interface DrawerBasicProps {
+	className?: string;
+	openDrawer: boolean;
+	setOpenDrawer: (open: boolean) => void;
+	children: React.ReactNode;
+	requireConfirmation?: boolean;
+	title?: string;
+	position?: "right" | "top" | "bottom" | "left";
+}
+
 function DrawerBasic({
 	className,
 	openDrawer,
 	setOpenDrawer,
 	children,
-	requireConfirmation,
+	requireConfirmation = false,
 	title = "",
 	position = "right",
-}) {
+}: DrawerBasicProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const handleClose = () => {
 		if (requireConfirmation && confirm("Are you sure you")) {

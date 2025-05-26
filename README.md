@@ -1,5 +1,7 @@
 # Base Template Monorepo
 
+> ⚠️ **Work in Progress**: This is an ongoing development project and is not yet a finished product. Features and documentation are being actively developed and may change.
+
 A modular Next.js-based monorepo template with reusable packages for building web applications.
 
 ## Project Structure
@@ -8,14 +10,19 @@ A modular Next.js-based monorepo template with reusable packages for building we
 ├── apps/
 │ └── base-app/ # Main Next.js application
 └── packages/
-│ ├── auth/ # Authentication package
+│ ├── base-dashboard/ # Dashboard functionality
 │ ├── base-ui/ # Core UI components
-│ ├── dashboard/ # Dashboard functionality
+│ ├── book/ # Book/documentation system
+│ ├── cubone_explorer/ # File management system
 │ ├── db/ # Database utilities
-│ ├── file_explorer/ # File management system
+│ ├── filex_explorer/ # Alternative file management system
 │ ├── forms/ # Form components and utilities
+│ ├── next-ui/ # Next.js specific UI components
 │ ├── notifications/ # Notification system
-│ └── text-editor/ # Rich text editor package
+│ ├── scroll-animation/ # Scroll-based animations
+│ ├── text_editor/ # Rich text editor package
+│ ├── validation/ # Form validation utilities
+│ └── web_auth/ # Authentication package
 
 ## Features
 
@@ -27,6 +34,64 @@ A modular Next.js-based monorepo template with reusable packages for building we
 - 📊 **Dashboard**: Configurable dashboard system
 - 📱 **Responsive Design**: Mobile-first approach
 - 🌗 **Dark Mode**: Built-in dark mode support
+
+## Data-Driven Architecture
+
+This template was built with modularity as a core principle from the ground up. The entire system is designed to be data-driven, making it incredibly flexible and easy to customize.
+
+### The Power of Data-Driven Design
+
+The dashboard and all its components are automatically generated based on data structures defined in the `./src/data` directory. This means:
+
+- 🎯 **Zero Code Changes**: You don't need to write any code to add new features
+- 📊 **Automatic UI Generation**: The system automatically creates:
+  - Database tables and operations
+  - Menu items and navigation
+  - Forms for data input and editing
+  - List views and detail pages
+  - Search and filter functionality
+  - CRUD operations
+
+### How It Works
+
+1. Define your data structure in `./src/data`
+2. The system automatically:
+   - Creates necessary database tables
+   - Generates API endpoints
+   - Builds UI components
+   - Sets up form validation
+   - Implements data operations
+
+### Example
+
+```typescript
+// ./src/data/products.ts
+export const products = {
+	name: "products",
+	fields: {
+		name: { type: "string", required: true },
+		price: { type: "number", required: true },
+		description: { type: "text" },
+		category: { type: "select", options: ["Electronics", "Clothing", "Books"] },
+	},
+};
+```
+
+This simple definition automatically creates:
+
+- A products table in the database
+- A products section in the dashboard
+- Create/Edit forms with validation
+- List view with sorting and filtering
+- API endpoints for all operations
+
+### Benefits
+
+- 🚀 **Rapid Development**: Add new features in minutes, not days
+- 🔄 **Consistent UI**: All generated components follow the same design patterns
+- 🛠️ **Maintainable**: Changes to the data structure automatically propagate through the system
+- 📱 **Responsive**: All generated components are mobile-friendly
+- 🔒 **Secure**: Built-in validation and security measures
 
 ## Getting Started
 
@@ -87,6 +152,14 @@ The main Next.js application that ties all packages together. Configure your app
 
 ### Packages
 
+#### base-dashboard
+
+Configurable dashboard system:
+
+- Custom layouts
+- Data management
+- Navigation
+
 #### base-ui
 
 Core UI components including:
@@ -95,6 +168,38 @@ Core UI components including:
 - Navigation
 - Tables
 - Layout components
+
+#### book
+
+Documentation and book system:
+
+- Markdown support
+- Table of contents
+- Search functionality
+
+#### cubone_explorer
+
+File management system:
+
+- File upload/download
+- Directory navigation
+- File preview
+
+#### db
+
+Database utilities:
+
+- Connection management
+- Query builders
+- Migration tools
+
+#### filex_explorer
+
+Alternative file management system:
+
+- Advanced file operations
+- Custom file types
+- Extended preview capabilities
 
 #### forms
 
@@ -105,13 +210,53 @@ Form handling with:
 - Multi-step forms
 - File uploads
 
-#### dashboard
+#### next-ui
 
-Configurable dashboard system:
+Next.js specific UI components:
 
-- Custom layouts
-- Data management
-- Navigation
+- Server components
+- Client components
+- Next.js specific hooks
+
+#### notifications
+
+Notification system:
+
+- Toast messages
+- Alert components
+- Notification center
+
+#### scroll-animation
+
+Scroll-based animations:
+
+- Scroll triggers
+- Animation presets
+- Performance optimized
+
+#### text_editor
+
+Rich text editor package:
+
+- WYSIWYG editing
+- Markdown support
+- Custom plugins
+
+#### validation
+
+Form validation utilities:
+
+- Schema validation
+- Custom validators
+- Error handling
+
+#### web_auth
+
+Authentication system:
+
+- User management
+- Role-based access
+- Session handling
 
 ## Development
 

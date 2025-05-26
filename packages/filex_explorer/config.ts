@@ -3,17 +3,23 @@ import {
 	insertDocument as defaultInsertDocument,
 } from "@moix197/db";
 
-export const config = {
+export const config: any = {
 	findOrCreateDocument: defaultFindOrCreateDocument,
 	fileSystemModel: null,
 	insertDocument: defaultInsertDocument,
 };
 
+interface FileExplorerConfig {
+	customFindOrCreate?: typeof defaultFindOrCreateDocument;
+	customFileSystemModel?: any;
+	customInsertDocument?: typeof defaultInsertDocument;
+}
+
 export function setFileExplorerConfig({
 	customFindOrCreate,
 	customFileSystemModel,
 	customInsertDocument,
-} = {}) {
+}: FileExplorerConfig) {
 	if (customFindOrCreate) {
 		config.findOrCreateDocument = customFindOrCreate;
 	}
@@ -26,5 +32,5 @@ export function setFileExplorerConfig({
 }
 
 export function getFileExplorerConfig() {
-	return config;
+	return config as any;
 }

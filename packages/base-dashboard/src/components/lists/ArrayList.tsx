@@ -8,6 +8,18 @@ import FormModal from "@moix197/forms/src/components/FormModal";
 import { DashboardDataContext } from "../../providers/DashboardDataContextProvider";
 import { useNotifications } from "@moix197/notifications";
 
+interface ArrayListProps {
+	items?: any[];
+	arrayListItem: any;
+	existingValues: any;
+	formValues: any[];
+	category: string;
+	className?: string;
+	isRelated?: boolean;
+	newItemCb?: (item: any, category: string) => void;
+	useDrawerToUpdate?: boolean;
+}
+
 function ArrayList({
 	items = [],
 	arrayListItem = {},
@@ -16,12 +28,12 @@ function ArrayList({
 	category = "",
 	className = "",
 	isRelated = false,
-	newItemCb = null,
+	newItemCb,
 	useDrawerToUpdate = false,
-}) {
+}: ArrayListProps) {
 	const { showNotification } = useNotifications();
 	const [componentValues, setComponentValues] = useState(existingValues);
-	const [drawerValues, setDrawerValues] = useState({});
+	const [drawerValues, setDrawerValues] = useState({} as Record<string, any>);
 	const [isLoading, setIsLoading] = useState(false);
 	const { config } = useContext(DashboardDataContext);
 
@@ -29,7 +41,7 @@ function ArrayList({
 		setComponentValues(existingValues);
 	}, [existingValues]);
 
-	async function addNewItem(parentName, newItem) {
+	async function addNewItem(parentName: string, newItem: any) {
 		setIsLoading(true);
 		const newValue = { ...componentValues };
 		newValue[parentName].push(newItem);
@@ -50,8 +62,8 @@ function ArrayList({
 		setIsLoading(false);
 	}
 
-	function setActiveItemCb(item, index) {
-		let tempItem = { ...drawerValues };
+	function setActiveItemCb(item: any, index: number) {
+		let tempItem = { ...drawerValues } as Record<string, any>;
 		tempItem[arrayListItem.name] = tempItem[arrayListItem.name] ?? {}; // Ensure that arrayListItem.name exists
 
 		tempItem[arrayListItem.name].activeItemValues = item; // Set activeItemValues
@@ -71,7 +83,7 @@ function ArrayList({
 								? arrayListItem.sectionTitleSingular
 								: config[category]?.data?.singularName
 						}
-						cb={(newItem) => {
+						cb={(newItem: any) => {
 							newItemCb
 								? newItemCb(newItem, category)
 								: addNewItem(arrayListItem.name, newItem);
@@ -81,10 +93,10 @@ function ArrayList({
 					<SolidButton
 						className="self-end"
 						isLoading={isLoading}
-						onClick={() => {
+						onClick={async () => {
 							newItemCb
 								? newItemCb(arrayListItem.newItem, category)
-								: addNewItem(arrayListItem.name, arrayListItem.newItem);
+								: await addNewItem(arrayListItem.name, arrayListItem.newItem);
 						}}
 					>
 						<span className="flex justify-center items-center">
@@ -111,7 +123,7 @@ function ArrayList({
 					category={category}
 					item={drawerValues[arrayListItem.name]?.activeItemValues}
 					resetValues={() => setDrawerValues({})}
-					cb={async (newItem) => {
+					cb={async (newItem: any) => {
 						const tempAry = componentValues[arrayListItem.name]
 							? componentValues[arrayListItem.name]
 							: componentValues;
@@ -121,7 +133,7 @@ function ArrayList({
 								tempAry[drawerValues[arrayListItem.name].activeItemIndex],
 								newItem
 							);
-						let tempObj = {};
+						let tempObj = {} as Record<string, any>;
 						tempObj[arrayListItem.name] = tempAry;
 
 						const postItem = {

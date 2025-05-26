@@ -4,6 +4,19 @@ import { postCall } from "@moix197/base-ui";
 import { SolidButton } from "@moix197/base-ui";
 import { useNotifications } from "@moix197/notifications";
 
+interface RelatedItemWithListProps {
+	existingValues: any;
+	category: string;
+	config: any;
+	updateCb: any;
+	relatedItemsAry: any[];
+	arrayListItems: any[];
+	itemId: string;
+	relatedItem: any;
+	parentId: string;
+	reloadData: any;
+}
+
 function RelatedItemWithList({
 	existingValues,
 	category,
@@ -15,11 +28,11 @@ function RelatedItemWithList({
 	relatedItem,
 	parentId,
 	reloadData,
-}) {
+}: RelatedItemWithListProps) {
 	const { showNotification } = useNotifications();
 
-	async function createNew(formItem: object, category: string, itemId) {
-		let tempObj = { ...formItem };
+	async function createNew(formItem: object, category: string) {
+		let tempObj = { ...formItem } as Record<string, any>;
 		tempObj[relatedItem.relatedValue] = parentId;
 
 		const postItem = { data: tempObj, category };
@@ -29,7 +42,7 @@ function RelatedItemWithList({
 	}
 
 	async function createRelatedItem() {
-		let tempObj = {};
+		let tempObj = {} as Record<string, any>;
 		tempObj[relatedItem.relatedValue] = parentId;
 
 		const postItem = { data: tempObj, category };
@@ -62,8 +75,8 @@ function RelatedItemWithList({
 	) : (
 		<div className="w-full">
 			<SolidButton
-				onClick={() => {
-					createRelatedItem();
+				onClick={async () => {
+					await createRelatedItem();
 				}}
 			>
 				Create {relatedItem.name}

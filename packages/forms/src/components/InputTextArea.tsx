@@ -18,7 +18,20 @@ const theme = {
 	  "off": ""
 	}
   }
-function InputTextArea({ value, setValue, label, placeholder }) {
+
+interface InputTextAreaProps {
+	value: string;
+	setValue: (value: string) => void;
+	label?: string;
+	placeholder?: string;
+}
+
+function InputTextArea({
+	value,
+	setValue,
+	label,
+	placeholder,
+}: InputTextAreaProps) {
 	const [textValue, setTextValue] = useState("");
 
 	return (

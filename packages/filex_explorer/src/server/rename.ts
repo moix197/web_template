@@ -2,10 +2,15 @@ import { getRelatedPaths, updateChildernPathRecursive } from "../utils/helpers";
 import fs from "fs";
 import { getFileExplorerConfig } from "../../config";
 
-async function rename({ newName, id }) {
-	const { fileSystemModel } = getFileExplorerConfig();
+interface RenameProps {
+	newName: string;
+	id: string;
+}
 
-	const item = await fileSystemModel.findById(id);
+async function rename({ newName, id }: RenameProps) {
+	const { fileSystemModel } = getFileExplorerConfig() as any;
+
+	const item = await fileSystemModel?.findById(id);
 
 	if (!item) {
 		throw new Error(

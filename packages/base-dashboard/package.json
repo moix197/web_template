@@ -1,7 +1,7 @@
 {
     "name": "@moix197/dashboard",
     "type": "module",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "description": "Forms package for different projects",
     "main": "index.ts",
     "scripts": {

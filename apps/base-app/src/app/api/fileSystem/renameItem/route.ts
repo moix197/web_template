@@ -4,31 +4,20 @@ import { basicModels } from "@/data/models/models";
 import { setFileExplorerConfig } from "@moix197/file_explorer";
 
 async function renameItem(req: Request): Promise<any> {
-	try {
-		const body = await req.json();
-		const { id, newName } = body;
+	const body = await req.json();
+	const { id, newName } = body;
 
-		const fileSystemModel = basicModels["fileSystem"];
-		setFileExplorerConfig({
-			customFileSystemModel: fileSystemModel,
-		});
+	const fileSystemModel = basicModels["fileSystem"];
+	setFileExplorerConfig({
+		customFileSystemModel: fileSystemModel,
+	});
 
-		await rename({ newName, id });
+	await rename({ newName, id });
 
-		return {
-			err: false,
-			message: `Renamed successfully`,
-			//value: `${baseImageRoutes[body.imageCat]}/${fileName}.jpg`,
-		};
-	} catch (error) {
-		return {
-			err: true,
-			message: error.message
-				? error.message
-				: "An error occurred, please try again later",
-			error: error,
-		};
-	}
+	return {
+		message: `Renamed successfully`,
+		//value: `${baseImageRoutes[body.imageCat]}/${fileName}.jpg`,
+	};
 }
 
 export const POST = apiHandler({ POST: renameItem });

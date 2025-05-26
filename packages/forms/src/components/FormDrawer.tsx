@@ -6,15 +6,25 @@ import { SolidButton } from "@moix197/base-ui";
 import { GeneralTab } from "@moix197/dashboard";
 import { DashboardDataContext } from "@moix197/dashboard";
 
+interface FormDrawerProps {
+	triggerBtnText?: string;
+	item?: any;
+	category?: string;
+	cb?: (newItem: any) => void;
+	updateValues?: any;
+	resetValues?: () => void;
+	title?: string;
+}
+
 function FormDrawer({
 	triggerBtnText,
 	item,
 	category,
 	cb,
 	updateValues,
-	resetValues = null,
+	resetValues,
 	title = "",
-}) {
+}: FormDrawerProps) {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const { config } = useContext(DashboardDataContext);
 
@@ -50,8 +60,8 @@ function FormDrawer({
 					activationToggle={updateValues?.hasSepareteActivationToggle}
 					activationList={updateValues?.activationList}
 					existingValues={item}
-					updateCb={(newItem) => {
-						cb(newItem);
+					updateCb={(newItem: any) => {
+						cb && cb(newItem);
 					}}
 				></GeneralTab>
 			</DrawerBasic>

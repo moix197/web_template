@@ -1,7 +1,7 @@
 {
     "name": "@moix197/validation",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Validation package for different projects",
     "main": "index.ts",
     "scripts": {

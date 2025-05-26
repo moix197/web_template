@@ -12,7 +12,12 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
 
 	const navItems = [
 		{ href: "/dashboard", label: "Home" },
-		...Object.entries(config)
+		...Object.entries(
+			config as Record<
+				string,
+				{ data: { hideFromNav?: boolean; pluralName?: string } }
+			>
+		)
 			.filter(([_, value]) => !value.data.hideFromNav)
 			.map(([key, value]) => ({
 				href: `/dashboard/${key}`,

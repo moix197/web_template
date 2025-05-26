@@ -5,9 +5,9 @@ import { SolidButton } from "@moix197/base-ui";
 function LogInButton() {
 	return (
 		<SolidButton
-			onClick={async () =>
-				await signIn("google", { callbackUrl: "/dashboard" })
-			}
+			onClick={async () => {
+				await signIn("google", { callbackUrl: "/dashboard" });
+			}}
 		>
 			Sign in with Gmail
 		</SolidButton>

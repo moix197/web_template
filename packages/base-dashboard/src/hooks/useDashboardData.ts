@@ -1,19 +1,20 @@
 import { useContext, useEffect } from "react";
 import { DashboardDataContext } from "../providers/DashboardDataContextProvider";
+
 const useDashboardData = async (
-	category,
-	setData,
-	individualItem = false,
-	individualFilter
+	category: any,
+	setData: any,
+	individualItem: any = false,
+	individualFilter: any = null
 ) => {
 	const context = useContext(DashboardDataContext);
 
 	useEffect(() => {
-		if (typeof category !== "string" || category! instanceof String) return;
+		if (typeof category !== "string") return;
 		//to set single item data
 		if (individualItem && context[category]) {
 			const item = context[category].find(
-				(item) => item._id === individualItem
+				(item: any) => item._id === individualItem
 			);
 			if (item) {
 				setData(item);
@@ -30,7 +31,7 @@ const useDashboardData = async (
 		}
 	}, [context, category, individualItem, individualFilter]); // Add category and fetchData as dependencies
 
-	async function getAndSetData(setData, category) {
+	async function getAndSetData(setData: any, category: string) {
 		const newData = await context.getAllItems(category);
 		setData(newData);
 	}

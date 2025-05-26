@@ -2,12 +2,19 @@ import { getOrCreateParentFolder, getRelatedPaths } from "../utils/helpers";
 import { getFileExplorerConfig } from "../../config";
 import fs from "fs";
 
+interface CreateFolderProps {
+	name: string;
+	parentId?: string;
+	parentCategory?: string;
+	parentFolderId?: string;
+}
+
 async function createFolder({
 	name,
 	parentId,
-	parentCategory,
-	parentFolderId,
-}) {
+	parentCategory = "",
+	parentFolderId = "",
+}: CreateFolderProps) {
 	const { fileSystemModel, insertDocument } = getFileExplorerConfig();
 
 	console.log("fileSystemModel", fileSystemModel);

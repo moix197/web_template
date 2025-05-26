@@ -16,6 +16,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -24,6 +25,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@moix197/*": [
+        "../../packages/*"
       ]
     },
     "target": "ES2017"

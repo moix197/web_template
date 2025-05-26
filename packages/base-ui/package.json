@@ -1,7 +1,7 @@
 {
     "name": "@moix197/base-ui",
     "type": "module",
-    "version": "0.0.3",
+    "version": "0.0.7",
     "description": "Base UI package for different projects",
     "main": "index.ts",
     "scripts": {

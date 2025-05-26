@@ -1,6 +1,6 @@
 import { Label } from "flowbite-react";
 
-function FormLabel({ children }) {
+function FormLabel({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			{children && (

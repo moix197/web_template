@@ -24,8 +24,8 @@ function Notification() {
 	return (
 		<div className="fixed flex flex-col bottom-4 right-4 z-50">
 			{notifications
-				.filter((notification) => notification.visible) // Only show visible notifications
-				.map((notification) => (
+				.filter((notification: any) => notification.visible) // Only show visible notifications
+				.map((notification: any) => (
 					<Toast
 						theme={theme}
 						key={notification.id}

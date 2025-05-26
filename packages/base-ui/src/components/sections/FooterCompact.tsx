@@ -1,6 +1,14 @@
 "use client";
 
-import { Footer } from "flowbite-react";
+import {
+	Footer,
+	FooterBrand,
+	FooterCopyright,
+	FooterDivider,
+	FooterIcon,
+	FooterLink,
+	FooterLinkGroup,
+} from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
 //TODO: solve the getThemeColors
 interface Props {
@@ -59,7 +67,7 @@ const FooterCompact = ({
 				<div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
 					{brand?.src && (
 						<div>
-							<Footer.Brand
+							<FooterBrand
 								href={brand?.href}
 								src={brand?.src}
 								alt={brand?.alt}
@@ -69,22 +77,22 @@ const FooterCompact = ({
 					)}
 
 					{items && (
-						<Footer.LinkGroup>
+						<FooterLinkGroup>
 							{items.map((item, itemIndex) => (
-								<Footer.Link
+								<FooterLink
 									key={`${item.name.split(" ").join("_")}_${itemIndex}`}
 									href={item?.href}
 								>
 									{item?.name}
-								</Footer.Link>
+								</FooterLink>
 							))}
-						</Footer.LinkGroup>
+						</FooterLinkGroup>
 					)}
 				</div>
-				<Footer.Divider />
+				<FooterDivider />
 				<div className="w-full mt-3 sm:flex sm:items-center sm:justify-between">
 					{legal?.text && (
-						<Footer.Copyright
+						<FooterCopyright
 							className={`uppercase`}
 							href={legal.href}
 							by={legal.text && ` ${legal.text}`}
@@ -94,7 +102,7 @@ const FooterCompact = ({
 					{socials && (
 						<div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
 							{socials.map((item) => (
-								<Footer.Icon
+								<FooterIcon
 									key={`${item.name}_footer`}
 									href={item?.href}
 									icon={getSocialIcon(item.name)}

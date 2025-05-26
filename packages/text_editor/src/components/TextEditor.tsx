@@ -8,17 +8,25 @@ import { ModalFileExplorer } from "@moix197/file_explorer/client";
 Quill.register("modules/blotFormatter", BlotFormatter);
 //TODO fix duplicated toolbar and sometimes not showing at all
 
+interface TextEditorProps {
+	value: string;
+	setValue: (value: string) => void;
+	imageCategory: string;
+	useItemIdAsImageParent: boolean;
+	className?: string;
+}
+
 function TextEditor({
 	value,
 	setValue,
 	imageCategory,
 	useItemIdAsImageParent,
-	className,
-}) {
+	className = "",
+}: TextEditorProps) {
 	//const [value, setValue] = useState("");
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [imageValue, setImageValue] = useState("");
-	const [quillInstance, setQuillInstance] = useState(null);
+	const [quillInstance, setQuillInstance] = useState<any>(null);
 
 	useEffect(() => {
 		if (imageValue != "") {
@@ -42,9 +50,10 @@ function TextEditor({
 					["link", "video", "image", "formula"],
 				],
 				handlers: {
-					image: function (e) {
+					image: function (e: any) {
+						const that: any = this;
 						if (!quillInstance) {
-							setQuillInstance(this?.quill);
+							setQuillInstance(that?.quill);
 						}
 						setIsOpenModal(true);
 					},

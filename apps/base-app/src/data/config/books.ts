@@ -1,5 +1,3 @@
-import { platform } from "os";
-
 const books = {
 	data: {
 		name: "books",

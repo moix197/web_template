@@ -10,49 +10,33 @@ interface Props {
 	color?: string;
 	disabled?: boolean;
 	isLoading?: boolean;
-	onClick?: () => void | undefined;
+	onClick?: (() => void) | (() => Promise<void>) | undefined;
 }
 
 const SolidButton = ({
 	children,
-	href = "",
+	href,
 	className,
 	color = "primary",
 	onClick = undefined,
 	disabled = false,
 	isLoading = false,
 }: Props) => {
-	const colorClass =
-		color == "primary"
-			? "bg-primary text-secondary border-secondary hover:bg-secondary hover:text-primary hover:border-primary"
-			: "bg-secondary text-primary border-primary hover:bg-primary hover:text-secondary hover:border-secondary";
+	const buttonProps = {
+		className: `flex uppercase !cursor-pointer w-full bg-third hover:third-dark !ring-0 ${className}`,
+		color: "blue" as const,
+		...(href ? { as: Link, href } : {}),
+		...(onClick && !href ? { onClick: () => !disabled && onClick() } : {}),
+	};
+
 	return (
-		<>
-			{!onClick ? (
-				<Link
-					href={href}
-					className={`${className} !cursor-pointer border p-4 uppercase font-bold 
-			rounded-lg w-[300px] text-center ${colorClass} block`}
-				>
-					{children}
-				</Link>
+		<Button {...buttonProps}>
+			{!isLoading ? (
+				children
 			) : (
-				<Button
-					onClick={() => {
-						if (disabled) return;
-						onClick();
-					}}
-					color="blue"
-					className={`flex uppercase !cursor-pointer w-full bg-third hover:third-dark !ring-0 ${className}`}
-				>
-					{!isLoading ? (
-						children
-					) : (
-						<Spinner size="sm" aria-label="Loading Button"></Spinner>
-					)}
-				</Button>
+				<Spinner size="sm" aria-label="Loading Button"></Spinner>
 			)}
-		</>
+		</Button>
 	);
 };
 

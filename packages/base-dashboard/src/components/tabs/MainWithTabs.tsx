@@ -1,5 +1,6 @@
-import { Tabs, TabItem } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { Tabs, TabItem, TabsProps } from "flowbite-react";
+import { CustomTabStyles } from "../../types/flowbite";
+import { useEffect, useState, ReactNode } from "react";
 import { ArrayList } from "@moix197/dashboard";
 import { getCall } from "@moix197/base-ui";
 import { RelatedItemWithList } from "../lists/RelatedItemWithList";
@@ -79,7 +80,23 @@ const theme = {
 	"tabpanel": "py-0"
   }
 
+interface MainWithTabsProps extends Omit<TabsProps, "children"> {
+	children?: ReactNode;
+	variant?: CustomTabStyles;
+	className?: string;
+	existingValues: any;
+	category: string;
+	config: any;
+	updateCb: any;
+	relatedItemsAry: any[];
+	arrayListItems: any[];
+	itemId: string;
+}
+
 function MainWithTabs({
+	children,
+	variant = "default",
+	className = "",
 	existingValues,
 	category,
 	config,
@@ -87,12 +104,12 @@ function MainWithTabs({
 	relatedItemsAry = [],
 	arrayListItems = [],
 	itemId,
-	variant = "fullWidth",
-}) {
-	const [relatedItems, setRelatedItems] = useState([]);
+	...props
+}: MainWithTabsProps) {
+	const [relatedItems, setRelatedItems] = useState([] as any[]);
 
-	const getRelatedItemObj = (relatedItem) => {
-		let newTempObj = {};
+	const getRelatedItemObj = (relatedItem: any) => {
+		let newTempObj = {} as Record<string, any>;
 		newTempObj[relatedItem.relatedValue] = itemId;
 		return newTempObj;
 	};
@@ -115,7 +132,7 @@ function MainWithTabs({
 		setRelatedItems(newTempAry);
 	}
 
-	async function getItemValuesFromDb(item, cat) {
+	async function getItemValuesFromDb(item: any, cat: string) {
 		//setIsLoading(true);
 		const response = await getCall("/api/getData", {
 			category: cat,
@@ -126,85 +143,82 @@ function MainWithTabs({
 	}
 
 	return (
-		<div className="w-full">
-			<Tabs
-				theme={theme}
-				aria-label="Tabs with underline"
-				variant={
-					arrayListItems.length == 0 && relatedItemsAry.length == 0
-						? "hiddenHeader"
-						: variant
-				}
-				className="!w-full"
-			>
-				<TabItem active title="General">
-					<GeneralTab
-						existingValues={existingValues}
-						activationToggle={
-							config[category]?.forms?.update?.hasSepareteActivationToggle
-						}
-						formValues={config[category]?.forms?.update?.["values"]}
-						activationList={
-							config[category]?.forms?.update?.["activationLists"]
-						}
-						category={category}
-						config={config}
-						updateCb={updateCb}
-					/>
-				</TabItem>
+		<Tabs
+			theme={theme}
+			aria-label="Tabs with underline"
+			variant={
+				arrayListItems.length == 0 && relatedItemsAry.length == 0
+					? "hiddenHeader"
+					: variant
+			}
+			className={`!w-full ${className}`}
+			{...props}
+		>
+			<TabItem active title="General">
+				<GeneralTab
+					existingValues={existingValues}
+					activationToggle={
+						config[category]?.forms?.update?.hasSepareteActivationToggle
+					}
+					formValues={config[category]?.forms?.update?.["values"]}
+					activationList={config[category]?.forms?.update?.["activationLists"]}
+					category={category}
+					config={config}
+					updateCb={updateCb}
+				/>
+			</TabItem>
 
-				{arrayListItems?.map((item, index) => {
+			{arrayListItems?.map((item, index) => {
+				return (
+					<TabItem
+						className="!w-full"
+						title={item.sectionTitle}
+						key={`$array_list_item_${index}`}
+					>
+						<ArrayList
+							arrayListItem={item}
+							category={category}
+							formValues={item.values}
+							existingValues={existingValues}
+							useDrawerToUpdate={item.useDrawerToUpdate}
+						></ArrayList>
+					</TabItem>
+				);
+			})}
+
+			{relatedItems?.length > 0 &&
+				relatedItems.map((item, index) => {
 					return (
 						<TabItem
 							className="!w-full"
-							title={item.sectionTitle}
-							key={`$array_list_item_${index}`}
+							title={item.name}
+							key={`related_item${item.name}_${index}`}
 						>
-							<ArrayList
-								arrayListItem={item}
-								category={category}
-								formValues={item.values}
-								existingValues={existingValues}
-								useDrawerToUpdate={item.useDrawerToUpdate}
-							></ArrayList>
+							<div className="w-full flex justify-between items-center">
+								<RelatedItemWithList
+									existingValues={
+										item?.showAsArrayList ? item?.values : item?.values[0]
+									}
+									category={item?.name}
+									itemId={item?.values[0]?._id}
+									updateCb={updateCb}
+									config={config}
+									relatedItemsAry={
+										config[item.name]?.forms?.update?.related || []
+									}
+									arrayListItems={
+										config[item.name]?.forms?.update?.arrayList || []
+									}
+									relatedItem={item}
+									parentId={itemId}
+									reloadData={setItems}
+								></RelatedItemWithList>
+								{/*<RelatedItem item={item.values} category={item.name} />*/}
+							</div>
 						</TabItem>
 					);
 				})}
-
-				{relatedItems?.length > 0 &&
-					relatedItems.map((item, index) => {
-						return (
-							<TabItem
-								className="!w-full"
-								title={item.name}
-								key={`related_item${item.name}_${index}`}
-							>
-								<div className="w-full flex justify-between items-center">
-									<RelatedItemWithList
-										existingValues={
-											item?.showAsArrayList ? item?.values : item?.values[0]
-										}
-										category={item?.name}
-										itemId={item?.values[0]?._id}
-										updateCb={updateCb}
-										config={config}
-										relatedItemsAry={
-											config[item.name]?.forms?.update?.related || []
-										}
-										arrayListItems={
-											config[item.name]?.forms?.update?.arrayList || []
-										}
-										relatedItem={item}
-										parentId={itemId}
-										reloadData={setItems}
-									></RelatedItemWithList>
-									{/*<RelatedItem item={item.values} category={item.name} />*/}
-								</div>
-							</TabItem>
-						);
-					})}
-			</Tabs>
-		</div>
+		</Tabs>
 	);
 }
 

@@ -4,6 +4,17 @@ import { IoCloseCircle } from "react-icons/io5";
 import InputSelect from "./InputSelect";
 import FormLabel from "./FormLabel";
 
+interface InputMultiValueProps {
+	value: any;
+	setValue: (value: any) => void;
+	label?: string;
+	placeholder?: string;
+	validation?: any;
+	options?: any[];
+	getOptions?: string;
+	multiValueValidation?: any;
+}
+
 function InputMultiValue({
 	value,
 	setValue,
@@ -13,7 +24,7 @@ function InputMultiValue({
 	options = [],
 	getOptions = "",
 	multiValueValidation,
-}) {
+}: InputMultiValueProps) {
 	const [inpuTextValue, setInputTextValue] = useState("");
 	const [optionsData, setOptionsData] = useState([]);
 
@@ -27,8 +38,8 @@ function InputMultiValue({
 		setOptionsData(apiData);
 	};
 
-	function removeFromValues(address) {
-		const indexToRemove = value.findIndex((item) => item === address);
+	function removeFromValues(address: any) {
+		const indexToRemove = value.findIndex((item: any) => item === address);
 
 		if (indexToRemove !== -1) {
 			let clonedAry = [...value];
@@ -42,7 +53,7 @@ function InputMultiValue({
 			{label && <FormLabel>{label}</FormLabel>}
 			{value?.length > 0 && (
 				<div className="flex gap-2 flex-wrap mb-2">
-					{value.map((item) => {
+					{value.map((item: any) => {
 						return (
 							<div
 								key={`${item}_admin_wallet`}

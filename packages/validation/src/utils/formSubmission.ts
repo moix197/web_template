@@ -16,7 +16,12 @@ import {
 
 import { checkDateIsAfterToday } from "./checkTimePassed";
 
-const validationsPerField = {
+interface ValidationResponse {
+	err: boolean;
+	message?: string;
+}
+
+const validationsPerField: any = {
 	name: [validateEmptyString, validateName],
 	logo: [validateEmptyString, validateAmpleText],
 	accountName: [validateEmptyString, validateAmpleText],
@@ -69,7 +74,7 @@ const validationsPerField = {
 	status: [validateEmptyString, validateUserStatus],
 };
 
-function bulkValidate(itemsObj, validationValues) {
+function bulkValidate(itemsObj: any, validationValues: any) {
 	let errorsNow = [];
 	for (let key in itemsObj) {
 		let result = validate(key, itemsObj[key], itemsObj, validationValues);
@@ -81,14 +86,18 @@ function bulkValidate(itemsObj, validationValues) {
 	return errorsNow;
 }
 
-function validate(key, value, items, validationValues) {
-	let obj = { err: false, name: key, result: [] };
+function validate(key: any, value: any, items: any, validationValues: any) {
+	let obj: { err: boolean; name: string; result: ValidationResponse[] } = {
+		err: false,
+		name: key,
+		result: [],
+	};
 
 	//let validResult = validationsPerField[key](value);
 	for (const itemFunc of validationsPerField[validationValues[key]]) {
 		if (!itemFunc) continue;
-		let response = itemFunc(value, items);
-		if (response.err) {
+		let response: any = itemFunc(value, items);
+		if (response?.err) {
 			obj.err = true;
 			obj.result.push(response);
 		}
@@ -97,7 +106,7 @@ function validate(key, value, items, validationValues) {
 	return obj;
 }
 
-function validateSaleType(value) {
+function validateSaleType(value: any) {
 	let error = true;
 	let airdropValues = ["regular", "presale"];
 
@@ -113,7 +122,7 @@ function validateSaleType(value) {
 	};
 }
 
-function validatePriceData(value) {
+function validatePriceData(value: any) {
 	let error = true;
 
 	if (value.value == "market") {
@@ -147,7 +156,7 @@ function validatePriceData(value) {
 	};
 }
 
-function validateTargetData(value) {
+function validateTargetData(value: any) {
 	let error = true;
 
 	if (value.value == "private" || value.value == "open") {
@@ -162,7 +171,7 @@ function validateTargetData(value) {
 	};
 }
 
-function validateRedemType(value) {
+function validateRedemType(value: any) {
 	let error = true;
 	let airdropValues = ["airdrop", "claim", "claimableAirdrop"];
 
@@ -178,7 +187,7 @@ function validateRedemType(value) {
 	};
 }
 
-function validateVesting(value, items) {
+function validateVesting(value: any, items: any) {
 	if (value.value == false) {
 		return {
 			err: false,
@@ -223,8 +232,8 @@ function validateVesting(value, items) {
 	};
 }
 
-function validateEndDate(value, items) {
-	let result = checkSecondDateComesAfter(items.launch, value);
+function validateEndDate(value: any, items: any) {
+	/*let result = checkSecondDateComesAfter(items.launch, value);
 
 	if (!result) {
 		return {
@@ -232,14 +241,14 @@ function validateEndDate(value, items) {
 			message:
 				"The end date cannot be closer than the Launch date, please update and try again",
 		};
-	}
+	}*/
 
 	return {
-		err: false,
+		err: true,
 	};
 }
 
-function validateDateIsAfterToday(value) {
+function validateDateIsAfterToday(value: any) {
 	let result = checkDateIsAfterToday(value);
 	if (result) {
 		return {
@@ -254,7 +263,7 @@ function validateDateIsAfterToday(value) {
 	};
 }
 
-function validateUserStatus(value) {
+function validateUserStatus(value: any) {
 	let statusValues = ["active", "inactive", "hold", "revision"];
 	if (statusValues.indexOf(value) != -1) {
 		return {
@@ -268,7 +277,7 @@ function validateUserStatus(value) {
 	};
 }
 
-function checkObjectId(value) {
+function checkObjectId(value: any) {
 	const objectIdPattern = /^[0-9a-fA-F]{24}$/;
 
 	if (!objectIdPattern.test(value)) {

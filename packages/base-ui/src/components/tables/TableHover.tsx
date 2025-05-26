@@ -3,6 +3,16 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { TrueFalseWithIcons } from "../others/TrueFalseWithIcons";
+
+interface TableProps {
+	data: any;
+	valuesToUse: string[];
+	indexValueName?: string;
+	itemUrl?: string;
+	cb?: (item: any, index: number) => void;
+	arrayListActiveItem?: any;
+}
+
 const TableHover = ({
 	data,
 	valuesToUse,
@@ -10,12 +20,12 @@ const TableHover = ({
 	itemUrl,
 	cb,
 	arrayListActiveItem,
-}) => {
+}: TableProps) => {
 	const router = useRouter();
 	const [headKeys, setHeadKeys] = useState(valuesToUse);
-	const [activeItemIndex, setActiveItemIndex] = useState(null);
+	const [activeItemIndex, setActiveItemIndex] = useState(null as number | null);
 
-	function handleRowClick(item, index) {
+	function handleRowClick(item: any, index: number) {
 		setActiveItemIndex(index);
 		itemUrl && router.push(`${itemUrl}${item._id}`);
 		cb && cb(item, index);
@@ -77,7 +87,7 @@ const TableHover = ({
 					</div>
 					<div className="flex flex-col  ">
 						{data?.length > 0 &&
-							data.map((item, index) => {
+							data.map((item: any, index: number) => {
 								return (
 									<div
 										key={`table_items_${index}`}

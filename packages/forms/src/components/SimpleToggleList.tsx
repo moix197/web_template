@@ -4,16 +4,25 @@ import { TitleLg } from "@moix197/base-ui";
 import { SectionBorder } from "@moix197/base-ui";
 import { useDashboardData } from "@moix197/dashboard";
 
+interface SimpleToggleListProps {
+	title?: string;
+	categoryName?: string;
+	cb?: (newItem: any) => void;
+	existingValues?: any[];
+	valueToUpdate?: string;
+	className?: string;
+}
+
 function SimpleToggleList({
 	title = "",
 	categoryName = "",
-	cb = null,
+	cb,
 	existingValues = [],
 	valueToUpdate = "",
 	className,
-}) {
-	const [availableValues, setAvailableValues] = useState([]);
-	const [updatedValue, setUpdatedValue] = useState([]);
+}: SimpleToggleListProps) {
+	const [availableValues, setAvailableValues] = useState([] as any[]);
+	const [updatedValue, setUpdatedValue] = useState([] as any[]);
 
 	useDashboardData(categoryName, setAvailableValues, null, null);
 
@@ -22,7 +31,7 @@ function SimpleToggleList({
 		setUpdatedValue(existingValues);
 	}, [existingValues]);
 
-	const handleToggleChange = async (item, val) => {
+	const handleToggleChange = async (item: any, val: any) => {
 		const newVal = val
 			? [...updatedValue, item[valueToUpdate]]
 			: updatedValue.filter((i) => i !== item[valueToUpdate]);
@@ -31,7 +40,7 @@ function SimpleToggleList({
 
 		// Avoid triggering `cb` if it's causing unnecessary state changes
 		if (cb) {
-			let tempObj = {};
+			let tempObj = {} as Record<string, any>;
 			tempObj[categoryName] = newVal;
 			await cb(tempObj); // Make sure this does not trigger infinite loops
 		}
@@ -56,7 +65,9 @@ function SimpleToggleList({
 									<SimpleToggle
 										name={item.name}
 										value={existingValues.includes(item[valueToUpdate])}
-										cb={(itemName, val) => handleToggleChange(item, val)} // Call the helper function
+										cb={(itemName: any, val: any) =>
+											handleToggleChange(item, val)
+										} // Call the helper function
 									/>
 								</div>
 							</div>

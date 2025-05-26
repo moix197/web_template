@@ -1,6 +1,16 @@
 import { Label, Radio } from "flowbite-react";
 import InputText from "./InputText";
 
+interface RadioButtonProps {
+	value: any;
+	setValue: (value: any) => void;
+	label: string;
+	options: any[];
+	children?: any[];
+	disabled?: boolean;
+	toolTipData?: string;
+}
+
 function RadioButton({
 	value,
 	setValue,
@@ -9,7 +19,7 @@ function RadioButton({
 	children = [],
 	disabled = false,
 	toolTipData = "",
-}) {
+}: RadioButtonProps) {
 	return (
 		<div>
 			<div className="text-secondary">
@@ -19,7 +29,7 @@ function RadioButton({
 				<div className="flex">
 					<div className=" grow justify-center border border-gray-700 p-2 rounded-lg mb-4">
 						<div className="flex row gap-6 px-4 py-2">
-							{options.map((item, index) => {
+							{options.map((item: any, index: number) => {
 								return (
 									<div key={`${item.name}_radio_option_${index}`}>
 										<Radio
@@ -42,11 +52,11 @@ function RadioButton({
 								);
 							})}
 						</div>
-						{children.length > 0 &&
-							children.map(
-								(item) =>
+						{children?.length > 0 &&
+							children?.map(
+								(item: any) =>
 									item?.launchValue == value?.value &&
-									item?.values.map((childItem) => {
+									item?.values.map((childItem: any) => {
 										return (
 											<div key={`${childItem.name}_child_val`}>
 												<InputText

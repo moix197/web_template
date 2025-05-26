@@ -3,8 +3,8 @@
 import { connectToDatabase } from "./connection";
 
 async function insertDocument(
-	model,
-	values,
+	model: any,
+	values: any,
 	errorMessage = "We couldn't create the new entry on the DB, please try again later"
 ) {
 	await connectToDatabase();
@@ -18,7 +18,7 @@ async function insertDocument(
 }
 
 //create a function that queries the database for documents with the same value I provide, if it does not exists it creates a new document
-async function findOrCreateDocument(model, query, values) {
+async function findOrCreateDocument(model: any, query: any, values: any) {
 	await connectToDatabase();
 	const findResult = await model.findOne(query);
 	//now if document does not get a value, it means it does not exist, so we create a new document
@@ -34,16 +34,16 @@ async function findOrCreateDocument(model, query, values) {
 
 	return findResult;
 }
-async function findDocuments(model, query = {}, sort = {}) {
+async function findDocuments(model: any, query = {}, sort = {}) {
 	await connectToDatabase();
 	const documents = await model.find(query);
 	return documents;
 }
 
 async function updateDocument(
-	model, // Mongoose model instead of collection name
-	filter, // Query filter for the update
-	update, // Fields to be updated
+	model: any, // Mongoose model instead of collection name
+	filter: any, // Query filter for the update
+	update: any, // Fields to be updated
 	customUpdateField = null, // Optionally, custom update fields
 	session = null // Optional session for transactions
 ) {
@@ -65,23 +65,26 @@ async function updateDocument(
 	}
 }
 
-async function insertMultipleDocuments(collectionName, givenItemsAry) {
-	const { db } = await connectToDatabase();
+async function insertMultipleDocuments(
+	collectionName: any,
+	givenItemsAry: any
+) {
+	const { db } = (await connectToDatabase()) as any;
 	const collection = db.collection(collectionName);
 
 	const result = await collection.insertMany(givenItemsAry);
 	return result;
 }
 
-async function joinDocuments(collectionName, pipeline) {
-	const { db } = await connectToDatabase();
+async function joinDocuments(collectionName: any, pipeline: any) {
+	const { db } = (await connectToDatabase()) as any;
 	const collection = db.collection(collectionName);
 	const documents = await collection.aggregate(pipeline).toArray();
 	return documents;
 }
 
-async function updateDocumentWithTransaction(values) {
-	const { client, db } = await connectToDatabase();
+async function updateDocumentWithTransaction(values: any) {
+	const { client, db } = (await connectToDatabase()) as any;
 	const session = client.startSession();
 	try {
 		session.startTransaction({
@@ -96,8 +99,7 @@ async function updateDocumentWithTransaction(values) {
 				item.filter,
 				item.update,
 				null,
-				session,
-				db
+				session
 			);
 
 			if (!result || result.modifiedCount == 0) {
@@ -122,8 +124,8 @@ async function updateDocumentWithTransaction(values) {
 	}
 }
 
-async function deleteDocument(collectionName, filter) {
-	const { db, client } = await connectToDatabase();
+async function deleteDocument(collectionName: any, filter: any) {
+	const { db, client } = (await connectToDatabase()) as any;
 	const collection = db.collection(collectionName);
 	const result = await collection.deleteOne(filter);
 	await client.close();

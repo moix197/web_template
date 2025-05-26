@@ -1,6 +1,14 @@
 import { ToggleSwitch } from "flowbite-react";
 import InputText from "./InputText";
 
+interface ToggleProps {
+	value: any;
+	setValue: (value: any) => void;
+	label: string;
+	children?: any;
+	disable?: boolean;
+	toolTipData?: string;
+}
 function Toggle({
 	value,
 	setValue,
@@ -8,7 +16,7 @@ function Toggle({
 	children = null,
 	disable = false,
 	toolTipData = "",
-}) {
+}: ToggleProps) {
 	return (
 		<div>
 			<div className="label uppercase">
@@ -41,7 +49,7 @@ function Toggle({
 						</label>
 					</div>
 					{children?.launchValue == value?.value &&
-						children?.values.map((childItem) => {
+						children?.values.map((childItem: any) => {
 							return (
 								<InputText
 									key={`${childItem.name}_child_val`}

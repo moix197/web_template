@@ -1,28 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { BookContent } from "./BookContent";
 import { BookCover } from "./BookCover";
 import { BookActivationLayer } from "./BookActivationLayer";
 import { delay, SolidButton, SideNav } from "@moix197/base-ui";
 
+interface FlipSectionProps {
+	pages: any[];
+	className?: string;
+	pageClassName?: string;
+	bookCoverClassName?: string;
+}
+
 function FlipSection({
 	pages = [],
 	className = "",
 	pageClassName = "",
 	bookCoverClassName = "",
-}) {
+}: FlipSectionProps) {
 	const [lastItemAdded, setLastItemAdded] = useState(false);
 	const [isBookCoverActive, setIsBookCoverActive] = useState(true);
 	const [activeFlipData, setActiveFlipData] = useState(0);
 	const [isOpen, setIsOpen] = useState(false);
 	const [dimensions, setDimensions] = useState({ width: 600, height: 700 });
-	const book = useRef();
+	const book = useRef(null as any);
 
 	// Debounced resize handler
 	useEffect(() => {
-		let timeoutId: number;
+		let timeoutId: any;
 
 		function updateDimensions() {
 			if (window.innerWidth < 640) {
@@ -129,6 +136,7 @@ function FlipSection({
 								isBookCoverActive ? "lg:-translate-x-1/4" : ""
 							} `}
 						>
+							{/* @ts-expect-error */}
 							<HTMLFlipBook
 								width={dimensions.width}
 								height={dimensions.height}

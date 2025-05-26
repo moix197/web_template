@@ -4,12 +4,10 @@ import { NextAuthOptions } from "next-auth";
 
 export function createAuth({
 	basicModels,
-	usersModelName,
 	findOrCreateDocument,
 	env,
 }: {
 	basicModels: any;
-	usersModelName: string;
 	findOrCreateDocument: any;
 	env: { GOOGLE_CLIENT_ID: string; GOOGLE_CLIENT_SECRET: string };
 }) {
@@ -32,7 +30,7 @@ export function createAuth({
 			signOut: "/",
 		},
 		callbacks: {
-			async session({ session }) {
+			async session({ session }: { session: any }) {
 				const sessionUser = await basicModels["users"].findOne({
 					email: session.user.email,
 				});
@@ -41,7 +39,9 @@ export function createAuth({
 
 				return session;
 			},
-			async signIn({ account, user, profile }) {
+
+			// @ts-ignore
+			async signIn({ profile }: { profile: any }) {
 				const emailDomain = profile?.email?.split("@")[1];
 
 				if (emailDomain !== "gmail.com") return;

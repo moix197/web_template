@@ -63,6 +63,23 @@ const theme = {
 	}
   }
 
+interface InputTextProps {
+	value: any;
+	setValue: any;
+	label?: string | null;
+	placeholder?: string;
+	validation?: any;
+	type?: string;
+	isChild?: boolean;
+	childName?: string;
+	multiValue?: any;
+	setMultiValue?: any;
+	isMultiValue?: boolean;
+	multiValueValidation?: any;
+	disable?: boolean;
+	toolTipData?: string;
+}
+
 function InputText({
 	value,
 	setValue,
@@ -71,17 +88,17 @@ function InputText({
 	validation,
 	type = "text",
 	isChild = false,
-	childName = null,
+	childName = "",
 	multiValue = null,
 	setMultiValue = null,
 	isMultiValue = false,
 	multiValueValidation,
 	disable = false,
 	toolTipData = "",
-}) {
-	const [error, setError] = useState();
+}: InputTextProps) {
+	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState(false);
-	let validationFuncs = {
+	let validationFuncs: any = {
 		//wallet: validateWalletAddress,
 		//multiWallet: validateMultiWalletAddress,
 		text: validatePlainText,
@@ -94,7 +111,7 @@ function InputText({
 		email: validateEmail,
 	};
 
-	function validate(newValue, validationValue = validation) {
+	function validate(newValue: any, validationValue = validation) {
 		let hasError = validationFuncs[validationValue](newValue, true);
 
 		if (hasError.err) {
@@ -104,21 +121,21 @@ function InputText({
 		return hasError.err;
 	}
 
-	async function handleError(errorValue) {
+	async function handleError(errorValue: any) {
 		if (error) return;
 		setError(errorValue.message);
 		//await delay(3000);
 		setError(null);
 	}
 
-	function selectVal(isChild) {
+	function selectVal(isChild: boolean) {
 		return !isChild ? value : value[childName];
 	}
 
 	const clearBtn = (
 		<div
 			onClick={() => {
-				let newVal = "";
+				let newVal: any = "";
 
 				if (isChild) {
 					newVal = value;
@@ -169,7 +186,7 @@ function InputText({
 
 								if (!error) {
 									const itemExists = multiValue.findIndex(
-										(item) => item === e.target.value
+										(item: any) => item === e.target.value
 									);
 									if (itemExists !== -1) {
 										handleError({

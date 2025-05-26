@@ -7,15 +7,24 @@ import { useNotifications } from "@moix197/notifications";
 import { DashboardDataContext } from "@moix197/dashboard";
 
 function Dashboard() {
-	const { category } = useParams();
+	const { category } = useParams() as {
+		category: string;
+	};
 	const { showNotification } = useNotifications();
 	const { config, attachItemToFrontData } = useContext(DashboardDataContext);
 
 	async function createNew(formItem: object) {
-		const postItem = { data: formItem, category };
+		const postItem = {
+			category,
+			data: formItem,
+		};
+
 		const result = await postCall("/api/create", postItem);
 		showNotification(result);
-		attachItemToFrontData(category, result.value._id, formItem, result.err);
+
+		if (!result.err) {
+			attachItemToFrontData(category, result.value._id, formItem, result.err);
+		}
 	}
 
 	return (
@@ -26,7 +35,7 @@ function Dashboard() {
 						formValues={config[category].forms["new"]}
 						title={`Create New ${config[category].data.singularName}`}
 						btnText={"Create"}
-						cb={async (item) => {
+						cb={async (item: any) => {
 							await createNew(item);
 						}}
 					></BasicForm>

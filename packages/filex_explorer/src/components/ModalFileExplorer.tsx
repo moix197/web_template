@@ -6,6 +6,16 @@ import { TbArrowsExchange2 } from "react-icons/tb";
 import { DrawerBasic, SolidButton } from "@moix197/base-ui";
 import { Image } from "@moix197/next-ui";
 
+interface ModalFileExplorerProps {
+	value?: string;
+	setValue: (value: string) => void;
+	showImageSet?: boolean;
+	isOpenModal: boolean;
+	setIsOpenModal?: (isOpenModal: boolean) => void;
+	imageCategory: string;
+	useItemIdAsImageParent: boolean;
+}
+
 const ModalFileExplorer = ({
 	value,
 	setValue,
@@ -14,7 +24,7 @@ const ModalFileExplorer = ({
 	setIsOpenModal,
 	imageCategory,
 	useItemIdAsImageParent,
-}) => {
+}: ModalFileExplorerProps) => {
 	const [isOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
