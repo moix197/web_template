@@ -101,7 +101,40 @@ This simple definition automatically creates:
 npm install
 ```
 
-2. **Development**
+2. **Environment Configuration**
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+# Database Configuration
+DB_NAME=your_database_name
+DB_CONN_STRING=your_mongodb_connection_string
+
+# Google Authentication
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# File System
+UPLOADS_ROOT_PATH=path_to_your_uploads_directory
+```
+
+Required environment variables:
+
+- `DB_NAME`: Name of your MongoDB database
+- `DB_CONN_STRING`: MongoDB connection string (e.g., `mongodb://localhost:27017`)
+- `GOOGLE_CLIENT_ID`: Google OAuth client ID for authentication
+- `GOOGLE_CLIENT_SECRET`: Google OAuth client secret for authentication
+- `UPLOADS_ROOT_PATH`: Absolute path to the directory where uploaded files will be stored
+
+Note: For Google Authentication to work, you need to:
+
+1. Create a project in the Google Cloud Console
+2. Enable the Google OAuth API
+3. Create OAuth 2.0 credentials
+4. Add your application's domain to the authorized domains
+5. Configure the authorized redirect URIs (e.g., `http://localhost:3000/api/auth/callback/google` for development)
+
+6. **Development**
 
 ```bash
 npm run dev
@@ -113,7 +146,7 @@ pnpm dev
 bun dev
 ```
 
-3. **Build**
+4. **Build**
 
 ```bash
 npm run build
@@ -274,10 +307,52 @@ Authentication system:
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
+We welcome contributions to this project! Here are some guidelines:
+
+1. **Adding New Features**
+
+   - New features should typically be added as separate packages in the `packages` directory
+   - This maintains the modular architecture and makes features reusable
+   - Follow the existing package structure and patterns
+
+2. **Development Process**
+
+   - Fork the repository
+   - Create a feature branch
+   - Add your new package or modify existing ones
+   - Ensure all tests pass
+   - Submit a pull request
+
+3. **Code Style**
+   - Follow the existing code style
+   - Use TypeScript for type safety
+   - Add proper documentation
+   - Include tests for new features
+
+## Deployment
+
+This template is production-ready and can be deployed to any platform that supports Next.js applications. The recommended deployment platform is Vercel, as it provides the best integration with Next.js.
+
+### Deployment Steps
+
+1. **Prepare Your Environment**
+
+   - Set up all required environment variables in your deployment platform
+   - Ensure your database is accessible from the deployment environment
+   - Configure Google OAuth credentials for production
+
+2. **Build and Deploy**
+
+   - The template includes all necessary build configurations
+   - No additional setup is required for deployment
+   - The build process will automatically handle all dependencies
+
+3. **Post-Deployment**
+   - Verify all environment variables are correctly set
+   - Test authentication flow
+   - Check file upload functionality
+   - Monitor database connections
 
 ## License
 
-[Your chosen license]
+MIT License
