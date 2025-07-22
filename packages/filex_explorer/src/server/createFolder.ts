@@ -15,10 +15,8 @@ async function createFolder({
 	parentCategory = "",
 	parentFolderId = "",
 }: CreateFolderProps) {
-	const { fileSystemModel, insertDocument } = getFileExplorerConfig();
-
-	console.log("fileSystemModel", fileSystemModel);
-	console.log("insertDocument", insertDocument);
+	const { fileSystemModel, insertDocument, enviroment } =
+		getFileExplorerConfig();
 
 	const rootParent = await getOrCreateParentFolder(
 		parentCategory,
@@ -35,10 +33,12 @@ async function createFolder({
 		parentId ? null : rootParent
 	);
 
-	if (!fs.existsSync(fullItemPath)) {
-		await fs.promises.mkdir(fullItemPath, { recursive: true });
-	} else {
-		throw new Error("Folder Already exists");
+	if (enviroment !== "supabase") {
+		if (!fs.existsSync(fullItemPath)) {
+			await fs.promises.mkdir(fullItemPath, { recursive: true });
+		} else {
+			throw new Error("Folder Already exists");
+		}
 	}
 
 	const newDoc = insertDocument(fileSystemModel, {

@@ -1,5 +1,8 @@
-import { getRelatedPaths, updateChildernPathRecursive } from "../utils/helpers";
-import fs from "fs";
+import {
+	renameLocal,
+	renameSupabase,
+	updateChildrenPathRecursive,
+} from "../utils/helpers";
 import { getFileExplorerConfig } from "../../config";
 
 interface RenameProps {
@@ -7,8 +10,36 @@ interface RenameProps {
 	id: string;
 }
 
-async function rename({ newName, id }: RenameProps) {
-	const { fileSystemModel } = getFileExplorerConfig() as any;
+async function rename({ newName, id }: RenameProps): Promise<void> {
+	const { fileSystemModel, enviroment } = getFileExplorerConfig();
+
+	const item = await fileSystemModel?.findById(id);
+	if (!item) {
+		throw new Error(
+			"We couldn't proceed with the update, please try again later"
+		);
+	}
+
+	let newItemPath: string;
+
+	if (enviroment === "supabase") {
+		newItemPath = await renameSupabase(item, newName);
+	} else {
+		newItemPath = await renameLocal(item, newName);
+	}
+
+	item.name = newName;
+	item.path = newItemPath;
+
+	await item.save();
+
+	if (item.isDirectory) {
+		await updateChildrenPathRecursive(item);
+	}
+}
+
+/*async function rename({ newName, id }: RenameProps) {
+	const { fileSystemModel, enviroment } = getFileExplorerConfig() as any;
 
 	const item = await fileSystemModel?.findById(id);
 
@@ -40,8 +71,8 @@ async function rename({ newName, id }: RenameProps) {
 	const result = await item.save();
 
 	if (item.isDirectory) {
-		await updateChildernPathRecursive(item);
+		await updateChildrenPathRecursive(item);
 	}
-}
+}*/
 
 export { rename };

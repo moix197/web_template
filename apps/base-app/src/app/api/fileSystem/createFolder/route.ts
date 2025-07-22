@@ -1,16 +1,9 @@
-import { apiHandler } from "@moix197/next-ui";
+import { customApiHandler as apiHandler } from "@/lib/customApiHandler";
 import { createFolder } from "@moix197/file_explorer";
-import { basicModels } from "@/data/models/models";
-import { setFileExplorerConfig } from "@moix197/file_explorer";
 
 async function createFolderRoute(req: Request): Promise<any> {
 	const body = await req.json();
 	const { name, parentId, parentCategory, parentFolderId } = body;
-
-	const fileSystemModel = basicModels["fileSystem"];
-	setFileExplorerConfig({
-		customFileSystemModel: fileSystemModel,
-	});
 
 	await createFolder({
 		name,

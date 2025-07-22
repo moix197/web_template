@@ -1,7 +1,7 @@
 {
     "name": "@moix197/book",
     "type": "module",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Book package for different projects",
     "main": "index.ts",
     "scripts": {

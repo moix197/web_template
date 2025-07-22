@@ -72,9 +72,14 @@ function FileExplorer({
 		const parentFolderId = path.split("/");
 		return parentFolderId[parentFolderId?.length - 1];
 	}
-	const handleFileUploading = async (file: any, parentFolder: any) => {
+
+	const handleFileUploading = (file: any, parentFolder: any) => {
 		const parentFolderId = getParentFolderIdFromURL();
-		return { parentId: parentFolder?._id, imageCategory, parentFolderId };
+		return {
+			imageCategory,
+			parentFolderId,
+			parentId: parentFolder?._id,
+		};
 	};
 
 	const handleCreateFolder = async (name: any, parentFolder: any) => {
@@ -114,7 +119,9 @@ function FileExplorer({
 	function confirmSelectionAndReturnValue(selectedValue: any) {
 		if (selectedValue[0].isDirectory) return;
 		if (confirm("Do you want to use this image?")) {
-			setValue(selectedValue[0].path);
+			setValue(
+				`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${selectedValue[0].path}`
+			);
 			setIsModalOpen(false);
 		}
 	}
@@ -128,7 +135,7 @@ function FileExplorer({
 					isLoading={isLoading}
 					initialPath={`/${imageCategory}/`}
 					enableFilePreview
-					filePreviewPath={`/uploads/${imageCategory}`}
+					filePreviewPath={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${imageCategory}`}
 					onCreateFolder={handleCreateFolder}
 					// @ts-ignore
 					onFileUploading={handleFileUploading}

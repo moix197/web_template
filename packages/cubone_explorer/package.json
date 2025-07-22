@@ -1,7 +1,7 @@
 {
   "name": "@moix197/cubone-explorer",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Cubone file explorer package for different projects",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

@@ -1,9 +1,22 @@
-import { apiHandler } from "@moix197/next-ui";
+import { customApiHandler as apiHandler } from "@/lib/customApiHandler";
 import { basicModels } from "@/data/models/models";
 import { addItemToDb } from "@moix197/db";
 
-async function create(req: Request): Promise<any> {
-	const body = await req.json();
+interface CreateRequestBody {
+	category: string;
+	data: Record<string, unknown>;
+}
+
+interface CreateResponse {
+	message: string;
+	value: {
+		_id: string;
+		[key: string]: unknown;
+	};
+}
+
+async function create(req: Request): Promise<CreateResponse> {
+	const body = (await req.json()) as CreateRequestBody;
 	const insertItem = await addItemToDb({
 		category: body.category,
 		data: body.data,

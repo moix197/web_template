@@ -54,6 +54,7 @@ const UploadFileAction = ({
     if (selectedFiles.length > 0) {
       const newFiles = selectedFiles.map((file) => {
         const appendData = onFileUploading(file, currentFolder);
+        console.log("appendData",appendData);
         const error = checkFileError(file);
         error && onError({ type: "upload", message: error }, file);
         return {

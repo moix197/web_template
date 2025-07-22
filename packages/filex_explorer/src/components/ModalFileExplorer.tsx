@@ -41,7 +41,7 @@ const ModalFileExplorer = ({
 			{showImageSet && !isOpenModal && (
 				<div>
 					{!value ? (
-						<div className="flex ">
+						<div className="flex">
 							<SolidButton onClick={() => setIsModalOpen(true)}>
 								Select or Upload image
 							</SolidButton>
@@ -52,7 +52,7 @@ const ModalFileExplorer = ({
 								<Image
 									width={100}
 									height={100}
-									src={`/uploads/${value}`}
+									src={`${value}`}
 									alt="oka"
 								></Image>
 							</div>
@@ -74,7 +74,7 @@ const ModalFileExplorer = ({
 				}}
 				openDrawer={isOpen}
 				position="bottom"
-				className="h-auto border-t border-third"
+				className="h-auto border-t border-third color-white max-h-[80vh] "
 			>
 				{isOpen && (
 					<FileExplorer

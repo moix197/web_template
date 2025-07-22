@@ -1,17 +1,11 @@
-import { setFileExplorerConfig, uploadFile } from "@moix197/file_explorer";
-import { apiHandler } from "@moix197/next-ui";
-import { basicModels } from "@/data/models/models";
+import { customApiHandler as apiHandler } from "@/lib/customApiHandler";
+import { uploadFile } from "@moix197/file_explorer";
 
 async function uploadFileRoute(req: Request): Promise<any> {
 	const formData = await req.formData();
 	const body = Object.fromEntries(formData);
 	const file = body.file;
 	const { parentId, imageCategory, parentFolderId } = body;
-
-	const fileSystemModel = basicModels["fileSystem"];
-	setFileExplorerConfig({
-		customFileSystemModel: fileSystemModel,
-	});
 
 	await uploadFile({
 		file: file as File,

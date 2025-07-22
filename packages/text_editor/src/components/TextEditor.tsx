@@ -27,10 +27,12 @@ function TextEditor({
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [imageValue, setImageValue] = useState("");
 	const [quillInstance, setQuillInstance] = useState<any>(null);
+	const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL!;
 
 	useEffect(() => {
 		if (imageValue != "") {
-			quillInstance?.insertEmbed(10, "image", `/uploads/${imageValue}`);
+			console.log("imageValue", imageValue);
+			quillInstance?.insertEmbed(10, "image", imageValue);
 			setIsOpenModal(false);
 		}
 	}, [imageValue, quillInstance]);
@@ -42,9 +44,15 @@ function TextEditor({
 			clipboard: true,
 			toolbar: {
 				container: [
+					//[{ font: [] }],
 					[{ header: [1, 2, 3, 4, 5, 6, false] }],
 					["bold", "italic", "underline", "strike", "blockquote"],
-					[{ align: ["right", "center", "justify"] }],
+					[
+						{ align: "left" },
+						{ align: "center" },
+						{ align: "right" },
+						{ align: "justify" },
+					],
 					[{ color: [] }, { background: [] }],
 					[{ list: "ordered" }, { list: "bullet" }],
 					["link", "video", "image", "formula"],
@@ -80,7 +88,7 @@ function TextEditor({
 					value={value}
 					modules={modules}
 					onChange={setValue}
-					className={`aspect-[3/4] w-[430px] max-w-full ${className}`}
+					className={`aspect-[3/4] w-[430px] max-w-full bg-white ${className}`}
 				/>
 			</div>
 			<ModalFileExplorer

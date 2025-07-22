@@ -1,7 +1,7 @@
 {
     "name": "@moix197/file_explorer",
     "type": "module",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "File Explorer package for different projects",
     "main": "index.ts",
     "scripts": {
@@ -22,6 +22,7 @@
         "react-dom": "*",
         "flowbite-react": "*",
         "react-icons": "*",
+        "@supabase/supabase-js": "^2.52.0",
         "@moix197/cubone-explorer": "*"
     }
 }

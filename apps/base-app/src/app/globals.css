@@ -88,6 +88,12 @@ body {
 .fm-toolbar .toggle-view,
 .files-header {
 	background-color: #1f2937 !important;
+	color: #fff;
+}
+
+.toolbar {
+	max-height: max-content;
+	height: auto;
 }
 
 .item-action {
@@ -112,4 +118,20 @@ body {
 
 .book-aspect-ratio {
 	aspect-ratio: 3/4;
+}
+
+.ql-align-right {
+	text-align: right;
+}
+
+.ql-align-center {
+	text-align: center;
+}
+
+.ql-align-left {
+	text-align: left;
+}
+
+.ql-align-justify {
+	text-align: justify;
 }

@@ -11,6 +11,9 @@ const nextConfig = {
 		"@moix197/notifications",
 		"@moix197/validation",
 	],
+	images: {
+		domains: ["rojdgmekxxsgaheyuzhz.supabase.co"],
+	},
 };
 
 export default nextConfig;

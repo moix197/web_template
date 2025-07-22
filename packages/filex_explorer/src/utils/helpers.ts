@@ -1,6 +1,8 @@
 //import FileSystemModel from "../../../src/data/models/FileSystem.model";
 import path from "path";
-import { config } from "../../config";
+import { getSupabaseClient, getFileExplorerConfig } from "../../config";
+import fs from "fs";
+const config = getFileExplorerConfig();
 
 async function getRelatedPaths(parentId: string, name: string, dbItem = null) {
 	let itemPath = `${name}`; //Root folder
@@ -19,15 +21,23 @@ async function getRelatedPaths(parentId: string, name: string, dbItem = null) {
 		parentFolderPath = parentDbItem.path;
 		itemPath = `${parentDbItem.path}/${name}`;
 	}
-	//this one adds the BASE route in
-	const fullItemPath = path.resolve(
-		process.env.UPLOADS_ROOT_PATH as string,
-		itemPath
-	);
-	const fullParentFolderPath = path.resolve(
-		process.env.UPLOADS_ROOT_PATH as string,
-		parentFolderPath
-	);
+
+	let fullItemPath, fullParentFolderPath;
+
+	if (process.env.STORAGE_ENVIROMENT == "supabase") {
+		fullItemPath = `${process.env.UPLOADS_ROOT_PATH}/${itemPath}`;
+		fullParentFolderPath = `${process.env.UPLOADS_ROOT_PATH}/${parentFolderPath}`;
+	} else {
+		//this one adds the BASE route in
+		fullItemPath = path.resolve(
+			process.env.UPLOADS_ROOT_PATH as string,
+			itemPath
+		);
+		fullParentFolderPath = path.resolve(
+			process.env.UPLOADS_ROOT_PATH as string,
+			parentFolderPath
+		);
+	}
 
 	return { itemPath, fullItemPath, parentFolderPath, fullParentFolderPath };
 }
@@ -38,7 +48,6 @@ async function getParentObjFromDb(
 	parentId: string | null = null,
 	rootName: string | null = null
 ) {
-	console.log("name", name);
 	const contentObj = {
 		name: name,
 		isDirectory: true,
@@ -77,20 +86,72 @@ async function getOrCreateParentFolder(
 	return rootParent;
 }
 
-const updateChildernPathRecursive = async (item: any) => {
+const updateChildrenPathRecursive = async (item: any) => {
 	const children = await config.fileSystemModel?.find({ parentId: item._id });
 
 	for (const child of children) {
 		child.path = `${item.path}/${child.name}`;
 		await child.save({ timestamps: false });
 
-		if (child.isDirectory) updateChildernPathRecursive(child);
+		if (child.isDirectory) updateChildrenPathRecursive(child);
 	}
 };
+
+export async function renameLocal(item: any, newName: string) {
+	const { itemPath: newItemPath, fullItemPath: newItemFullPath } =
+		await getRelatedPaths(item.parentId, newName);
+	const { fullItemPath: oldFullPath } = await getRelatedPaths(
+		item.parentId,
+		item.name
+	);
+
+	if (fs.existsSync(newItemFullPath)) {
+		throw new Error("A file or folder with that name already exists!");
+	}
+
+	await fs.promises.rename(oldFullPath, newItemFullPath);
+
+	return newItemPath;
+}
+
+export async function renameSupabase(
+	item: any,
+	newName: string
+): Promise<string> {
+	const supabase = getSupabaseClient();
+	const { itemPath: newItemPath } = await getRelatedPaths(
+		item.parentId,
+		newName
+	);
+	const { itemPath: oldItemPath } = await getRelatedPaths(
+		item.parentId,
+		item.name
+	);
+
+	// Check if new path already exists
+	const { data: exists, error: headError } = await supabase.storage
+		.from(config.bucketName)
+		.list(newItemPath, { limit: 1 });
+
+	if (exists && exists.length > 0) {
+		throw new Error("A file or folder with that name already exists!");
+	}
+
+	// Move (rename)
+	const { error: moveError } = await supabase.storage
+		.from(config.bucketName)
+		.move(oldItemPath, newItemPath);
+
+	if (moveError) {
+		throw new Error("We couldn't rename the file in Supabase storage.");
+	}
+
+	return newItemPath;
+}
 
 export {
 	getRelatedPaths,
 	getParentObjFromDb,
 	getOrCreateParentFolder,
-	updateChildernPathRecursive,
+	updateChildrenPathRecursive,
 };
